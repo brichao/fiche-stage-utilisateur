@@ -1,1 +1,114 @@
-<p>fiche-renseignement works!</p>
+<div class="entete">
+  <table>
+    <tr>
+      <td>
+        <div class="logo">
+          <img src="../../assets/logo-imag.jpg" alt="Logo uga" class="logo-uga">
+        </div>
+      </td>
+      <td>
+        <div class="texte">
+          <h3>UFR IM²AG  -Relations Entreprises et Stages 60 rue de la Chimie –UGA–CS 40700 –38058 Grenoble cedex 9<br>
+          Tel . 04 7663 57-25</h3>
+
+
+          <h1>FICHE DE RENSEIGNEMENTS DE STAGE-2021/2022</h1>
+
+          <p><i><b>ATTENTION!</b></i><br>
+          <i>Cette fiche de renseignements <strong>ne tient pas lieu de convention</strong></i></p>
+
+          <div><mat-icon>arrow_forward</mat-icon><b>Ces informations sont nécessaires pour l’établissement et la gestion de votre convention de stage.<br>
+          Cette fiche doit être <span class="texte-rouge">envoyée par mail à Laurence.Pierre@univ-grenoble-alpes.fr<br></span>
+          pour validation <span class="texte-rouge">avant saisie de la convention</span> dans Pstage</b></div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<br>
+<div classe="etudiant">
+  <h2 class="titre">COORDONNEES DE L’ETUDIANT:</h2>
+  <form [formGroup]="formEtudiant" (ngSubmit)="validerEtudiant()">
+    <div formGroupName="etudiant">
+      <div class="fields">
+        <mat-form-field>
+          <mat-label>NOM : </mat-label>
+          <input formControlName="nom" id="nom" matInput>
+          <mat-error>Le nom est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Prénom : </mat-label>
+          <input formControlName="prenom" id="prenom" matInput>
+          <mat-error>Le prénom est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>N° étudiant : </mat-label>
+          <input formControlName="numEtudiant" id="numEtudiant" matInput placeholder="20202782">
+          <mat-error *ngIf="numEtudiant?.errors?.required">Le n° étudiant est requis.</mat-error>
+          <mat-error *ngIf="numEtudiant?.errors?.pattern">Le n° étudiant est composé de 8 chiffres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>N° de portable : </mat-label>
+          <input formControlName="numPortable" id="numPortable" matInput placeholder="0660871857">
+          <mat-error *ngIf="numPortable?.errors?.required">Le n° de portable est requis.</mat-error>
+          <mat-error *ngIf="numPortable?.errors?.pattern">Le n° de portable est composé de 10 chiffres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mail : </mat-label>
+          <input formControlName="mail" id="mail" matInput placeholder="prenom.nom@etu.univ-grenoble-alpes.fr">
+          <mat-error *ngIf="mail?.errors?.required">Le mail est requis.</mat-error>
+          <mat-error *ngIf="mail?.errors?.pattern">Le mail devrait être de la forme: prenom.nom@etu.univ-grenoble-alpes.fr</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Adresse : </mat-label>
+          <textarea formControlName="adresse" id="adresse" matInput></textarea>
+          <mat-error>L'adresse est requise.</mat-error>
+        </mat-form-field>
+
+        <div class="button-section">
+          <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
+            <mat-radio-group formControlName="affiliation" id="affiliation" [(ngModel)]="affiliationDefaut">
+              <mat-radio-button class="affiliationButton" value="ayant droit">ayant droit</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="étudiant">étudiant</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="assuré volontaire">assuré volontaire</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="étudiant étranger">étudiant étranger</mat-radio-button>
+            </mat-radio-group>
+            <mat-error>
+              <span *ngIf="affiliation?.errors?.required">Le type d'affiliation est requis.</span>
+            </mat-error>
+        </div>
+
+        <div class="button-section">
+          <mat-label>Caisse d’assurance maladie:</mat-label>
+            <mat-radio-group formControlName="caisseAssurance" id="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
+              <mat-radio-button class="affiliationButton" value="CPAM">CPAM</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="MSA">MSA</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="Travailleur indépendant">Travailleur indépendant</mat-radio-button>
+              <mat-radio-button class="affiliationButton" value="Régimes spéciaux">Régimes spéciaux</mat-radio-button>
+            </mat-radio-group>
+            <mat-error>
+              <span *ngIf="caisseAssurance?.errors?.required">La caisse d'assurance maladie est requise.</span>
+            </mat-error>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Inscrit en (préciser la filière d’études) :</mat-label>
+          <input id="caisseAssurance" matInput value="L3 MIAGE" readonly>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Enseignant référent pour l’encadrement du stage pour votre année d’étude (validera cette fiche):</mat-label>
+          <input id="caisseAssurance" matInput value="L.Pierre" readonly>
+        </mat-form-field>
+
+        <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>

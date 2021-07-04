@@ -8,6 +8,14 @@ import { FicheRenseignementComponent } from './fiche-renseignement/fiche-renseig
 import { PersonnelUgaComponent } from './personnel-uga/personnel-uga.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './header/header.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -15,14 +23,23 @@ import { MatButtonModule } from '@angular/material/button';
     AccueilComponent,
     FicheRenseignementComponent,
     PersonnelUgaComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     MatToolbarModule,
+    MatRadioModule,
     MatButtonModule,
-    AppRoutingModule
+    MatIconModule,
+    MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [MatToolbarModule],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

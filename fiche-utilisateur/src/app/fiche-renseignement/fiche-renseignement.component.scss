@@ -1,0 +1,38 @@
+.texte{
+  text-align: center;
+}
+
+.texte-rouge{
+  color:red;
+}
+
+.fields > *{
+  width: 95%;
+  padding: 0 2rem 0 2rem;
+}
+
+.titre {
+  padding: 0 2rem 0 2rem;
+  margin-top: 10px;
+}
+
+.etudiant {
+  border: 2px solid black;
+}
+
+.logo-uga{
+  width: 70%;
+  padding-left: 15px;
+}
+
+.button-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.affiliationButton {
+  margin: 0 10px;
+}
+

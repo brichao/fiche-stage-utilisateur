@@ -1,5 +1,26 @@
-<mat-toolbar color="warn">
-    <span>Fiche de renseignements</span>
-    <span class="space_bar"></span>
-    <button mat-button>Authentification - Personnels UGA</button>
-</mat-toolbar>
+<div class="accueil">
+<img src="../../assets/logo-imag.jpg" alt="Logo UGA" class="logo-uga">
+<mat-grid-list cols="1" rowHeight="200px">
+  <mat-grid-tile>
+    <div class ="creation-fiche">
+      <h2>Etudiant : Veuillez créer une nouvelle fiche de renseignements</h2>
+      <button mat-fab color ="primary" aria-label="creer-fiche" class="bouton-ajout" [routerLink]="'fiche-renseignement'">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile>
+    <div class ="recherche-fiche">
+      <h2>Entreprise : Veuillez chercher une fiche de renseignements</h2>
+      <mat-form-field appearance="outline" class="recherche">
+        <mat-label>Veuillez taper le nom et prénom de l'étudiant</mat-label>
+        <input matInput placeholder="Prénom Nom">
+        <button mat-icon-button matSuffix>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
