@@ -86,7 +86,6 @@ export class FicheRenseignementComponent{
   }
 
   validerEtudiant(): void{
-    console.log(this.etudiant);
     this.etudiant = {
       nom : this?.nom?.value,
       prenom : this?.prenom?.value,
@@ -97,6 +96,7 @@ export class FicheRenseignementComponent{
       typeAffiliation : this?.affiliation?.value,
       caisseAssurance : this?.caisseAssurance?.value
     }
+    console.log(this.etudiant);
   }
 
 
@@ -192,15 +192,14 @@ export class FicheRenseignementComponent{
   }
 
   validerEntreprise(): void{
-    console.log(this.adresseObject);
     this.adresseObject = {
       adresse : this?.adresseEntreprise?.value,
       codePostal : this?.codePostal?.value,
       ville : this?.ville?.value,
       pays : this?.pays?.value
     }
+    console.log(this.adresseObject);
 
-    console.log(this.entreprise);
     this.entreprise = {
       raisonSociale : this?.raisonSociale?.value,
       representantLegal : this?.representantLegal?.value,
@@ -212,6 +211,7 @@ export class FicheRenseignementComponent{
       serviceAccueil : this?.serviceAccueil?.value,
       adresse : this.adresseObject
     }
+    console.log(this.entreprise);
   }
 
   formServiceGestion = new FormGroup({
@@ -256,7 +256,6 @@ export class FicheRenseignementComponent{
   }
 
   validerServiceGestion(): void{
-    console.log(this.serviceGestion);
     this.serviceGestion = {
       nom : this?.nomService?.value,
       prenom : this?.prenomService?.value,
@@ -264,6 +263,7 @@ export class FicheRenseignementComponent{
       mail : this?.mailService?.value,
       adresse : this?.adresseService?.value
     }
+    console.log(this.serviceGestion);
   }
 
 
@@ -330,7 +330,6 @@ export class FicheRenseignementComponent{
   }
 
   validerTuteur(): void{
-    console.log(this.tuteur);
     this.tuteur = {
       nom : this?.nomTuteur?.value,
       prenom : this?.prenomTuteur?.value,
@@ -341,5 +340,6 @@ export class FicheRenseignementComponent{
       adresse : this?.adresseTuteur?.value,
       disponibilite : this?.disponibiliteTuteur?.value
     }
+    console.log(this.tuteur);
   }
 }
