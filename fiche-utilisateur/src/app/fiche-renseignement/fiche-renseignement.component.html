@@ -28,56 +28,56 @@
 
 <br>
 <div classe="etudiant">
-  <h2 class="titre">COORDONNEES DE L’ETUDIANT:</h2>
+  <h2 class="titre">COORDONNEES DE L’ETUDIANT (Tous les champs sont obligatoires)</h2>
   <form [formGroup]="formEtudiant" (ngSubmit)="validerEtudiant()">
     <div formGroupName="etudiant">
       <div class="fields">
         <mat-form-field>
           <mat-label>NOM : </mat-label>
-          <input formControlName="nom" id="nom" matInput>
+          <input formControlName="nom" matInput>
           <mat-error>Le nom est requis.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Prénom : </mat-label>
-          <input formControlName="prenom" id="prenom" matInput>
+          <input formControlName="prenom" matInput>
           <mat-error>Le prénom est requis.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>N° étudiant : </mat-label>
-          <input formControlName="numEtudiant" id="numEtudiant" matInput placeholder="20202782">
+          <input formControlName="numEtudiant" matInput placeholder="Exemple : 20202782">
           <mat-error *ngIf="numEtudiant?.errors?.required">Le n° étudiant est requis.</mat-error>
           <mat-error *ngIf="numEtudiant?.errors?.pattern">Le n° étudiant est composé de 8 chiffres.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>N° de portable : </mat-label>
-          <input formControlName="numPortable" id="numPortable" matInput placeholder="0660871857">
+          <input formControlName="numPortable" matInput placeholder="Exemple : 0660871857">
           <mat-error *ngIf="numPortable?.errors?.required">Le n° de portable est requis.</mat-error>
           <mat-error *ngIf="numPortable?.errors?.pattern">Le n° de portable est composé de 10 chiffres.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Mail : </mat-label>
-          <input formControlName="mail" id="mail" matInput placeholder="prenom.nom@etu.univ-grenoble-alpes.fr">
+          <input formControlName="mail" matInput placeholder="prenom.nom@etu.univ-grenoble-alpes.fr">
           <mat-error *ngIf="mail?.errors?.required">Le mail est requis.</mat-error>
           <mat-error *ngIf="mail?.errors?.pattern">Le mail devrait être de la forme: prenom.nom@etu.univ-grenoble-alpes.fr</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Adresse : </mat-label>
-          <textarea formControlName="adresse" id="adresse" matInput></textarea>
+          <textarea formControlName="adresse" matInput></textarea>
           <mat-error>L'adresse est requise.</mat-error>
         </mat-form-field>
 
         <div class="button-section">
           <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
-            <mat-radio-group formControlName="affiliation" id="affiliation" [(ngModel)]="affiliationDefaut">
-              <mat-radio-button class="affiliationButton" value="ayant droit">ayant droit</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="étudiant">étudiant</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="assuré volontaire">assuré volontaire</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="étudiant étranger">étudiant étranger</mat-radio-button>
+            <mat-radio-group formControlName="affiliation" [(ngModel)]="affiliationDefaut">
+              <mat-radio-button class="radioButton" value="ayant droit">ayant droit</mat-radio-button>
+              <mat-radio-button class="radioButton" value="étudiant">étudiant</mat-radio-button>
+              <mat-radio-button class="radioButton" value="assuré volontaire">assuré volontaire</mat-radio-button>
+              <mat-radio-button class="radioButton" value="étudiant étranger">étudiant étranger</mat-radio-button>
             </mat-radio-group>
             <mat-error>
               <span *ngIf="affiliation?.errors?.required">Le type d'affiliation est requis.</span>
@@ -86,11 +86,11 @@
 
         <div class="button-section">
           <mat-label>Caisse d’assurance maladie:</mat-label>
-            <mat-radio-group formControlName="caisseAssurance" id="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
-              <mat-radio-button class="affiliationButton" value="CPAM">CPAM</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="MSA">MSA</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="Travailleur indépendant">Travailleur indépendant</mat-radio-button>
-              <mat-radio-button class="affiliationButton" value="Régimes spéciaux">Régimes spéciaux</mat-radio-button>
+            <mat-radio-group formControlName="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
+              <mat-radio-button class="radioButton" value="CPAM">CPAM</mat-radio-button>
+              <mat-radio-button class="radioButton" value="MSA">MSA</mat-radio-button>
+              <mat-radio-button class="radioButton" value="Travailleur indépendant">Travailleur indépendant</mat-radio-button>
+              <mat-radio-button class="radioButton" value="Régimes spéciaux">Régimes spéciaux</mat-radio-button>
             </mat-radio-group>
             <mat-error>
               <span *ngIf="caisseAssurance?.errors?.required">La caisse d'assurance maladie est requise.</span>
@@ -99,15 +99,211 @@
 
         <mat-form-field>
           <mat-label>Inscrit en (préciser la filière d’études) :</mat-label>
-          <input id="caisseAssurance" matInput value="L3 MIAGE" readonly>
+          <input matInput value="L3 MIAGE" readonly>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Enseignant référent pour l’encadrement du stage pour votre année d’étude (validera cette fiche):</mat-label>
-          <input id="caisseAssurance" matInput value="L.Pierre" readonly>
+          <input matInput value="L.Pierre" readonly>
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<br>
+<div classe="entreprise">
+  <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
+  <form [formGroup]="formEntreprise" (ngSubmit)="validerEntreprise()">
+    <div formGroupName="entreprise">
+      <div class="fields">
+        <mat-form-field>
+          <mat-label>Raison sociale : </mat-label>
+          <input formControlName="raisonSociale" matInput>
+          <mat-error>La raison sociale est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Représentant légal : </mat-label>
+          <input formControlName="representantLegal" matInput>
+          <mat-error>Le représentant légal est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fonction : </mat-label>
+          <input formControlName="fonction" matInput>
+          <mat-error>Le fonction est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>N° de SIRET : </mat-label>
+          <input formControlName="numSiret" matInput>
+          <mat-error *ngIf="numSiret?.errors?.required">Le numéro de SIRET est requis.</mat-error>
+          <mat-error *ngIf="numSiret?.errors?.pattern">Le numéro de SIRET est une suite de chiffres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Code APE : </mat-label>
+          <input formControlName="codeApe" matInput>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Domaine d'activité : </mat-label>
+          <input matInput formControlName="domaineActivite">
+          <mat-error>Le domaine d'activité est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Effectif : </mat-label>
+          <input matInput formControlName="effectif">
+          <mat-error *ngIf="effectif?.errors?.required">L'effectif est requis.</mat-error>
+          <mat-error *ngIf="effectif?.errors?.pattern">L'effectif est un nombre.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Adresse : </mat-label>
+          <textarea matInput formControlName="adresseEntreprise"></textarea>
+          <mat-error>L'adresse est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Code postal : </mat-label>
+          <input matInput formControlName="codePostal">
+          <mat-error *ngIf="codePostal?.errors?.required">Le code postal est requis.</mat-error>
+          <mat-error *ngIf="codePostal?.errors?.pattern">Le code postal est composé de 5 chiffres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Ville : </mat-label>
+          <input matInput formControlName="ville">
+          <mat-error>La ville est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Pays : </mat-label>
+          <input matInput formControlName="pays">
+          <mat-error>Le pays est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
+          <input matInput formControlName="serviceAccueil">
+          <mat-error>Le service d'accueil est requis.</mat-error>
+        </mat-form-field>
+
+        <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
+      </div>
+    </div>
+  </form>
+  <div class="serviceGestion">
+    <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+    <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
+      <div formGroupName="serviceGestion">
+        <div class="fields">
+          <mat-form-field>
+            <mat-label>NOM : </mat-label>
+            <input formControlName="nomService" matInput>
+            <mat-error>Le est requis.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Prénom : </mat-label>
+            <input formControlName="prenomService" matInput>
+            <mat-error>Le prénom est requis.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Tél : </mat-label>
+            <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
+            <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
+            <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Mail : </mat-label>
+            <input formControlName="mailService" matInput>
+            <mat-error>Le mail est requis.</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Adresse : </mat-label>
+            <textarea matInput formControlName="adresseService"></textarea>
+            <mat-error>L'adresse est requise.</mat-error>
+          </mat-form-field>
+
+          <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<br>
+<div classe="tuteur">
+  <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
+  <form [formGroup]="formTuteur" (ngSubmit)="validerTuteur()">
+    <div formGroupName="tuteur">
+      <div class="fields">
+        <mat-form-field>
+          <mat-label>NOM : </mat-label>
+          <input formControlName="nomTuteur" matInput>
+          <mat-error>Le nom est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Prénom : </mat-label>
+          <input formControlName="prenomTuteur" matInput>
+          <mat-error>Le prénom est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fonction : </mat-label>
+          <input formControlName="fonctionTuteur" matInput>
+          <mat-error>La fonction est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Service : </mat-label>
+          <input formControlName="serviceTuteur" matInput>
+          <mat-error>Le service est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tél : </mat-label>
+          <input formControlName="numPortableTuteur" matInput placeholder="Exemple : 0476871857">
+          <mat-error *ngIf="numPortableTuteur?.errors?.required">Le n° de téléphone est requis.</mat-error>
+          <mat-error *ngIf="numPortableTuteur?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Mail : </mat-label>
+          <input formControlName="mailTuteur" matInput>
+          <mat-error>Le mail est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Adresse : </mat-label>
+          <textarea formControlName="adresseTuteur" matInput></textarea>
+          <mat-error>L'adresse est requise.</mat-error>
+        </mat-form-field>
+
+        <div class="button-section">
+          <mat-label>Disponibilité du tuteur professionnel de stage :</mat-label>
+            <mat-radio-group formControlName="disponibiliteTuteur" [(ngModel)]="disponibiliteDefaut">
+              <mat-radio-button class="radioButton" value="importante">importante</mat-radio-button>
+              <mat-radio-button class="radioButton" value="partielle">partielle</mat-radio-button>
+              <mat-radio-button class="radioButton" value="inexistante">inexistante</mat-radio-button>
+            </mat-radio-group>
+            <mat-error>
+              <span *ngIf="disponibiliteTuteur?.errors?.required">La disponibilité est requise.</span>
+            </mat-error>
+        </div>
+
+        <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
       </div>
     </div>
   </form>
