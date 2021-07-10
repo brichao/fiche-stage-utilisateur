@@ -17,15 +17,15 @@ export class TuteurService {
     return this.http.get<Tuteurs[]>(`${this.apiServerUrl}/tuteurs/`);
   }
 
-  addEtudiant(tuteur: Tuteurs): Observable<Tuteurs> {
+  addTuteur(tuteur: Tuteurs): Observable<Tuteurs> {
     return this.http.post<Tuteurs>(`${this.apiServerUrl}/tuteurs/${tuteur.mail}`, tuteur);
   }
 
-  updateEtudiant(tuteur: Tuteurs): Observable<Tuteurs> {
+  updateTuteur(tuteur: Tuteurs): Observable<Tuteurs> {
     return this.http.put<Tuteurs>(`${this.apiServerUrl}/tuteurs/${tuteur.mail}`, tuteur);
   }
 
-  deleteEtudiant(tuteur: Tuteurs): Observable<void> {
+  deleteTuteur(tuteur: Tuteurs): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/tuteurs/${tuteur.mail}`);
   }
 }

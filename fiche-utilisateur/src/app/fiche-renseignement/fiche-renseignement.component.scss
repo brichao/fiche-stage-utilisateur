@@ -1,12 +1,14 @@
 .texte{
   text-align: center;
+  font-size: 32px;
+  line-height: 35px;
 }
 
 .texte-rouge{
   color:red;
 }
 
-.fields > *{
+.fields > *, .gratificationSuite > *{
   width: 95%;
   padding: 0 2rem 0 2rem;
 }
@@ -16,9 +18,8 @@
   margin-top: 10px;
 }
 
-
-.etudiant {
-  border: 2px solid black;
+.signature {
+  padding-bottom: 50px;
 }
 
 .logo-uga{
@@ -37,4 +38,12 @@
   margin: 0 10px;
 }
 
+.messageValidation{
+  text-align: center;
+  font-size: x-large;
+  color: green;
+}
 
+.dates{
+  width: auto;
+}

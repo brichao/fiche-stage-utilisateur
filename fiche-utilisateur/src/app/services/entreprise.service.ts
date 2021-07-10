@@ -17,15 +17,15 @@ export class EntrepriseService {
     return this.http.get<Entreprises[]>(`${this.apiServerUrl}/etablissements/`);
   }
 
-  addEtudiant(entreprise: Entreprises): Observable<Entreprises> {
+  addEntreprise(entreprise: Entreprises): Observable<Entreprises> {
     return this.http.post<Entreprises>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`, entreprise);
   }
 
-  updateEtudiant(entreprise: Entreprises): Observable<Entreprises> {
+  updateEntreprise(entreprise: Entreprises): Observable<Entreprises> {
     return this.http.put<Entreprises>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`, entreprise);
   }
 
-  deleteEtudiant(entreprise: Entreprises): Observable<void> {
+  deleteEntreprise(entreprise: Entreprises): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`);
   }
 }

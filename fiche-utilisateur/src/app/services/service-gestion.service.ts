@@ -17,15 +17,15 @@ export class ServiceGestionService {
     return this.http.get<ServicesGestion[]>(`${this.apiServerUrl}/services/`);
   }
 
-  addEtudiant(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
+  addServiceGestion(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
     return this.http.post<ServicesGestion>(`${this.apiServerUrl}/services/${serviceGestion.mail}`, serviceGestion);
   }
 
-  updateEtudiant(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
+  updateServiceGestion(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
     return this.http.put<ServicesGestion>(`${this.apiServerUrl}/services/${serviceGestion.mail}`, serviceGestion);
   }
 
-  deleteEtudiant(serviceGestion: ServicesGestion): Observable<void> {
+  deleteServiceGestion(serviceGestion: ServicesGestion): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/services/${serviceGestion.mail}`);
   }
 }

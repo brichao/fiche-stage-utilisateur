@@ -8,7 +8,7 @@
       </td>
       <td>
         <div class="texte">
-          <h3>UFR IM²AG  -Relations Entreprises et Stages 60 rue de la Chimie –UGA–CS 40700 –38058 Grenoble cedex 9<br>
+          <h3>UFR IM²AG  -  Relations Entreprises et Stages 60 rue de la Chimie – UGA – CS 40700 – 38058 Grenoble cedex 9<br>
           Tel . 04 7663 57-25</h3>
 
 
@@ -73,28 +73,28 @@
 
         <div class="button-section">
           <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
-            <mat-radio-group formControlName="affiliation" [(ngModel)]="affiliationDefaut">
-              <mat-radio-button class="radioButton" value="ayant droit">ayant droit</mat-radio-button>
-              <mat-radio-button class="radioButton" value="étudiant">étudiant</mat-radio-button>
-              <mat-radio-button class="radioButton" value="assuré volontaire">assuré volontaire</mat-radio-button>
-              <mat-radio-button class="radioButton" value="étudiant étranger">étudiant étranger</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span *ngIf="affiliation?.errors?.required">Le type d'affiliation est requis.</span>
-            </mat-error>
+          <mat-radio-group formControlName="affiliation" [(ngModel)]="affiliationDefaut">
+            <mat-radio-button class="radioButton" value="ayant droit">ayant droit</mat-radio-button>
+            <mat-radio-button class="radioButton" value="étudiant">étudiant</mat-radio-button>
+            <mat-radio-button class="radioButton" value="assuré volontaire">assuré volontaire</mat-radio-button>
+            <mat-radio-button class="radioButton" value="étudiant étranger">étudiant étranger</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span *ngIf="affiliation?.errors?.required">Le type d'affiliation est requis.</span>
+          </mat-error>
         </div>
 
         <div class="button-section">
           <mat-label>Caisse d’assurance maladie:</mat-label>
-            <mat-radio-group formControlName="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
-              <mat-radio-button class="radioButton" value="CPAM">CPAM</mat-radio-button>
-              <mat-radio-button class="radioButton" value="MSA">MSA</mat-radio-button>
-              <mat-radio-button class="radioButton" value="Travailleur indépendant">Travailleur indépendant</mat-radio-button>
-              <mat-radio-button class="radioButton" value="Régimes spéciaux">Régimes spéciaux</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span *ngIf="caisseAssurance?.errors?.required">La caisse d'assurance maladie est requise.</span>
-            </mat-error>
+          <mat-radio-group formControlName="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
+            <mat-radio-button class="radioButton" value="CPAM">CPAM</mat-radio-button>
+            <mat-radio-button class="radioButton" value="MSA">MSA</mat-radio-button>
+            <mat-radio-button class="radioButton" value="Travailleur indépendant">Travailleur indépendant</mat-radio-button>
+            <mat-radio-button class="radioButton" value="Régimes spéciaux">Régimes spéciaux</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span *ngIf="caisseAssurance?.errors?.required">La caisse d'assurance maladie est requise.</span>
+          </mat-error>
         </div>
 
         <mat-form-field>
@@ -108,6 +108,7 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
+        <span *ngIf="etudiantValide" class="messageValidation">Enregistré</span>
       </div>
     </div>
   </form>
@@ -195,6 +196,7 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
+        <span *ngIf="entrepriseValide" class="messageValidation">Enregistré</span>
       </div>
     </div>
   </form>
@@ -225,7 +227,8 @@
           <mat-form-field>
             <mat-label>Mail : </mat-label>
             <input formControlName="mailService" matInput>
-            <mat-error>Le mail est requis.</mat-error>
+            <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
+            <mat-error *ngIf="mailService?.errors?.pattern">Le mail n'est pas valide.</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -235,6 +238,7 @@
           </mat-form-field>
 
           <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
+          <span *ngIf="serviceGestionValide" class="messageValidation">Enregistré</span>
         </div>
       </div>
     </form>
@@ -282,7 +286,8 @@
         <mat-form-field>
           <mat-label>Mail : </mat-label>
           <input formControlName="mailTuteur" matInput>
-          <mat-error>Le mail est requis.</mat-error>
+          <mat-error *ngIf="mailTuteur?.errors?.required">Le mail est requis.</mat-error>
+          <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail n'est pas valide.</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -293,18 +298,178 @@
 
         <div class="button-section">
           <mat-label>Disponibilité du tuteur professionnel de stage :</mat-label>
-            <mat-radio-group formControlName="disponibiliteTuteur" [(ngModel)]="disponibiliteDefaut">
-              <mat-radio-button class="radioButton" value="importante">importante</mat-radio-button>
-              <mat-radio-button class="radioButton" value="partielle">partielle</mat-radio-button>
-              <mat-radio-button class="radioButton" value="inexistante">inexistante</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span *ngIf="disponibiliteTuteur?.errors?.required">La disponibilité est requise.</span>
-            </mat-error>
+          <mat-radio-group formControlName="disponibiliteTuteur" [(ngModel)]="disponibiliteDefaut">
+            <mat-radio-button class="radioButton" value="importante">importante</mat-radio-button>
+            <mat-radio-button class="radioButton" value="partielle">partielle</mat-radio-button>
+            <mat-radio-button class="radioButton" value="inexistante">inexistante</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span *ngIf="disponibiliteTuteur?.errors?.required">La disponibilité est requise.</span>
+          </mat-error>
         </div>
 
         <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
+        <span *ngIf="tuteurValide" class="messageValidation">Enregistré</span>
       </div>
     </div>
   </form>
 </div>
+
+<br>
+<div classe="infoStage">
+  <form [formGroup]="formInfosStage" (ngSubmit)="validerInfosStage()">
+    <div formGroupName="infoStage">
+      <div class="fields">
+        <h2 class="titre">DATES DU STAGE:</h2>
+        <div class="dates">
+        <h4>Période temps partiel :</h4>
+          <mat-form-field>
+            <mat-label>Date de début : </mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="dateDebutPartiel" placeholder="Date de debut partiel" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date de fin : </mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="dateFinPartiel" placeholder="Date de fin partiel" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <h4>Période temps plein (35 h/semaine) :</h4>
+          <mat-form-field>
+            <mat-label>Date de début : </mat-label>
+            <input matInput [matDatepicker]="picker3" formControlName="dateDebutPlein" [disabled]="true">
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date de fin : </mat-label>
+            <input matInput [matDatepicker]="picker4" formControlName="dateFinPlein" placeholder="Date de fin" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+            <mat-datepicker #picker4></mat-datepicker>
+            <mat-error>La date de fin du stage est requise.</mat-error>
+          </mat-form-field>
+
+          <h4>En cas d’interruption, merci de préciser les dates : </h4>
+          <mat-form-field>
+            <mat-label>Du : </mat-label>
+            <input matInput [matDatepicker]="picker5" formControlName="dateDebutInterruption" placeholder="Date de debut d'interruption" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+            <mat-datepicker #picker5></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Au : </mat-label>
+            <input matInput [matDatepicker]="picker6" formControlName="dateFinInterruption" placeholder="Date de fin d'interruption" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+            <mat-datepicker #picker6></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Nombre total d’heures du stage :</mat-label>
+          <input formControlName="nbHeures" matInput>
+          <mat-error *ngIf="nbHeures?.errors?.required">Le nombre total d'heures est requis.</mat-error>
+          <mat-error *ngIf="nbHeures?.errors?.pattern">Le nombre total d'heures est un nombre.</mat-error>
+        </mat-form-field>
+
+        <div class="gratification">
+          <div class="button-section">
+            <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
+            <mat-radio-group formControlName="gratification" [(ngModel)]="gratificationShow">
+              <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
+              <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
+            </mat-radio-group>
+            <mat-error>
+              <span *ngIf="gratification?.errors?.required">La gratification est requise.</span>
+            </mat-error>
+          </div>
+
+          <div *ngIf="gratificationShow" class="gratificationSuite">
+            <mat-form-field>
+              <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
+              <input formControlName="montantGratification" matInput>
+              <mat-error>Le montant de la gratification est un nombre.</mat-error>
+            </mat-form-field>
+
+            <div class="button-section">
+              <mat-label>Versement de la gratification:</mat-label>
+              <mat-radio-group formControlName="versementGratification" [(ngModel)]="versementDefaut">
+                <mat-radio-button class="radioButton" value="Chèque">Chèque</mat-radio-button>
+                <mat-radio-button class="radioButton" value="Virement bancaire">Virement bancaire</mat-radio-button>
+                <mat-radio-button class="radioButton" value="Espèces">Espèces</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <mat-form-field>
+              <mat-label>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge :</mat-label>
+              <input formControlName="laboratoireUGA" matInput>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+              <mat-label>Avantages en nature (restauration, hébergement, remboursement....):</mat-label>
+              <input formControlName="avantages" matInput>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="button-section">
+          <h2>Confidentialité du stage :</h2>
+          <mat-radio-group formControlName="confidentialite" [(ngModel)]="confidentialiteDefaut">
+            <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
+            <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span *ngIf="confidentialite?.errors?.required">La confidentialite est requise.</span>
+          </mat-error>
+        </div>
+
+        <h2 class="titre">TITRE DU STAGE :</h2>
+        <mat-form-field>
+          <input formControlName="titre" matInput>
+          <mat-error>Le titre du stage est requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
+          <textarea formControlName="description" matInput rows="5"></textarea>
+          <mat-error>La description est requise.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Objectifs du stage dans ce projet : </mat-label>
+          <textarea formControlName="objectifs" matInput rows="5"></textarea>
+          <mat-error>Les objectifs sont requis.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
+          <textarea formControlName="taches" matInput rows="5"></textarea>
+          <mat-error>Les tâches sont requises.</mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
+          <textarea formControlName="details" matInput rows="5"></textarea>
+          <mat-error>Les détails sont requis.</mat-error>
+        </mat-form-field>
+
+        <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
+        <span *ngIf="infoStageValide" class="messageValidation">Enregistré</span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<mat-grid-list cols="2" rowHeight="30px" class="signature">
+  <mat-grid-tile>
+    <b>Signature de l’enseignant référent du stage : (L.Pierre)</b>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <b>Signature du tuteur professionnel :</b>
+  </mat-grid-tile>
+</mat-grid-list>
+

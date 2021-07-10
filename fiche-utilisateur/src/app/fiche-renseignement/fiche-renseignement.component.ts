@@ -1,4 +1,9 @@
-import { Etudiants, Entreprises, ServicesGestion, Tuteurs, Adresses } from './../../classes';
+import { InfosStageService } from './../services/infos-stage.service';
+import { TuteurService } from './../services/tuteur.service';
+import { ServiceGestionService } from './../services/service-gestion.service';
+import { EntrepriseService } from './../services/entreprise.service';
+import { EtudiantService } from './../services/etudiant.service';
+import { Etudiants, Entreprises, ServicesGestion, Tuteurs, Adresses, infosStage } from './../../classes';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -14,12 +19,27 @@ export class FicheRenseignementComponent{
   private serviceGestion : ServicesGestion | null = null;
   private tuteur : Tuteurs | null = null;
   private adresseObject : Adresses | null = null;
+  private infoStage: infosStage | null = null;
 
   affiliationDefaut:string = 'ayant droit';
   caisseAssuranceDefaut:string = 'CPAM';
   disponibiliteDefaut:string = 'importante';
+  confidentialiteDefaut: boolean = true;
+  gratificationShow: boolean = false;
+  versementDefaut: string = 'Chèque';
 
-  constructor() { }
+
+  minDate = new Date();
+  maxDate = new Date(2024, 8, 1);
+
+  etudiantValide: boolean = false;
+  entrepriseValide: boolean = false;
+  serviceGestionValide: boolean = false;
+  tuteurValide: boolean = false;
+  infoStageValide: boolean = false;
+
+  constructor(private etudiantService: EtudiantService, private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService,
+    private tuteurService: TuteurService, private infosStageService: InfosStageService) { }
 
   formEtudiant = new FormGroup({
     etudiant : new FormGroup({
@@ -39,7 +59,7 @@ export class FicheRenseignementComponent{
       ]),
       mail : new FormControl('',[
         Validators.required,
-        Validators.pattern("^[a-zA-Z]+.[a-zA-Z]+@etu.univ-grenoble-alpes.fr")
+        Validators.pattern("^[a-zA-Z-]+\.[a-zA-Z\.-]+@etu.univ-grenoble-alpes.fr")
       ]),
       adresse : new FormControl('',[
         Validators.required
@@ -96,7 +116,8 @@ export class FicheRenseignementComponent{
       typeAffiliation : this?.affiliation?.value,
       caisseAssurance : this?.caisseAssurance?.value
     }
-    console.log(this.etudiant);
+    this.etudiantService.addEtudiant(this.etudiant).subscribe(etudiant => console.log(etudiant));
+    this.etudiantValide = true;
   }
 
 
@@ -198,8 +219,6 @@ export class FicheRenseignementComponent{
       ville : this?.ville?.value,
       pays : this?.pays?.value
     }
-    console.log(this.adresseObject);
-
     this.entreprise = {
       raisonSociale : this?.raisonSociale?.value,
       representantLegal : this?.representantLegal?.value,
@@ -211,7 +230,8 @@ export class FicheRenseignementComponent{
       serviceAccueil : this?.serviceAccueil?.value,
       adresse : this.adresseObject
     }
-    console.log(this.entreprise);
+    this.entrepriseService.addEntreprise(this.entreprise).subscribe(entreprise => console.log(entreprise));
+    this.entrepriseValide = true;
   }
 
   formServiceGestion = new FormGroup({
@@ -227,7 +247,8 @@ export class FicheRenseignementComponent{
         Validators.pattern("^[0-9]{10}")
       ]),
       mailService : new FormControl('',[
-        Validators.required
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+\.[a-zA-Z]{2,5}$")
       ]),
       adresseService : new FormControl('',[
         Validators.required
@@ -263,7 +284,8 @@ export class FicheRenseignementComponent{
       mail : this?.mailService?.value,
       adresse : this?.adresseService?.value
     }
-    console.log(this.serviceGestion);
+    this.gestionService.addServiceGestion(this.serviceGestion).subscribe(servicegestion => console.log(servicegestion));
+    this.serviceGestionValide = true;
   }
 
 
@@ -286,7 +308,8 @@ export class FicheRenseignementComponent{
         Validators.pattern("^[0-9]{10}")
       ]),
       mailTuteur : new FormControl('',[
-        Validators.required
+        Validators.required,
+        Validators.pattern("^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+\.[a-zA-Z]{2,5}$")
       ]),
       adresseTuteur : new FormControl('',[
         Validators.required
@@ -340,6 +363,150 @@ export class FicheRenseignementComponent{
       adresse : this?.adresseTuteur?.value,
       disponibilite : this?.disponibiliteTuteur?.value
     }
-    console.log(this.tuteur);
+    this.tuteurService.addTuteur(this.tuteur).subscribe(tuteur => console.log(tuteur));
+    this.tuteurValide = true;
   }
+
+  formInfosStage = new FormGroup({
+    infoStage : new FormGroup({
+      dateDebutPartiel : new FormControl(''),
+      dateFinPartiel : new FormControl(''),
+      dateDebutPlein : new FormControl(new Date(2021,4,25)),
+      dateFinPlein : new FormControl('', [
+        Validators.required
+      ]),
+      dateDebutInterruption : new FormControl(''),
+      dateFinInterruption : new FormControl(''),
+      nbHeures : new FormControl('', [
+        Validators.required,
+        Validators.pattern("^[0-9]+")
+      ]),
+      gratification : new FormControl('', [
+        Validators.required
+      ]),
+      montantGratification : new FormControl('', [
+        Validators.pattern("^[0-9.]+")
+      ]),
+      versementGratification : new FormControl(''),
+      laboratoireUGA : new FormControl(''),
+      avantages : new FormControl(''),
+      confidentialite : new FormControl('',[
+        Validators.required
+      ]),
+      titre : new FormControl('',[
+        Validators.required
+      ]),
+      description : new FormControl('',[
+        Validators.required
+      ]),
+      objectifs : new FormControl('',[
+        Validators.required
+      ]),
+      taches : new FormControl('',[
+        Validators.required
+      ]),
+      details : new FormControl('',[
+        Validators.required
+      ])
+    })
+  })
+
+  get dateDebutPartiel(){
+    return this.formInfosStage.get('infoStage.dateDebutPartiel');
+  }
+
+  get dateFinPartiel(){
+    return this.formInfosStage.get('infoStage.dateFinPartiel');
+  }
+
+  get dateDebutPlein(){
+    return this.formInfosStage.get('infoStage.dateDebutPlein');
+  }
+
+  get dateFinPlein(){
+    return this.formInfosStage.get('infoStage.dateFinPlein');
+  }
+
+  get dateDebutInterruption(){
+    return this.formInfosStage.get('infoStage.dateDebutInterruption');
+  }
+
+  get dateFinInterruption(){
+    return this.formInfosStage.get('infoStage.dateFinInterruption');
+  }
+
+  get nbHeures(){
+    return this.formInfosStage.get('infoStage.nbHeures');
+  }
+
+  get gratification(){
+    return this.formInfosStage.get('infoStage.gratification');
+  }
+
+  get montantGratification(){
+    return this.formInfosStage.get('infoStage.montantGratification');
+  }
+
+  get versementGratification(){
+    return this.formInfosStage.get('infoStage.versementGratification');
+  }
+
+  get laboratoireUGA(){
+    return this.formInfosStage.get('infoStage.laboratoireUGA');
+  }
+
+  get avantages(){
+    return this.formInfosStage.get('infoStage.avantages');
+  }
+
+  get confidentialite(){
+    return this.formInfosStage.get('infoStage.confidentialite');
+  }
+
+  get titre(){
+    return this.formInfosStage.get('infoStage.titre');
+  }
+
+  get description(){
+    return this.formInfosStage.get('infoStage.description');
+  }
+
+  get objectifs(){
+    return this.formInfosStage.get('infoStage.objectifs');
+  }
+
+  get taches(){
+    return this.formInfosStage.get('infoStage.taches');
+  }
+
+  get details(){
+    return this.formInfosStage.get('infoStage.details');
+  }
+
+  validerInfosStage(): void{
+    this.infoStage = {
+      dateDebutPartiel : this?.dateDebutPartiel?.value,
+      dateFinPartiel : this?.dateFinPartiel?.value,
+      dateDebutPlein : this?.dateDebutPlein?.value,
+      dateFinPlein : this?.dateFinPlein?.value,
+      dateDebutInterruption : this?.dateDebutInterruption?.value,
+      dateFinInterruption : this?.dateFinInterruption?.value,
+      nbHeures : this?.nbHeures?.value,
+      gratification : this?.gratification?.value,
+      montantGratification : this?.montantGratification?.value,
+      versementGratification : this?.versementGratification?.value,
+      laboratoireUGA : this?.laboratoireUGA?.value,
+      avantages : this?.avantages?.value,
+      confidentialite : this?.confidentialite?.value,
+      titre : this?.titre?.value,
+      description : this?.description?.value,
+      objectifs : this?.objectifs?.value,
+      taches : this?.taches?.value,
+      details : this?.details?.value
+    }
+
+    this.infosStageService.addInfosStage(this.infoStage).subscribe(infoStage => console.log(infoStage));
+    this.infoStageValide = true;
+  }
+
 }

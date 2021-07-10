@@ -46,3 +46,24 @@ export interface Tuteurs{
   adresse: string;
   disponibilite: string;
 }
+
+export interface infosStage{
+  dateDebutPartiel: Date;
+  dateFinPartiel: Date;
+  dateDebutPlein: Date;
+  dateFinPlein: Date;
+  dateDebutInterruption: Date;
+  dateFinInterruption: Date;
+  nbHeures: number;
+  gratification: boolean;
+  montantGratification: number;
+  versementGratification: string;
+  laboratoireUGA: string;
+  avantages: string;
+  confidentialite: boolean;
+  titre: string;
+  description: string;
+  objectifs: string;
+  taches: string;
+  details: string;
+}

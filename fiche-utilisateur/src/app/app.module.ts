@@ -1,3 +1,8 @@
+import { InfosStageService } from './services/infos-stage.service';
+import { TuteurService } from './services/tuteur.service';
+import { ServiceGestionService } from './services/service-gestion.service';
+import { EntrepriseService } from './services/entreprise.service';
+import { EtudiantService } from './services/etudiant.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -16,6 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatRadioModule } from '@angular/material/radio';
+import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,9 +45,18 @@ import { MatRadioModule } from '@angular/material/radio';
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    EtudiantService,
+    EntrepriseService,
+    ServiceGestionService,
+    TuteurService,
+    InfosStageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
