@@ -1,3 +1,4 @@
+//Définition des interfaces de chaque schéma dans la BD, assurer l'intégrité
 export interface Etudiants{
   nom: string;
   prenom: string;
