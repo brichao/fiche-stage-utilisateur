@@ -1,8 +1,9 @@
 import { ServicesGestion } from './../../classes';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,21 @@ export class ServiceGestionService {
     return this.http.get<ServicesGestion[]>(`${this.apiServerUrl}/services/`);
   }
 
+  //On utilise la méthode POST de Http pour une insertion dans la BD, le paramaètre est l'url du serveur (suffixé par /services/mail comme présent
+  //dans la classe controller dans le backend) ainsi que l'objet service de gestion que nous souhaitons inserer. Ensuite on regarde si le serveur nous
+  //renvoie une erreur. Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.
   addServiceGestion(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
-    return this.http.post<ServicesGestion>(`${this.apiServerUrl}/services/${serviceGestion.mail}`, serviceGestion);
+    return this.http.post<ServicesGestion>(`${this.apiServerUrl}/services/${serviceGestion.mail}`, serviceGestion).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
   }
 
   updateServiceGestion(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
@@ -31,5 +45,23 @@ export class ServiceGestionService {
 
   deleteServiceGestion(serviceGestion: ServicesGestion): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/services/${serviceGestion.mail}`);
+  }
+
+  //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
+  getServerError(error: HttpErrorResponse): string {
+    switch (error.status){
+      case 403 : {
+        return `Le service de gestion existe déjà dans la base de données, vous ne pouvez pas en créer de nouveau.`;
+      }
+      case 404 : {
+        return `Le service de gestion n'existe pas dans la base de données.`;
+      }
+      case 500 : {
+        return `Internal server error: ${error.message}`;
+      }
+      default: {
+        return `Unknown server error: ${error.message}`;
+      }
+    }
   }
 }

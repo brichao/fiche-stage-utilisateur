@@ -1,8 +1,9 @@
 import { infosStage } from './../../classes';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,21 @@ export class InfosStageService {
     return this.http.get<infosStage[]>(`${this.apiServerUrl}/infosStages/`);
   }
 
+  //On utilise la méthode POST de Http pour une insertion dans la BD, le paramaètre est l'url du serveur (suffixé par /infosStage/titre comme présent
+  //dans la classe controller dans le backend) ainsi que l'objet informations du stage que nous souhaitons inserer. Ensuite on regarde si le serveur nous
+  //renvoie une erreur. Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.
   addInfosStage(infoStage: infosStage): Observable<infosStage> {
-    return this.http.post<infosStage>(`${this.apiServerUrl}/infosStages/${infoStage.titre}`, infoStage);
+    return this.http.post<infosStage>(`${this.apiServerUrl}/infosStages/${infoStage.titre}`, infoStage).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
   }
 
   updateInfosStage(infoStage: infosStage): Observable<infosStage> {
@@ -31,5 +45,23 @@ export class InfosStageService {
 
   deleteInfosStage(infoStage: infosStage): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/infosStages/${infoStage.titre}`);
+  }
+
+  //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
+  getServerError(error: HttpErrorResponse): string {
+    switch (error.status){
+      case 403 : {
+        return `Les informations du stage existe déjà dans la base de données, vous ne pouvez pas en créer de nouveau.`;
+      }
+      case 404 : {
+        return `Les informations de stage n'existe pas dans la base de données.`;
+      }
+      case 500 : {
+        return `Internal server error: ${error.message}`;
+      }
+      default: {
+        return `Unknown server error: ${error.message}`;
+      }
+    }
   }
 }

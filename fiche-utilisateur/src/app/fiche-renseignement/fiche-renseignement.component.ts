@@ -38,6 +38,12 @@ export class FicheRenseignementComponent{
   tuteurValide: boolean = false;
   infoStageValide: boolean = false;
 
+  errorMessageEtudiant: string = "";
+  errorMessageEntreprise: string = "";
+  errorMessageService: string = "";
+  errorMessageTuteur: string = "";
+  errorMessageInfos: string = "";
+
   constructor(private etudiantService: EtudiantService, private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService,
     private tuteurService: TuteurService, private infosStageService: InfosStageService) { }
 
@@ -116,8 +122,11 @@ export class FicheRenseignementComponent{
       typeAffiliation : this?.affiliation?.value,
       caisseAssurance : this?.caisseAssurance?.value
     }
-    this.etudiantService.addEtudiant(this.etudiant).subscribe(etudiant => console.log(etudiant));
-    this.etudiantValide = true;
+    this.etudiantService.addEtudiant(this.etudiant).subscribe(
+      etudiant =>{ console.log(etudiant),
+        this.etudiantValide = true},
+      error => {this.errorMessageEtudiant = error,
+        this.etudiantValide = false});
   }
 
 
@@ -230,8 +239,12 @@ export class FicheRenseignementComponent{
       serviceAccueil : this?.serviceAccueil?.value,
       adresse : this.adresseObject
     }
-    this.entrepriseService.addEntreprise(this.entreprise).subscribe(entreprise => console.log(entreprise));
-    this.entrepriseValide = true;
+    this.entrepriseService.addEntreprise(this.entreprise).subscribe(
+      entreprise => { console.log(entreprise),
+        this.entrepriseValide=true},
+      error => { this.errorMessageEntreprise = error,
+        this.entrepriseValide=false}
+    );
   }
 
   formServiceGestion = new FormGroup({
@@ -284,8 +297,12 @@ export class FicheRenseignementComponent{
       mail : this?.mailService?.value,
       adresse : this?.adresseService?.value
     }
-    this.gestionService.addServiceGestion(this.serviceGestion).subscribe(servicegestion => console.log(servicegestion));
-    this.serviceGestionValide = true;
+    this.gestionService.addServiceGestion(this.serviceGestion).subscribe(
+      servicegestion => { console.log(servicegestion),
+        this.serviceGestionValide = true},
+      error => { this.errorMessageService = error,
+        this.serviceGestionValide = false}
+    );
   }
 
 
@@ -363,8 +380,12 @@ export class FicheRenseignementComponent{
       adresse : this?.adresseTuteur?.value,
       disponibilite : this?.disponibiliteTuteur?.value
     }
-    this.tuteurService.addTuteur(this.tuteur).subscribe(tuteur => console.log(tuteur));
-    this.tuteurValide = true;
+    this.tuteurService.addTuteur(this.tuteur).subscribe(
+      tuteur => { console.log(tuteur),
+        this.tuteurValide = true},
+      error => { this.errorMessageTuteur = error,
+        this.tuteurValide = false}
+    );
   }
 
   formInfosStage = new FormGroup({
@@ -505,8 +526,12 @@ export class FicheRenseignementComponent{
       details : this?.details?.value
     }
 
-    this.infosStageService.addInfosStage(this.infoStage).subscribe(infoStage => console.log(infoStage));
-    this.infoStageValide = true;
+    this.infosStageService.addInfosStage(this.infoStage).subscribe(
+      infoStage => { console.log(infoStage),
+        this.infoStageValide = true},
+      error => { this.errorMessageInfos = error,
+        this.infoStageValide = false}
+    );
   }
 
 }

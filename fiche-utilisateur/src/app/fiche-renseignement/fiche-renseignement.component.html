@@ -108,7 +108,8 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
-        <span *ngIf="etudiantValide" class="messageValidation">Enregistré</span>
+        <span *ngIf="etudiantValide" class="messageSucces">Enregistré</span>
+        <span *ngIf="!etudiantValide" class="messageEchec">{{errorMessageEtudiant}}</span>
       </div>
     </div>
   </form>
@@ -196,7 +197,8 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
-        <span *ngIf="entrepriseValide" class="messageValidation">Enregistré</span>
+        <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
+        <span *ngIf="!entrepriseValide" class="messageEchec">{{errorMessageEntreprise}}</span>
       </div>
     </div>
   </form>
@@ -226,9 +228,9 @@
 
           <mat-form-field>
             <mat-label>Mail : </mat-label>
-            <input formControlName="mailService" matInput>
+            <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
             <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
-            <mat-error *ngIf="mailService?.errors?.pattern">Le mail n'est pas valide.</mat-error>
+            <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
           </mat-form-field>
 
           <mat-form-field>
@@ -238,7 +240,8 @@
           </mat-form-field>
 
           <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
-          <span *ngIf="serviceGestionValide" class="messageValidation">Enregistré</span>
+          <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
+          <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
         </div>
       </div>
     </form>
@@ -285,9 +288,9 @@
 
         <mat-form-field>
           <mat-label>Mail : </mat-label>
-          <input formControlName="mailTuteur" matInput>
+          <input formControlName="mailTuteur" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
           <mat-error *ngIf="mailTuteur?.errors?.required">Le mail est requis.</mat-error>
-          <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail n'est pas valide.</mat-error>
+          <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
         </mat-form-field>
 
         <mat-form-field>
@@ -309,7 +312,8 @@
         </div>
 
         <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
-        <span *ngIf="tuteurValide" class="messageValidation">Enregistré</span>
+        <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
+        <span *ngIf="!tuteurValide" class="messageEchec">{{errorMessageTuteur}}</span>
       </div>
     </div>
   </form>
@@ -458,7 +462,8 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
-        <span *ngIf="infoStageValide" class="messageValidation">Enregistré</span>
+        <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
+        <span *ngIf="!infoStageValide" class="messageEchec">{{errorMessageInfos}}</span>
       </div>
     </div>
   </form>

@@ -1,8 +1,9 @@
 import { environment } from './../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Etudiants } from 'src/classes';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,20 @@ export class EtudiantService {
   }
 
   addEtudiant(etudiant: Etudiants): Observable<Etudiants> {
-    return this.http.post<Etudiants>(`${this.apiServerUrl}/etudiants/${etudiant.mail}`, etudiant);
+    //On utilise la méthode POST de Http pour une insertion dans la BD, le paramaètre est l'url du serveur (suffixé par /etudiant/mail comme présent
+    //dans la classe controller dans le backend) ainsi que l'objet etudiant que nous souhaitons inserer. Ensuite on regarde si le serveur nous
+    //renvoie une erreur. Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.
+    return this.http.post<Etudiants>(`${this.apiServerUrl}/etudiants/${etudiant.mail}`, etudiant).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
   }
 
   updateEtudiant(etudiant: Etudiants): Observable<Etudiants> {
@@ -31,5 +45,23 @@ export class EtudiantService {
 
   deleteEtudiant(etudiant: Etudiants): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/etudiants/${etudiant.mail}`);
+  }
+
+  //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
+  getServerError(error: HttpErrorResponse): string {
+    switch (error.status){
+      case 403 : {
+        return `L'étudiant existe déjà dans la base de données, vous ne pouvez pas en créer de nouveau.`;
+      }
+      case 404 : {
+        return `L'étudiant n'existe pas dans la base de données.`;
+      }
+      case 500 : {
+        return `Internal server error: ${error.message}`;
+      }
+      default: {
+        return `Unknown server error: ${error.message}`;
+      }
+    }
   }
 }

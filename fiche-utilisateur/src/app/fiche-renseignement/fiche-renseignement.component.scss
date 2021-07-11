@@ -38,10 +38,16 @@
   margin: 0 10px;
 }
 
-.messageValidation{
+.messageSucces{
   text-align: center;
   font-size: x-large;
   color: green;
+}
+
+.messageEchec{
+  text-align: center;
+  font-size: x-large;
+  color: red;
 }
 
 .dates{
