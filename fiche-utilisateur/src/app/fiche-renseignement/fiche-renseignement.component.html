@@ -1,3 +1,8 @@
+<!--***************************************************************************************************************************************************
+*************************************************    ENTETE   *****************************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Entete de la fiche de renseignement (Logo IM2AG + Texte)-->
 <div class="entete">
   <table>
     <tr>
@@ -27,8 +32,16 @@
 </div>
 
 <br>
+
+<!--***************************************************************************************************************************************************
+*************************************************    ETUDIANT   ***************************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Formulaire pour renseigner les informations de l'étudiant | Angular material a été utilisé pour le style simple-->
 <div classe="etudiant">
   <h2 class="titre">COORDONNEES DE L’ETUDIANT (Tous les champs sont obligatoires)</h2>
+  <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+  <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
   <form [formGroup]="formEtudiant" (ngSubmit)="validerEtudiant()">
     <div formGroupName="etudiant">
       <div class="fields">
@@ -108,6 +121,7 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
+        <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="etudiantValide" class="messageSucces">Enregistré</span>
         <span *ngIf="!etudiantValide" class="messageEchec">{{errorMessageEtudiant}}</span>
       </div>
@@ -115,10 +129,17 @@
   </form>
 </div>
 
-
 <br>
+
+<!--***************************************************************************************************************************************************
+*************************************************    ETABLISSEMENT   **********************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Formulaire pour renseigner les informations de l'entreprise ainsi que le service de gestion | Angular material a été utilisé pour le style simple-->
 <div classe="entreprise">
   <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
+  <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+  <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
   <form [formGroup]="formEntreprise" (ngSubmit)="validerEntreprise()">
     <div formGroupName="entreprise">
       <div class="fields">
@@ -197,13 +218,21 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
+        <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
         <span *ngIf="!entrepriseValide" class="messageEchec">{{errorMessageEntreprise}}</span>
       </div>
     </div>
   </form>
+
+  <!--***************************************************************************************************************************************************
+  *************************************************    SERVICE DE GESTION   *****************************************************************************
+  *******************************************************************************************************************************************************
+  *******************************************************************************************************************************************************-->
   <div class="serviceGestion">
     <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
     <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
       <div formGroupName="serviceGestion">
         <div class="fields">
@@ -248,10 +277,17 @@
   </div>
 </div>
 
+<BR>
 
-<br>
+<!--***************************************************************************************************************************************************
+*************************************************    TUTEUR   *****************************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Formulaire pour renseigner les informations du tuteur | Angular material a été utilisé pour le style simple-->
 <div classe="tuteur">
   <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
+  <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+  <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
   <form [formGroup]="formTuteur" (ngSubmit)="validerTuteur()">
     <div formGroupName="tuteur">
       <div class="fields">
@@ -312,6 +348,7 @@
         </div>
 
         <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
+        <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
         <span *ngIf="!tuteurValide" class="messageEchec">{{errorMessageTuteur}}</span>
       </div>
@@ -320,7 +357,15 @@
 </div>
 
 <br>
+
+<!--***************************************************************************************************************************************************
+*************************************************    INFORMATIONS DE STAGE   **************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Formulaire pour renseigner les informations du stage | Angular material a été utilisé pour le style simple-->
 <div classe="infoStage">
+  <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+  <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
   <form [formGroup]="formInfosStage" (ngSubmit)="validerInfosStage()">
     <div formGroupName="infoStage">
       <div class="fields">
@@ -462,6 +507,7 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
+        <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
         <span *ngIf="!infoStageValide" class="messageEchec">{{errorMessageInfos}}</span>
       </div>
@@ -469,6 +515,12 @@
   </form>
 </div>
 
+
+<!--***************************************************************************************************************************************************
+*************************************************    SIGNATURE   **************************************************************************************
+*******************************************************************************************************************************************************
+*******************************************************************************************************************************************************-->
+<!--Signature en bas de page (à remplir après l'impression)-->
 <mat-grid-list cols="2" rowHeight="30px" class="signature">
   <mat-grid-tile>
     <b>Signature de l’enseignant référent du stage : (L.Pierre)</b>

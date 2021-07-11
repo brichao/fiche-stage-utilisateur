@@ -44,9 +44,15 @@ export class FicheRenseignementComponent{
   errorMessageTuteur: string = "";
   errorMessageInfos: string = "";
 
+  //Injection de tous les services de chaque partie du formulaire pour avoir accèsaux méthodes CRUD
   constructor(private etudiantService: EtudiantService, private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService,
     private tuteurService: TuteurService, private infosStageService: InfosStageService) { }
 
+  /***********************************************************************************************************************************************
+   * ***********************************************   ETUDIANT     ******************************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************/
+  //Formulaire étudiant avec les validateurs
   formEtudiant = new FormGroup({
     etudiant : new FormGroup({
       nom : new FormControl('', [
@@ -79,6 +85,7 @@ export class FicheRenseignementComponent{
     })
   })
 
+  //Méthodes de récupération des données saisies dans la partie étudiant
   get nom(){
     return this.formEtudiant.get('etudiant.nom');
   }
@@ -111,6 +118,7 @@ export class FicheRenseignementComponent{
     return this.formEtudiant.get('etudiant.caisseAssurance');
   }
 
+  //Construction de l'objet étudiant et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
   validerEtudiant(): void{
     this.etudiant = {
       nom : this?.nom?.value,
@@ -129,8 +137,11 @@ export class FicheRenseignementComponent{
         this.etudiantValide = false});
   }
 
-
-
+  /***********************************************************************************************************************************************
+   * ***********************************************   ENTREPRISE     ****************************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************/
+  //Formulaire entreprise avec les validateurs
   formEntreprise = new FormGroup({
     entreprise : new FormGroup({
       raisonSociale : new FormControl('',[
@@ -173,6 +184,7 @@ export class FicheRenseignementComponent{
     })
   })
 
+  //Méthodes de récupération des données saisies dans la partie entreprise
   get raisonSociale(){
     return this.formEntreprise.get('entreprise.raisonSociale');
   }
@@ -221,6 +233,7 @@ export class FicheRenseignementComponent{
     return this.formEntreprise.get('entreprise.serviceAccueil');
   }
 
+  //Construction de l'objet entreprise et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
   validerEntreprise(): void{
     this.adresseObject = {
       adresse : this?.adresseEntreprise?.value,
@@ -247,6 +260,12 @@ export class FicheRenseignementComponent{
     );
   }
 
+
+  /***********************************************************************************************************************************************
+   * ***********************************************   SERVICE DE GESTION     ********************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************/
+  //Formulaire service de gestion avec les validateurs
   formServiceGestion = new FormGroup({
     serviceGestion : new FormGroup({
       nomService : new FormControl('', [
@@ -269,6 +288,7 @@ export class FicheRenseignementComponent{
     })
   })
 
+  //Méthodes de récupération des données saisies dans la partie service de gestion
   get nomService(){
     return this.formServiceGestion.get('serviceGestion.nomService');
   }
@@ -289,6 +309,7 @@ export class FicheRenseignementComponent{
     return this.formServiceGestion.get('serviceGestion.adresseService');
   }
 
+  //Construction de l'objet service de gestion et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
   validerServiceGestion(): void{
     this.serviceGestion = {
       nom : this?.nomService?.value,
@@ -306,6 +327,11 @@ export class FicheRenseignementComponent{
   }
 
 
+  /***********************************************************************************************************************************************
+   * ***********************************************   TUTEUR     ********************************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************/
+  //Formulaire tuteur avec les validateurs
   formTuteur = new FormGroup({
     tuteur : new FormGroup({
       nomTuteur : new FormControl('', [
@@ -337,6 +363,7 @@ export class FicheRenseignementComponent{
     })
   })
 
+  //Méthodes de récupération des données saisies dans la partie tuteur
   get nomTuteur(){
     return this.formTuteur.get('tuteur.nomTuteur');
   }
@@ -369,6 +396,7 @@ export class FicheRenseignementComponent{
     return this.formTuteur.get('tuteur.disponibiliteTuteur');
   }
 
+  //Construction de l'objet tuteur et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
   validerTuteur(): void{
     this.tuteur = {
       nom : this?.nomTuteur?.value,
@@ -388,6 +416,12 @@ export class FicheRenseignementComponent{
     );
   }
 
+
+  /***********************************************************************************************************************************************
+   * ***********************************************   INFORMATIONS DU STAGE     *****************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************/
+  //Formulaire informations de stage avec les validateurs
   formInfosStage = new FormGroup({
     infoStage : new FormGroup({
       dateDebutPartiel : new FormControl(''),
@@ -432,6 +466,7 @@ export class FicheRenseignementComponent{
     })
   })
 
+  //Méthodes de récupération des données saisies dans la partie informations de stage
   get dateDebutPartiel(){
     return this.formInfosStage.get('infoStage.dateDebutPartiel');
   }
@@ -504,6 +539,7 @@ export class FicheRenseignementComponent{
     return this.formInfosStage.get('infoStage.details');
   }
 
+  //Construction de l'objet informations de stage et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
   validerInfosStage(): void{
     this.infoStage = {
       dateDebutPartiel : this?.dateDebutPartiel?.value,
