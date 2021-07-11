@@ -6,11 +6,28 @@ import { EtudiantService } from './../services/etudiant.service';
 import { Etudiants, Entreprises, ServicesGestion, Tuteurs, Adresses, infosStage } from './../../classes';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+//Format des dates en français
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY'
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+};
 
 @Component({
   selector: 'app-fiche-renseignement',
   templateUrl: './fiche-renseignement.component.html',
-  styleUrls: ['./fiche-renseignement.component.scss']
+  styleUrls: ['./fiche-renseignement.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class FicheRenseignementComponent{
 
