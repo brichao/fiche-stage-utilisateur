@@ -17,11 +17,6 @@ export class EntrepriseService {
   //Déclaration d'un objet de type HTTPClient et qui nous permettra d'utiliser les méthodes http pour comminuquer avec le serveur
   constructor(private http: HttpClient) { }
 
-  //Les méthodes en dessous correspondent aux méthodes CRUD dans le serveur
-  getAll(): Observable<Entreprises[]> {
-    return this.http.get<Entreprises[]>(`${this.apiServerUrl}/etablissements/`);
-  }
-
   //On utilise la méthode POST de Http pour une insertion dans la BD, le paramaètre est l'url du serveur (suffixé par /etablissements/numeroSiret comme présent
   //dans la classe controller dans le backend) ainsi que l'objet etablissement que nous souhaitons inserer. Ensuite on regarde si le serveur nous
   //renvoie une erreur. Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.
@@ -39,22 +34,11 @@ export class EntrepriseService {
     );
   }
 
-  updateEntreprise(entreprise: Entreprises): Observable<Entreprises> {
-    return this.http.put<Entreprises>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`, entreprise);
-  }
-
-  deleteEntreprise(entreprise: Entreprises): Observable<void> {
-    return this.http.delete<void>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`);
-  }
-
   //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
   getServerError(error: HttpErrorResponse): string {
     switch (error.status){
       case 403 : {
         return `L'établissement existe déjà dans la base de données, vous ne pouvez pas en créer de nouveau.`;
-      }
-      case 404 : {
-        return `L'établissement n'existe pas dans la base de données.`;
       }
       case 500 : {
         return `Internal server error: ${error.message}`;
