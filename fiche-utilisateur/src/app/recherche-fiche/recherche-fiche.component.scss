@@ -1,0 +1,51 @@
+.messageEchec{
+  text-align: center;
+  font-size: xx-large;
+  color: red;
+  padding: 25px;
+  margin-top: 500px;
+}
+
+.texte{
+  text-align: center;
+  font-size: 32px;
+  line-height: 35px;
+}
+
+.texte-rouge{
+  color:red;
+}
+
+.fields > *, .gratificationSuite > *{
+  width: 95%;
+  padding: 0 2rem 0 2rem;
+}
+
+.titre, .titreServiceGestion {
+  padding: 0 2rem 0 2rem;
+  margin-top: 10px;
+}
+
+.signature {
+  padding-bottom: 50px;
+}
+
+.logo-uga{
+  width: 70%;
+  padding-left: 15px;
+}
+
+.button-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.radioButton {
+  margin: 0 10px;
+}
+
+.dates{
+  width: auto;
+}

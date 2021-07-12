@@ -1,45 +1,35 @@
-import { InfosStageService } from './../services/infos-stage.service';
-import { TuteurService } from './../services/tuteur.service';
-import { ServiceGestionService } from './../services/service-gestion.service';
-import { EntrepriseService } from './../services/entreprise.service';
-import { EtudiantService } from './../services/etudiant.service';
-import { Etudiants, Entreprises, ServicesGestion, Tuteurs, Adresses, infosStage } from './../../classes';
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-
-//Format des dates en français
-export const MY_DATE_FORMATS = {
-  parse: {
-    dateInput: 'DD/MM/YYYY'
-  },
-  display: {
-    dateInput: 'DD/MM/YYYY',
-    monthYearLabel: 'MMMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'MMMM YYYY'
-  }
-};
+import { Adresses, Entreprises, FicheRenseignement, infosStage, ServicesGestion, Tuteurs } from './../../classes';
+import { DataService } from './../services/data.service';
+import { Etudiants } from 'src/classes';
+import { FicheRenseignementService } from '../services/fiche-renseignement.service';
+import { Component, OnInit } from '@angular/core';
+import { EntrepriseService } from '../services/entreprise.service';
+import { EtudiantService } from '../services/etudiant.service';
+import { InfosStageService } from '../services/infos-stage.service';
+import { ServiceGestionService } from '../services/service-gestion.service';
+import { TuteurService } from '../services/tuteur.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-fiche-renseignement',
-  templateUrl: './fiche-renseignement.component.html',
-  styleUrls: ['./fiche-renseignement.component.scss'],
-  providers: [
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
-  ]
+  selector: 'app-recherche-fiche',
+  templateUrl: './recherche-fiche.component.html',
+  styleUrls: ['./recherche-fiche.component.scss']
 })
-export class FicheRenseignementComponent{
+export class RechercheFicheComponent implements OnInit {
 
-  private etudiant: Etudiants | null = null;
+  messageError: string = '';
+  rechercheSucces: boolean = false;
+  nom: string = '';
+  prenom: string = '';
+  fiche: FicheRenseignement | null = null;
+
+  etudiant: Etudiants | null = null;
   private entreprise : Entreprises | null = null;
   private serviceGestion : ServicesGestion | null = null;
   private tuteur : Tuteurs | null = null;
   private adresseObject : Adresses | null = null;
   private infoStage: infosStage | null = null;
 
-  affiliationDefaut:string = 'ayant droit';
-  caisseAssuranceDefaut:string = 'CPAM';
   disponibiliteDefaut:string = 'importante';
   confidentialiteDefaut: boolean = true;
   gratificationShow: boolean = false;
@@ -48,110 +38,38 @@ export class FicheRenseignementComponent{
   minDate = new Date();
   maxDate = new Date(2024, 8, 1);
 
-  etudiantValide: boolean = false;
   entrepriseValide: boolean = false;
   serviceGestionValide: boolean = false;
   tuteurValide: boolean = false;
   infoStageValide: boolean = false;
 
-  errorMessageEtudiant: string = "";
   errorMessageEntreprise: string = "";
   errorMessageService: string = "";
   errorMessageTuteur: string = "";
   errorMessageInfos: string = "";
 
   //Injection de tous les services de chaque partie du formulaire pour avoir accèsaux méthodes CRUD
-  constructor(private etudiantService: EtudiantService, private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService,
-    private tuteurService: TuteurService, private infosStageService: InfosStageService) { }
+  constructor(private ficheService: FicheRenseignementService, private dataService: DataService, private etudiantService: EtudiantService,
+     private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService, private tuteurService: TuteurService,
+     private infosStageService: InfosStageService) { }
 
-  /***********************************************************************************************************************************************
-   * ***********************************************   ETUDIANT     ******************************************************************************
-   * *********************************************************************************************************************************************
-   * *********************************************************************************************************************************************/
-  //Formulaire étudiant avec les validateurs
-  formEtudiant = new FormGroup({
-    etudiant : new FormGroup({
-      nom : new FormControl('', [
-        Validators.required
-      ]),
-      prenom : new FormControl('', [
-        Validators.required
-      ]),
-      numEtudiant : new FormControl('',[
-        Validators.required,
-        Validators.pattern("^[0-9]{8}$")
-      ]),
-      numPortable : new FormControl('',[
-        Validators.required,
-        Validators.pattern("^[0-9]{10}")
-      ]),
-      mail : new FormControl('',[
-        Validators.required,
-        Validators.pattern("^[a-zA-Z-]+\.[a-zA-Z\.-]+@etu.univ-grenoble-alpes.fr")
-      ]),
-      adresse : new FormControl('',[
-        Validators.required
-      ]),
-      affiliation : new FormControl('',[
-        Validators.required
-      ]),
-      caisseAssurance : new FormControl('',[
-        Validators.required
-      ])
-    })
-  })
+  ngOnInit(): void {
+    this.dataService.nomPrenom$.subscribe(
+      data => { this.nom = data[0],
+                this.prenom = data[1]}
+    );
 
-  //Méthodes de récupération des données saisies dans la partie étudiant
-  get nom(){
-    return this.formEtudiant.get('etudiant.nom');
+    this.ficheService.getFiche(this.nom, this.prenom).subscribe(
+      fiche => { this.fiche = fiche,
+                  this.rechercheSucces = true,
+                  this.etudiant = this.fiche.etudiant},
+      error => { this.messageError = error,
+                  this.rechercheSucces = false;
+      }
+    );
   }
 
-  get prenom(){
-    return this.formEtudiant.get('etudiant.prenom');
-  }
 
-  get numEtudiant(){
-    return this.formEtudiant.get('etudiant.numEtudiant');
-  }
-
-  get numPortable(){
-    return this.formEtudiant.get('etudiant.numPortable');
-  }
-
-  get mail(){
-    return this.formEtudiant.get('etudiant.mail');
-  }
-
-  get adresse(){
-    return this.formEtudiant.get('etudiant.adresse');
-  }
-
-  get affiliation(){
-    return this.formEtudiant.get('etudiant.affiliation');
-  }
-
-  get caisseAssurance(){
-    return this.formEtudiant.get('etudiant.caisseAssurance');
-  }
-
-  //Construction de l'objet étudiant et insertion dans la base de données, avec messages d'erreurs dans le cas où l'envoie échoue
-  validerEtudiant(): void{
-    this.etudiant = {
-      nom : this?.nom?.value,
-      prenom : this?.prenom?.value,
-      numEtudiant : this?.numEtudiant?.value,
-      numPortable : this?.numPortable?.value,
-      mail : this?.mail?.value,
-      adresse : this?.adresse?.value,
-      typeAffiliation : this?.affiliation?.value,
-      caisseAssurance : this?.caisseAssurance?.value
-    }
-    this.etudiantService.addEtudiant(this.etudiant).subscribe(
-      etudiant =>{ console.log(etudiant),
-        this.etudiantValide = true},
-      error => {this.errorMessageEtudiant = error,
-        this.etudiantValide = false});
-  }
 
   /***********************************************************************************************************************************************
    * ***********************************************   ENTREPRISE     ****************************************************************************

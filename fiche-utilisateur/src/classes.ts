@@ -68,3 +68,7 @@ export interface infosStage{
   taches: string;
   details: string;
 }
+
+export interface FicheRenseignement{
+  etudiant: Etudiants;
+}

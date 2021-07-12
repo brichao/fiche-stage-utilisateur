@@ -1,3 +1,4 @@
+import { DataService } from './services/data.service';
 import { InfosStageService } from './services/infos-stage.service';
 import { TuteurService } from './services/tuteur.service';
 import { ServiceGestionService } from './services/service-gestion.service';
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
+import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
     FicheRenseignementComponent,
     PersonnelUgaComponent,
     HeaderComponent,
+    RechercheFicheComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
     EntrepriseService,
     ServiceGestionService,
     TuteurService,
-    InfosStageService
+    InfosStageService,
+    DataService
   ],
   bootstrap: [AppComponent]
 })
