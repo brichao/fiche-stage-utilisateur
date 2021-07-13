@@ -266,7 +266,9 @@ export class FicheRenseignementComponent{
       domaineActivite : this?.domaineActivite?.value,
       effectif : this?.effectif?.value,
       serviceAccueil : this?.serviceAccueil?.value,
-      adresse : this.adresseObject
+      adresse : this.adresseObject,
+      nomEtudiant : '',
+      prenomEtudiant: ''
     }
     this.entrepriseService.addEntreprise(this.entreprise).subscribe(
       entreprise => { console.log(entreprise),
@@ -332,7 +334,9 @@ export class FicheRenseignementComponent{
       prenom : this?.prenomService?.value,
       numeroTel : this?.numPortableService?.value,
       mail : this?.mailService?.value,
-      adresse : this?.adresseService?.value
+      adresse : this?.adresseService?.value,
+      nomEtudiant : '',
+      prenomEtudiant: ''
     }
     this.gestionService.addServiceGestion(this.serviceGestion).subscribe(
       servicegestion => { console.log(servicegestion),
@@ -422,7 +426,9 @@ export class FicheRenseignementComponent{
       numTelephone : this?.numPortableTuteur?.value,
       mail : this?.mailTuteur?.value,
       adresse : this?.adresseTuteur?.value,
-      disponibilite : this?.disponibiliteTuteur?.value
+      disponibilite : this?.disponibiliteTuteur?.value,
+      nomEtudiant : '',
+      prenomEtudiant: ''
     }
     this.tuteurService.addTuteur(this.tuteur).subscribe(
       tuteur => { console.log(tuteur),
@@ -575,7 +581,9 @@ export class FicheRenseignementComponent{
       description : this?.description?.value,
       objectifs : this?.objectifs?.value,
       taches : this?.taches?.value,
-      details : this?.details?.value
+      details : this?.details?.value,
+      nomEtudiant : '',
+      prenomEtudiant: ''
     }
 
     this.infosStageService.addInfosStage(this.infoStage).subscribe(

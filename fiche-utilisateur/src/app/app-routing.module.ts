@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.component';
 import { PersonnelUgaComponent } from './personnel-uga/personnel-uga.component';
 import { FicheRenseignementComponent } from './fiche-renseignement/fiche-renseignement.component';
@@ -9,7 +10,8 @@ const routes: Routes = [
   { path : '', component: AccueilComponent},
   { path : 'fiche-renseignement', component: FicheRenseignementComponent},
   { path : 'personnels', component: PersonnelUgaComponent},
-  { path : 'recherche-fiche', component: RechercheFicheComponent}
+  { path : 'recherche-fiche', component: RechercheFicheComponent},
+  { path : 'login', component: LoginComponent}
 ];
 
 @NgModule({

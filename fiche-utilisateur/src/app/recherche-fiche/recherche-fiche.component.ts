@@ -203,7 +203,9 @@ export class RechercheFicheComponent implements OnInit {
       domaineActivite : this?.domaineActivite?.value,
       effectif : this?.effectif?.value,
       serviceAccueil : this?.serviceAccueil?.value,
-      adresse : this.adresseObject
+      adresse : this.adresseObject,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
     }
     this.entrepriseService.addEntreprise(this.entreprise).subscribe(
       entreprise => { console.log(entreprise),
@@ -269,7 +271,9 @@ export class RechercheFicheComponent implements OnInit {
       prenom : this?.prenomService?.value,
       numeroTel : this?.numPortableService?.value,
       mail : this?.mailService?.value,
-      adresse : this?.adresseService?.value
+      adresse : this?.adresseService?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
     }
     this.gestionService.addServiceGestion(this.serviceGestion).subscribe(
       servicegestion => { console.log(servicegestion),
@@ -359,7 +363,9 @@ export class RechercheFicheComponent implements OnInit {
       numTelephone : this?.numPortableTuteur?.value,
       mail : this?.mailTuteur?.value,
       adresse : this?.adresseTuteur?.value,
-      disponibilite : this?.disponibiliteTuteur?.value
+      disponibilite : this?.disponibiliteTuteur?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
     }
     this.tuteurService.addTuteur(this.tuteur).subscribe(
       tuteur => { console.log(tuteur),
@@ -512,7 +518,9 @@ export class RechercheFicheComponent implements OnInit {
       description : this?.description?.value,
       objectifs : this?.objectifs?.value,
       taches : this?.taches?.value,
-      details : this?.details?.value
+      details : this?.details?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
     }
 
     this.infosStageService.addInfosStage(this.infoStage).subscribe(

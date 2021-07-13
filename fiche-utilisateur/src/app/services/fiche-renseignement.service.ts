@@ -38,7 +38,7 @@ export class FicheRenseignementService {
   getServerError(error: HttpErrorResponse): string {
     switch (error.status){
       case 404 : {
-        return `L'étudiant n'existe pas dans la base de données. Réessayez ultérieurement.`;
+        return `L'étudiant n'existe pas dans la base de données. Veuillez réessayez ultérieurement.`;
       }
       case 500 : {
         return `Internal server error: ${error.message}`;

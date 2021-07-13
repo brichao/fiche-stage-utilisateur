@@ -27,6 +27,8 @@ export interface Entreprises{
   effectif: number;
   adresse: Adresses;
   serviceAccueil: string;
+  nomEtudiant: string;
+  prenomEtudiant: string;
 }
 
 export interface ServicesGestion{
@@ -35,6 +37,8 @@ export interface ServicesGestion{
   numeroTel: number;
   mail: string;
   adresse: string;
+  nomEtudiant: string;
+  prenomEtudiant: string;
 }
 
 export interface Tuteurs{
@@ -46,6 +50,8 @@ export interface Tuteurs{
   mail: string;
   adresse: string;
   disponibilite: string;
+  nomEtudiant: string;
+  prenomEtudiant: string;
 }
 
 export interface infosStage{
@@ -67,8 +73,16 @@ export interface infosStage{
   objectifs: string;
   taches: string;
   details: string;
+  nomEtudiant: string;
+  prenomEtudiant: string;
 }
 
 export interface FicheRenseignement{
   etudiant: Etudiants;
+}
+
+export interface Utilisateur{
+  mail: string;
+  motDePasse: string;
+  token?: string;
 }

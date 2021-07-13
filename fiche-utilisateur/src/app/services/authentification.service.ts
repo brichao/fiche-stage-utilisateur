@@ -1,0 +1,13 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthentificationService {
+
+  constructor() { }
+
+  getUserCurrentValue(): boolean{
+    return false;
+  }
+}

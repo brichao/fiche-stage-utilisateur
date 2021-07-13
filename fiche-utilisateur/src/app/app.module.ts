@@ -1,3 +1,4 @@
+import { AuthentificationService } from './services/authentification.service';
 import { DataService } from './services/data.service';
 import { InfosStageService } from './services/infos-stage.service';
 import { TuteurService } from './services/tuteur.service';
@@ -27,6 +28,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.compo
     PersonnelUgaComponent,
     HeaderComponent,
     RechercheFicheComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.compo
     ServiceGestionService,
     TuteurService,
     InfosStageService,
-    DataService
+    DataService,
+    AuthentificationService
   ],
   bootstrap: [AppComponent]
 })

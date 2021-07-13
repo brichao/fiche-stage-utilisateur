@@ -1,4 +1,4 @@
-.messageEchec{
+.messageEchecRecup{
   text-align: center;
   font-size: xx-large;
   color: red;
@@ -44,6 +44,18 @@
 
 .radioButton {
   margin: 0 10px;
+}
+
+.messageSucces{
+  text-align: center;
+  font-size: x-large;
+  color: green;
+}
+
+.messageEchec{
+  text-align: center;
+  font-size: x-large;
+  color: red;
 }
 
 .dates{
