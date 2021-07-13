@@ -45,7 +45,7 @@ export class FicheRenseignementComponent{
   gratificationShow: boolean = false;
   versementDefaut: string = 'Chèque';
 
-  minDate = new Date();
+  minDate = new Date(2021, 5, 25);
   maxDate = new Date(2024, 8, 1);
 
   etudiantValide: boolean = false;

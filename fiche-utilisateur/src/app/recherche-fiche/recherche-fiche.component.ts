@@ -9,11 +9,30 @@ import { InfosStageService } from '../services/infos-stage.service';
 import { ServiceGestionService } from '../services/service-gestion.service';
 import { TuteurService } from '../services/tuteur.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+
+
+//Format des dates en français
+export const MY_DATE_FORMATS = {
+  parse: {
+    dateInput: 'DD/MM/YYYY'
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+};
+
 
 @Component({
   selector: 'app-recherche-fiche',
   templateUrl: './recherche-fiche.component.html',
-  styleUrls: ['./recherche-fiche.component.scss']
+  styleUrls: ['./recherche-fiche.component.scss'],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS }
+  ]
 })
 export class RechercheFicheComponent implements OnInit {
 
@@ -35,7 +54,7 @@ export class RechercheFicheComponent implements OnInit {
   gratificationShow: boolean = false;
   versementDefaut: string = 'Chèque';
 
-  minDate = new Date();
+  minDate = new Date(2021, 5, 25);
   maxDate = new Date(2024, 8, 1);
 
   entrepriseValide: boolean = false;
