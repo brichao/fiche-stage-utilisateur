@@ -2,7 +2,7 @@
 *************************************************    ENTETE   *****************************************************************************************
 *******************************************************************************************************************************************************
 *******************************************************************************************************************************************************-->
-<!--Entete de la fiche de renseignement (Logo IM2AG + Texte)-->
+<!--Entete de la fiche de renseignements (Logo IM2AG + Texte)-->
 <div class="entete">
   <table>
     <tr>
@@ -120,6 +120,7 @@
           <input matInput value="L.Pierre" readonly>
         </mat-form-field>
 
+        <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <button mat-button color="primary" type="submit" [disabled]="formEtudiant?.invalid" class="validation">Valider</button>
         <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="etudiantValide" class="messageSucces">Enregistré</span>
@@ -130,7 +131,7 @@
 </div>
 
 <br>
-
+<span *ngIf="etudiant?.mail != null">
 <!--***************************************************************************************************************************************************
 *************************************************    ETABLISSEMENT   **********************************************************************************
 *******************************************************************************************************************************************************
@@ -217,6 +218,7 @@
           <mat-error>Le service d'accueil est requis.</mat-error>
         </mat-form-field>
 
+        <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
         <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
@@ -268,6 +270,7 @@
             <mat-error>L'adresse est requise.</mat-error>
           </mat-form-field>
 
+          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
           <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
           <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
           <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
@@ -347,6 +350,7 @@
           </mat-error>
         </div>
 
+        <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
         <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
@@ -506,6 +510,7 @@
           <mat-error>Les détails sont requis.</mat-error>
         </mat-form-field>
 
+        <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
         <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
         <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
@@ -514,7 +519,7 @@
     </div>
   </form>
 </div>
-
+</span>
 
 <!--***************************************************************************************************************************************************
 *************************************************    SIGNATURE   **************************************************************************************

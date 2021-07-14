@@ -1,5 +1,5 @@
 <div class="entete">
-  <h1>Affichage de la liste des fiches de renseignement : </h1>
+  <h1>Affichage de la liste des fiches de renseignements : </h1>
   <h2>
     Pour visualiser une fiche, veuillez appuyer sur le bouton en forme d'oeil à côté du nom/prénomde l'étudiant (Vous pouvez extraire la fiche en PDF pendant la visualisation avec le bouton en
     bas de la fiche - Extraire PDF)
@@ -9,7 +9,7 @@
 </div>
 
 <span *ngIf="listeFiches.length == 0">
-  <h1 class="messageEchec">Aucune fiche de renseignement n'a été remplie pour l'instant.</h1>
+  <h1 class="messageEchec">Aucune fiche de renseignements n'a été remplie pour l'instant.</h1>
 </span>
 
 <table style="width:100%">
@@ -17,12 +17,15 @@
   <tr *ngFor="let fiche of listeFiches">
     <td class="nom" width="15%"><b>Nom : </b> {{fiche.etudiant.nom}}</td>
     <td class="nom" width="15%"><b>Prenom : </b> {{fiche.etudiant.prenom }}</td>
-    <td width="35%" class="visualiser">
+    <td width="30%" class="visualiser">
       <button mat-mini-fab color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
         <mat-icon>remove_red_eye</mat-icon>
       </button>
     </td>
-    <td width="5%"><button mat-button class="button" (click)="validerFiche(fiche.etudiant.mail)">Valider</button></td>
+    <td width="10%">
+      <button mat-button class="button" (click)="validerFiche(fiche.etudiant.mail)">Valider</button>
+      <span *ngIf="boutonValide" class="texteValide">Fiche de renseignements validée.</span>
+    </td>
     <td width="20%">
       <mat-form-field class="input">
         <mat-label>Si refus, veuillez inscrire la raison du refus (Obligatoire).</mat-label>
@@ -31,6 +34,7 @@
     </td>
     <td width="10%">
       <button mat-button class="button" (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail)">Refuser</button>
+      <span *ngIf="boutonRefuse" class="texteValide">Fiche de renseignements refusée.</span>
     </td>
   </tr>
 </table>

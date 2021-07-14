@@ -31,7 +31,7 @@ export const MY_DATE_FORMATS = {
 })
 export class FicheRenseignementComponent{
 
-  private etudiant: Etudiants | null = null;
+  etudiant: Etudiants | null = null;
   private entreprise : Entreprises | null = null;
   private serviceGestion : ServicesGestion | null = null;
   private tuteur : Tuteurs | null = null;
@@ -267,8 +267,8 @@ export class FicheRenseignementComponent{
       effectif : this?.effectif?.value,
       serviceAccueil : this?.serviceAccueil?.value,
       adresse : this.adresseObject,
-      nomEtudiant : '',
-      prenomEtudiant: ''
+      nomEtudiant : this?.etudiant?.nom!,
+      prenomEtudiant: this?.etudiant?.prenom!
     }
     this.entrepriseService.addEntreprise(this.entreprise).subscribe(
       entreprise => { console.log(entreprise),
@@ -335,8 +335,8 @@ export class FicheRenseignementComponent{
       numeroTel : this?.numPortableService?.value,
       mail : this?.mailService?.value,
       adresse : this?.adresseService?.value,
-      nomEtudiant : '',
-      prenomEtudiant: ''
+      nomEtudiant : this?.etudiant?.nom!,
+      prenomEtudiant: this?.etudiant?.prenom!
     }
     this.gestionService.addServiceGestion(this.serviceGestion).subscribe(
       servicegestion => { console.log(servicegestion),
@@ -427,8 +427,8 @@ export class FicheRenseignementComponent{
       mail : this?.mailTuteur?.value,
       adresse : this?.adresseTuteur?.value,
       disponibilite : this?.disponibiliteTuteur?.value,
-      nomEtudiant : '',
-      prenomEtudiant: ''
+      nomEtudiant : this?.etudiant?.nom!,
+      prenomEtudiant: this?.etudiant?.prenom!
     }
     this.tuteurService.addTuteur(this.tuteur).subscribe(
       tuteur => { console.log(tuteur),
@@ -582,8 +582,8 @@ export class FicheRenseignementComponent{
       objectifs : this?.objectifs?.value,
       taches : this?.taches?.value,
       details : this?.details?.value,
-      nomEtudiant : '',
-      prenomEtudiant: ''
+      nomEtudiant : this?.etudiant?.nom!,
+      prenomEtudiant: this?.etudiant?.prenom!
     }
 
     this.infosStageService.addInfosStage(this.infoStage).subscribe(

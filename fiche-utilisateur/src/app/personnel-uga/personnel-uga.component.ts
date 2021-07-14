@@ -16,6 +16,8 @@ export class PersonnelUgaComponent implements OnInit {
   listeFiches: FicheRenseignement[] = [];
   motifRefus: string = "";
   mailInfos: EmailData | null = null;
+  boutonValide: boolean = false;
+  boutonRefuse: boolean = false;
 
   constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService) { }
 
@@ -44,8 +46,10 @@ export class PersonnelUgaComponent implements OnInit {
 
     console.log(this.mailInfos);
     this.mailService.envoieMail(this.mailInfos).subscribe(
-      data => console.log(data),
-      error => console.log(error)
+      data => { console.log(data),
+                this.boutonRefuse= true},
+      error => { console.log(error),
+                 this.boutonRefuse = false}
     );
   }
 
@@ -57,8 +61,10 @@ export class PersonnelUgaComponent implements OnInit {
     }
 
     this.mailService.envoieMailValidation(this.mailInfos).subscribe(
-      data => console.log(data),
-      error => console.log(error)
+      data => {console.log(data),
+              this.boutonValide = true},
+      error => {console.log(error),
+              this.boutonValide = false}
     )
   }
 
