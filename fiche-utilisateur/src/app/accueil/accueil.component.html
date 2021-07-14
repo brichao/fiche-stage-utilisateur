@@ -2,10 +2,13 @@
   <!--Ajout du logo IM2AG-->
   <img src="../../assets/logo-imag.jpg" alt="Logo UGA" class="logo-uga">
   <!--Définition d'une grille composé d'une colonne et 2 lignes, pour séparer la création et la recherche de fiche-->
-  <mat-grid-list cols="1" rowHeight="200px">
+  <mat-grid-list cols="1" rowHeight="300px">
     <mat-grid-tile>
       <div class ="creation-fiche">
-        <h2>Etudiant : Veuillez créer une nouvelle fiche de renseignements</h2>
+        <h2>Etudiant : Veuillez créer une nouvelle fiche de renseignements en appuyant sur le bouton en dessous.</h2>
+        <h2>Ne remplissez que la partie qui vous concerne.</h2>
+        <h2>Veuillez valider ensuite avec le bouton de validation en dessous de votre partie (Il n'est visible que si vous remplissez tous les champs obligatoires).</h2>
+        <h3>ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <!--Bouton de création d'une fiche de renseignement qui nous amène dans la page demandée-->
         <button mat-fab color ="primary" aria-label="creer-fiche" class="bouton-ajout" [routerLink]="'fiche-renseignement'">
           <mat-icon>add</mat-icon>
@@ -15,7 +18,9 @@
 
     <mat-grid-tile>
       <div class ="recherche-fiche">
-        <h2>Entreprise : Veuillez chercher une fiche de renseignements</h2>
+        <h2>Entreprise : Pour chercher une fiche de renseignement déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</h2>
+        <h2>Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc (Il n'est visible que si vous remplissez tous les champs obligatoires).</h2>
+        <h3>ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
         <form [formGroup]="formRecherche" (ngSubmit)="validerRecherche()">
           <div formGroupName="recherche">
             <div class="fields">
@@ -32,6 +37,34 @@
               </mat-form-field>
 
               <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class ="recherche-fiche">
+        <h2>Pour imprimer la fiche de renseignement en PDF, veuillez renseigner le nom et prénom de l'étudiant.</h2>
+        <form [formGroup]="formPdf" (ngSubmit)="extrairePdf()">
+          <div formGroupName="pdf">
+            <div class="pdfFields">
+              <mat-form-field appearance="outline" class="recherche">
+                <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
+                <input matInput placeholder="Nom" formControlName="nom">
+                <mat-error>Le nom est requis.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="recherche">
+                <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
+                <input matInput placeholder="Prénom" formControlName="prenom">
+                <mat-error>Le prénom est requis</mat-error>
+              </mat-form-field>
+
+              <button mat-icon-button [disabled]="formPdf?.invalid" type="submit">
                 <mat-icon>search</mat-icon>
               </button>
             </div>

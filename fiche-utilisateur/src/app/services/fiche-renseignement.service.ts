@@ -17,6 +17,10 @@ export class FicheRenseignementService {
   //Déclaration d'un objet de type HTTPClient et qui nous permettra d'utiliser les méthodes http pour comminuquer avec le serveur
   constructor(private http: HttpClient) { }
 
+  getFicheAll(): Observable<FicheRenseignement[]>{
+    return this.http.get<FicheRenseignement[]>(`${this.apiServerUrl}/fiches/`);
+  }
+
   //On utilise la méthode GET de Http pour une recherche dans la BD, le paramètre est l'url du serveur (suffixé par /fiches/nom/prenom comme présent
   //dans la classe controller dans le backend). Ensuite on regarde si le serveur nous renvoie une erreur.
   //Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.

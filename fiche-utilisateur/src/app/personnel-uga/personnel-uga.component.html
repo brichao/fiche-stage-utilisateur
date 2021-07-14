@@ -1,1 +1,36 @@
-<p>personnel-uga works!</p>
+<div class="entete">
+  <h1>Affichage de la liste des fiches de renseignement : </h1>
+  <h2>
+    Pour visualiser une fiche, veuillez appuyer sur le bouton en forme d'oeil à côté du nom/prénomde l'étudiant (Vous pouvez extraire la fiche en PDF pendant la visualisation avec le bouton en
+    bas de la fiche - Extraire PDF)
+  </h2>
+  <h2>Vous avez à disposition 2 boutons à droite de chaque fiche pour valider et refuser.</h2>
+  <h2>Dans le cas où vous voulez refuser une fiche, veuillez renseigner la raison du refus dans le champ crée, et ensuite appuyer sur le bouton refuser.</h2>
+</div>
+
+<span *ngIf="listeFiches.length == 0">
+  <h1 class="messageEchec">Aucune fiche de renseignement n'a été remplie pour l'instant.</h1>
+</span>
+
+<table style="width:100%">
+  <!--Pour chaque fiche de la liste, on affiche le nom et prénom de l'étudiant, un bouton pour visualiser la fiche, et 2 boutons pour valider et refuser la fiche-->
+  <tr *ngFor="let fiche of listeFiches">
+    <td class="nom" width="15%"><b>Nom : </b> {{fiche.etudiant.nom}}</td>
+    <td class="nom" width="15%"><b>Prenom : </b> {{fiche.etudiant.prenom }}</td>
+    <td width="35%" class="visualiser">
+      <button mat-mini-fab color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
+        <mat-icon>remove_red_eye</mat-icon>
+      </button>
+    </td>
+    <td width="5%"><button mat-button class="button" (click)="validerFiche(fiche.etudiant.mail)">Valider</button></td>
+    <td width="20%">
+      <mat-form-field class="input">
+        <mat-label>Si refus, veuillez inscrire la raison du refus (Obligatoire).</mat-label>
+        <input matInput placeholder="Raison du refus" [(ngModel)]="motifRefus">
+      </mat-form-field>
+    </td>
+    <td width="10%">
+      <button mat-button class="button" (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail)">Refuser</button>
+    </td>
+  </tr>
+</table>

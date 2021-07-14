@@ -1,4 +1,3 @@
-import { AuthentificationService } from './services/authentification.service';
 import { DataService } from './services/data.service';
 import { InfosStageService } from './services/infos-stage.service';
 import { TuteurService } from './services/tuteur.service';
@@ -28,7 +27,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MomentDateModule } from '@angular/material-moment-adapter';
 import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.component';
-import { LoginComponent } from './login/login.component';
+import { ExtractionPdfComponent } from './extraction-pdf/extraction-pdf.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,7 @@ import { LoginComponent } from './login/login.component';
     PersonnelUgaComponent,
     HeaderComponent,
     RechercheFicheComponent,
-    LoginComponent,
+    ExtractionPdfComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,8 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MomentDateModule
+    MomentDateModule,
+    MatDialogModule
   ],
   providers: [
     EtudiantService,
@@ -64,8 +65,7 @@ import { LoginComponent } from './login/login.component';
     ServiceGestionService,
     TuteurService,
     InfosStageService,
-    DataService,
-    AuthentificationService
+    DataService
   ],
   bootstrap: [AppComponent]
 })

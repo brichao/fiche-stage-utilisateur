@@ -1,0 +1,46 @@
+.messageEchec{
+  text-align: center;
+  font-size: xx-large;
+  color: red;
+  padding: 10px;
+}
+
+.memeLigne{
+  display: flex;
+}
+
+.block{
+  padding-left: 20px;
+  margin: 5px 30px;
+  border: 1px solid black;
+}
+
+.texte{
+  text-align: center;
+  font-size: 25px;
+  line-height: 25px;
+}
+
+.texte-rouge{
+  color:red;
+}
+
+
+.titre {
+  padding: 0 2rem 0 2rem;
+  margin-top: 10px;
+}
+
+.titreServiceGestion{
+  margin-top: 10px;
+  font-size: large;
+}
+
+.signature {
+  padding-bottom: 50px;
+}
+
+.logo-uga{
+  width: 70%;
+  padding-left: 15px;
+}

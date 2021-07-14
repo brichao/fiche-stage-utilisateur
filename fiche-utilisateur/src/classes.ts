@@ -79,10 +79,25 @@ export interface infosStage{
 
 export interface FicheRenseignement{
   etudiant: Etudiants;
+  etablissement : Entreprises;
+  serviceGestion: ServicesGestion;
+  tuteur: Tuteurs;
+  infosStage: infosStage;
 }
 
 export interface Utilisateur{
   mail: string;
   motDePasse: string;
   token?: string;
+}
+
+export interface DialogData{
+  nom: string;
+  prenom: string;
+}
+
+export interface EmailData{
+  mailEtudiant: string;
+  mailTuteur: string;
+  messageRefus: string;
 }

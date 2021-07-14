@@ -43,11 +43,11 @@ export class RechercheFicheComponent implements OnInit {
   fiche: FicheRenseignement | null = null;
 
   etudiant: Etudiants | null = null;
-  private entreprise : Entreprises | null = null;
-  private serviceGestion : ServicesGestion | null = null;
-  private tuteur : Tuteurs | null = null;
+  entreprise : Entreprises | null = null;
+  serviceGestion : ServicesGestion | null = null;
+  tuteur : Tuteurs | null = null;
   private adresseObject : Adresses | null = null;
-  private infoStage: infosStage | null = null;
+  infoStage: infosStage | null = null;
 
   disponibiliteDefaut:string = 'importante';
   confidentialiteDefaut: boolean = true;
@@ -67,6 +67,8 @@ export class RechercheFicheComponent implements OnInit {
   errorMessageTuteur: string = "";
   errorMessageInfos: string = "";
 
+  infos: string ="";
+  raison: string ="";
   //Injection de tous les services de chaque partie du formulaire pour avoir accèsaux méthodes CRUD
   constructor(private ficheService: FicheRenseignementService, private dataService: DataService, private etudiantService: EtudiantService,
      private entrepriseService: EntrepriseService, private gestionService: ServiceGestionService, private tuteurService: TuteurService,
@@ -81,7 +83,11 @@ export class RechercheFicheComponent implements OnInit {
     this.ficheService.getFiche(this.nom, this.prenom).subscribe(
       fiche => { this.fiche = fiche,
                   this.rechercheSucces = true,
-                  this.etudiant = this.fiche.etudiant},
+                  this.etudiant = this.fiche.etudiant,
+                  this.entreprise = this.fiche.etablissement,
+                  this.serviceGestion = this.fiche.serviceGestion,
+                  this.tuteur = this.fiche.tuteur,
+                  this.infoStage = this.fiche.infosStage},
       error => { this.messageError = error,
                   this.rechercheSucces = false;
       }
@@ -223,21 +229,21 @@ export class RechercheFicheComponent implements OnInit {
   //Formulaire service de gestion avec les validateurs
   formServiceGestion = new FormGroup({
     serviceGestion : new FormGroup({
-      nomService : new FormControl('', [
+      nomService : new FormControl(this.serviceGestion?.nom, [
         Validators.required
       ]),
-      prenomService : new FormControl('', [
+      prenomService : new FormControl(this.serviceGestion?.prenom, [
         Validators.required
       ]),
-      numPortableService : new FormControl('',[
+      numPortableService : new FormControl(this.serviceGestion?.numeroTel,[
         Validators.required,
         Validators.pattern("^[0-9]{10}")
       ]),
-      mailService : new FormControl('',[
+      mailService : new FormControl(this.serviceGestion?.mail,[
         Validators.required,
         Validators.pattern("^[a-zA-Z0-9-_\.]+@[a-zA-Z0-9-_\.]+\.[a-zA-Z]{2,5}$")
       ]),
-      adresseService : new FormControl('',[
+      adresseService : new FormControl(this.serviceGestion?.adresse,[
         Validators.required
       ])
     })

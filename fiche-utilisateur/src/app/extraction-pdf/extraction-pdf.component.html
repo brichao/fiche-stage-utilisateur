@@ -1,0 +1,191 @@
+<span *ngIf="!rechercheSucces">
+  <h1 mat-dialog-title>Visualisation de la fiche de renseignement</h1>
+  <mat-dialog-content>
+    <div class="messageEchec">{{messageErreur}}</div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="fermerDialogue()">Fermer</button>
+  </mat-dialog-actions>
+</span>
+<span *ngIf="rechercheSucces">
+
+
+  <!--***************************************************************************************************************************************************
+  *************************************************    ENTETE   *****************************************************************************************
+  *******************************************************************************************************************************************************
+  *******************************************************************************************************************************************************-->
+  <!--Entete de la fiche de renseignement (Logo IM2AG + Texte)-->
+
+  <h1 mat-dialog-title>Visualisation de la fiche de renseignement</h1>
+  <mat-dialog-content>
+    <div id="htmlPDF">
+    <div class="entete">
+      <table>
+        <tr>
+          <td>
+            <div class="logo">
+              <img src="../../assets/logo-imag.jpg" alt="Logo uga" class="logo-uga">
+            </div>
+          </td>
+          <td>
+            <div class="texte">
+              <h4>UFR IM²AG  -  Relations Entreprises et Stages 60 rue de la Chimie – UGA – CS 40700 – 38058 Grenoble cedex 9<br>
+              Tel . 04 7663 57-25</h4>
+
+
+              <h2>FICHE DE RENSEIGNEMENTS DE STAGE-2021/2022</h2>
+
+              <p><i><b>ATTENTION!</b></i><br>
+              <i>Cette fiche de renseignements <strong>ne tient pas lieu de convention</strong></i></p>
+
+              <div><mat-icon>arrow_forward</mat-icon><b>Ces informations sont nécessaires pour l’établissement et la gestion de votre convention de stage.<br>
+              Cette fiche doit être <span class="texte-rouge">envoyée par mail à Laurence.Pierre@univ-grenoble-alpes.fr<br></span>
+              pour validation <span class="texte-rouge">avant saisie de la convention</span> dans Pstage</b></div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <br>
+
+      <!--***************************************************************************************************************************************************
+    *************************************************    ETUDIANT   ***************************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+    <div class="block">
+      <h2 class="titre">COORDONNEES DE L’ETUDIANT</h2>
+      <p><b>NOM : </b> {{fiche?.etudiant?.nom}}</p>
+      <p><b>Prénom : </b> {{fiche?.etudiant?.prenom}}</p>
+      <p><b>N° étudiant : </b>{{fiche?.etudiant?.numEtudiant}}</p>
+      <p><b>N° de portable : </b> 0{{fiche?.etudiant?.numPortable}}</p>
+      <p><b>Mail : </b> {{fiche?.etudiant?.mail}}</p>
+      <p><b>Adresse : </b> {{fiche?.etudiant?.adresse}}</p>
+      <p><b>Type d’affiliation à la sécurité sociale : </b> {{fiche?.etudiant?.typeAffiliation}}</p>
+      <b>Caisse d’assurance maladie (CPAM, MSA, Travailleur indépendant, régimesspéciaux) : </b> <p>{{fiche?.etudiant?.caisseAssurance}}</p>
+      <p><b>Inscrit en (préciser la filière d’études) : </b>L3 MIAGE</p>
+      <p><b>Enseignant référent pour l’encadrement du stage pour votre année d’étude (validera cette fiche) : </b>L.Pierre</p>
+    </div>
+    <div class="html2pdf__page-break"></div>
+    <br>
+
+    <!--***************************************************************************************************************************************************
+    *************************************************    ETABLISSEMENT   **********************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+    <div class="block">
+      <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE</h2>
+      <p><b>Raison sociale : </b>{{fiche?.etablissement?.raisonSociale}}</p>
+      <p><b>Représentant légal : </b>{{fiche?.etablissement?.representantLegal}}</p>
+      <p><b>Fonction : </b>{{fiche?.etablissement?.fonction}}</p>
+      <p><b>N° de SIRET : </b>{{fiche?.etablissement?.numeroSiret}}</p>
+      <p><b>Code APE : </b>{{fiche?.etablissement?.codeApe}}</p>
+      <p><b>Domaine d'activité : </b>{{fiche?.etablissement?.domaineActivite}}</p>
+      <p><b>Effectif : </b>{{fiche?.etablissement?.effectif}}</p>
+      <p><b>Adresse : </b>{{fiche?.etablissement?.adresse?.adresse}}</p>
+      <p><b>Code postal : </b>{{fiche?.etablissement?.adresse?.codePostal}}</p>
+      <p><b>Ville : </b>{{fiche?.etablissement?.adresse?.ville}}</p>
+      <p><b>Pays : </b>{{fiche?.etablissement?.adresse?.pays}}</p>
+      <b>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme) : </b><p>{{fiche?.etablissement?.serviceAccueil}}</p>
+
+      <br>
+    <!--***************************************************************************************************************************************************
+    *************************************************    SERVICE DE GESTION   *****************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+      <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+      <p><b>NOM : </b>{{fiche?.serviceGestion?.nom}}</p>
+      <p><b>Prénom : </b>{{fiche?.serviceGestion?.prenom}}</p>
+      <p><b>Tél : </b>0{{fiche?.serviceGestion?.numeroTel}}</p>
+      <p><b>Mail : </b>{{fiche?.serviceGestion?.mail}}</p>
+      <p><b>Adresse : </b>{{fiche?.serviceGestion?.adresse}}</p>
+    </div>
+
+    <br>
+
+    <!--***************************************************************************************************************************************************
+    *************************************************    TUTEUR   *****************************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+    <div class="block">
+      <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
+      <p><b>NOM : </b>{{fiche?.tuteur?.nom}}</p>
+      <p><b>Prénom : </b>{{fiche?.tuteur?.prenom}}</p>
+      <p><b>Fonction : </b>{{fiche?.tuteur?.fonction}}</p>
+      <p><b>Service : </b>{{fiche?.tuteur?.service}}</p>
+      <p><b>Tél : </b>0{{fiche?.tuteur?.numTelephone}}</p>
+      <p><b>Mail : </b>{{fiche?.tuteur?.mail}}</p>
+      <p><b>Adresse : </b>{{fiche?.tuteur?.adresse}}</p>
+      <p><b>Disponibilité du tuteur professionnel de stage : </b>{{fiche?.tuteur?.disponibilite}}</p>
+    </div>
+    <div class="html2pdf__page-break"></div>
+    <br>
+
+    <!--***************************************************************************************************************************************************
+    *************************************************    INFORMATIONS DE STAGE   **************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+    <div class="block">
+      <h2 class="titre">DATES DU STAGE : </h2>
+      <span *ngIf="fiche?.infosStage?.dateDebutPartiel != null && fiche?.infosStage?.dateFinPartiel != null">
+        <p><b>Période en temps partiel : </b>    <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPartiel}}
+            <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPartiel}}</p>
+        </span>
+      <p><b>Période en temps plein (35 h/semaine) : </b>   <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPlein}}
+          <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPlein}}</p>
+      <span *ngIf="fiche?.infosStage?.dateDebutInterruption != null && fiche?.infosStage?.dateFinInterruption">
+        <p><b>En cas d’interruption, merci de préciser les dates: </b>    <b>   Du : </b> {{fiche?.infosStage?.dateDebutInterruption}}
+        <b>   Au : </b> {{fiche?.infosStage?.dateFinInterruption}}</p>
+      </span>
+      <p><b>Nombre total d’heures du stage : </b> {{fiche?.infosStage?.nbHeures}} h</p>
+      <h2 class="titre">GRATIFICATIONS</h2><b>(obligatoires pour tout stage, même fractionné, à partir du 45èmejourde présence)  : </b>
+        <span *ngIf="fiche?.infosStage?.gratification"><p>Oui</p></span>
+        <span *ngIf="!fiche?.infosStage?.gratification"><p>Non</p></span>
+
+      <span *ngIf="fiche?.infosStage?.gratification">
+        <p><b>Montant gratification horaire(si montant mensuel, le diviser par 154) : </b> {{fiche?.infosStage?.montantGratification}} €</p>
+        <p><b>Versement de la gratification : </b> {{fiche?.infosStage?.versementGratification}}</p>
+        <span *ngIf="fiche?.infosStage?.laboratoireUGA != null">
+          <p><b>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge : </b> {{fiche?.infosStage?.laboratoireUGA}}</p>
+        </span>
+        <span *ngIf="fiche?.infosStage?.avantages != null">
+          <p><b>Avantages en nature (restauration, hébergement, remboursement....): </b> {{fiche?.infosStage?.avantages}}</p>
+        </span>
+      </span>
+
+      <b>Confidentialité du stage : </b>
+        <span *ngIf="fiche?.infosStage?.confidentialite"><p>Oui</p></span>
+        <span *ngIf="!fiche?.infosStage?.confidentialite"><p>Non</p></span>
+      <div class="memeLigne"><h2 class ="titre">TITRE DU STAGE : </h2> <h3 class="titre">{{fiche?.infosStage?.titre}}</h3></div>
+      <b>Description du <span class="texte-rouge">projet</span> de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </b> <p>{{fiche?.infosStage?.description}}</p>
+      <b><span class="texte-rouge">Objectifs</span> du stage dans ce projet : </b> <p>{{fiche?.infosStage?.objectifs}}</p>
+      <b><span class="texte-rouge">Tâches</span> qui seront confiées au stagiaire pour cette mission : </b> <p>{{fiche?.infosStage?.taches}}</p>
+      <b><span class="texte-rouge">Détail des travaux</span> à réaliser, avec langages et technos qui seront utilisés : </b> <p>{{fiche?.infosStage?.details}}</p>
+    </div>
+
+    <br>
+
+    <!--***************************************************************************************************************************************************
+    *************************************************    SIGNATURE   **************************************************************************************
+    *******************************************************************************************************************************************************
+    *******************************************************************************************************************************************************-->
+    <!--Signature en bas de page (à remplir après l'impression)-->
+    <div class="block">
+      <mat-grid-list cols="2" rowHeight="30px" class="signature">
+        <mat-grid-tile>
+          <b>Signature de l’enseignant référent du stage : (L.Pierre)</b>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <b>Signature du tuteur professionnel :</b>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+  </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="extractionPdf()">Extraire en PDF</button>
+    <button mat-button (click)="fermerDialogue()">Fermer</button>
+  </mat-dialog-actions>
+
+</span>
