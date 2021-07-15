@@ -160,9 +160,10 @@
         <span *ngIf="!fiche?.infosStage?.confidentialite"><p>Non</p></span>
       <div class="memeLigne"><h2 class ="titre">TITRE DU STAGE : </h2> <h3 class="titre">{{fiche?.infosStage?.titre}}</h3></div>
 
+      <div class="widthtexte">
       <b>Description du <span class="texte-rouge">projet</span> de l'entreprise dans lequel le stagiaire sera intégré / du produit sur lequel il travaillera : </b>
       <p class="bloc-texte">{{fiche?.infosStage?.description}}</p>
-
+    </div>
       <div class="bloc-texte">
         <b><span class="texte-rouge">Objectifs</span> du stage dans ce projet : </b>
         <p>{{fiche?.infosStage?.objectifs}}</p>

@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/fiche-utilisateur",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
