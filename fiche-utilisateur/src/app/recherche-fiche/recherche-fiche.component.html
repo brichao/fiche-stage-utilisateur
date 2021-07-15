@@ -516,34 +516,34 @@
           <h4>Période temps partiel :</h4>
             <mat-form-field>
               <mat-label>Date de début : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutPartiel" readonly>
+              <input matInput [value]="infoStage?.dateDebutPartiel  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Date de fin : </mat-label>
-              <input matInput [value]="infoStage?.dateFinPartiel" readonly>
+              <input matInput [value]="infoStage?.dateFinPartiel  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
             <h4>Période temps plein (35 h/semaine) :</h4>
             <mat-form-field>
               <mat-label>Date de début : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutPlein" readonly>
+              <input matInput [value]="infoStage?.dateDebutPlein  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Date de fin : </mat-label>
-              <input matInput [value]="infoStage?.dateFinPlein" readonly>
+              <input matInput [value]="infoStage?.dateFinPlein  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
             <h4>En cas d’interruption, merci de préciser les dates : </h4>
             <mat-form-field>
               <mat-label>Du : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutInterruption" readonly>
+              <input matInput [value]="infoStage?.dateDebutInterruption  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
             <mat-form-field>
               <mat-label>Au : </mat-label>
-              <input matInput [value]="infoStage?.dateFinInterruption" readonly>
+              <input matInput [value]="infoStage?.dateFinInterruption  | date:'dd/MM/yyyy'" readonly>
             </mat-form-field>
 
 

@@ -5,8 +5,17 @@
   padding: 10px;
 }
 
+.body{
+  width: 1000px;
+}
+
 .memeLigne{
   display: flex;
+}
+
+.bloc-texte{
+  width: 500px;
+  text-overflow: "-";
 }
 
 .block{

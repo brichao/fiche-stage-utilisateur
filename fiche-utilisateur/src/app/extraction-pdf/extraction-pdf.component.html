@@ -7,8 +7,10 @@
     <button mat-button (click)="fermerDialogue()">Fermer</button>
   </mat-dialog-actions>
 </span>
-<span *ngIf="rechercheSucces">
 
+
+<!--La fiche de renseignements a été trouvée-->
+<span *ngIf="rechercheSucces" class="body">
 
   <!--***************************************************************************************************************************************************
   *************************************************    ENTETE   *****************************************************************************************
@@ -128,14 +130,14 @@
     <div class="block">
       <h2 class="titre">DATES DU STAGE : </h2>
       <span *ngIf="fiche?.infosStage?.dateDebutPartiel != null && fiche?.infosStage?.dateFinPartiel != null">
-        <p><b>Période en temps partiel : </b>    <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPartiel}}
-            <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPartiel}}</p>
+        <p><b>Période en temps partiel : </b>    <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPartiel | date:'dd/MM/yyyy'}}
+            <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPartiel | date:'dd/MM/yyyy'}}</p>
         </span>
-      <p><b>Période en temps plein (35 h/semaine) : </b>   <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPlein}}
-          <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPlein}}</p>
+      <p><b>Période en temps plein (35 h/semaine) : </b>   <b>   Date de début : </b> {{fiche?.infosStage?.dateDebutPlein | date:'dd/MM/yyyy'}}
+          <b>   Date de fin : </b> {{fiche?.infosStage?.dateFinPlein | date:'dd/MM/yyyy'}}</p>
       <span *ngIf="fiche?.infosStage?.dateDebutInterruption != null && fiche?.infosStage?.dateFinInterruption">
-        <p><b>En cas d’interruption, merci de préciser les dates: </b>    <b>   Du : </b> {{fiche?.infosStage?.dateDebutInterruption}}
-        <b>   Au : </b> {{fiche?.infosStage?.dateFinInterruption}}</p>
+        <p><b>En cas d’interruption, merci de préciser les dates: </b>    <b>   Du : </b> {{fiche?.infosStage?.dateDebutInterruption | date:'dd/MM/yyyy'}}
+        <b>   Au : </b> {{fiche?.infosStage?.dateFinInterruption | date:'dd/MM/yyyy'}}</p>
       </span>
       <p><b>Nombre total d’heures du stage : </b> {{fiche?.infosStage?.nbHeures}} h</p>
       <h2 class="titre">GRATIFICATIONS</h2><b>(obligatoires pour tout stage, même fractionné, à partir du 45èmejourde présence)  : </b>
@@ -157,10 +159,22 @@
         <span *ngIf="fiche?.infosStage?.confidentialite"><p>Oui</p></span>
         <span *ngIf="!fiche?.infosStage?.confidentialite"><p>Non</p></span>
       <div class="memeLigne"><h2 class ="titre">TITRE DU STAGE : </h2> <h3 class="titre">{{fiche?.infosStage?.titre}}</h3></div>
-      <b>Description du <span class="texte-rouge">projet</span> de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </b> <p>{{fiche?.infosStage?.description}}</p>
-      <b><span class="texte-rouge">Objectifs</span> du stage dans ce projet : </b> <p>{{fiche?.infosStage?.objectifs}}</p>
-      <b><span class="texte-rouge">Tâches</span> qui seront confiées au stagiaire pour cette mission : </b> <p>{{fiche?.infosStage?.taches}}</p>
-      <b><span class="texte-rouge">Détail des travaux</span> à réaliser, avec langages et technos qui seront utilisés : </b> <p>{{fiche?.infosStage?.details}}</p>
+
+      <b>Description du <span class="texte-rouge">projet</span> de l'entreprise dans lequel le stagiaire sera intégré / du produit sur lequel il travaillera : </b>
+      <p class="bloc-texte">{{fiche?.infosStage?.description}}</p>
+
+      <div class="bloc-texte">
+        <b><span class="texte-rouge">Objectifs</span> du stage dans ce projet : </b>
+        <p>{{fiche?.infosStage?.objectifs}}</p>
+      </div>
+      <div class="bloc-texte">
+        <b><span class="texte-rouge">Tâches</span> qui seront confiées au stagiaire pour cette mission : </b>
+        <p>{{fiche?.infosStage?.taches}}</p>
+      </div>
+      <div class="bloc-texte">
+        <b><span class="texte-rouge">Détail des travaux</span> à réaliser, avec langages et technos qui seront utilisés : </b>
+        <p>{{fiche?.infosStage?.details}}</p>
+      </div>
     </div>
 
     <br>
