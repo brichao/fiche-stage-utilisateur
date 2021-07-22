@@ -1,9 +1,9 @@
+import { VisualisationPdfComponent } from './../visualisation-pdf/visualisation-pdf.component';
 import { EnvoieMailService } from './../services/envoie-mail.service';
 import { FicheRenseignement, EmailData } from './../../classes';
 import { MatDialog } from '@angular/material/dialog';
 import { FicheRenseignementService } from './../services/fiche-renseignement.service';
 import { Component, OnInit } from '@angular/core';
-import { ExtractionPdfComponent } from '../extraction-pdf/extraction-pdf.component';
 
 
 @Component({
@@ -28,7 +28,7 @@ export class PersonnelUgaComponent implements OnInit {
   }
 
   visualiserFiche(nomEtudiant: string, prenomEtudiant: string): void{
-    let dialogRef = this.dialogue.open(ExtractionPdfComponent, {
+    let dialogRef = this.dialogue.open(VisualisationPdfComponent, {
       width: '2000px',
       data: {
               nom: nomEtudiant,

@@ -29,6 +29,7 @@ import { MomentDateModule } from '@angular/material-moment-adapter';
 import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.component';
 import { ExtractionPdfComponent } from './extraction-pdf/extraction-pdf.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PersonnelUgaComponent,
     HeaderComponent,
     RechercheFicheComponent,
-    ExtractionPdfComponent
+    ExtractionPdfComponent,
+    VisualisationPdfComponent
   ],
   imports: [
     BrowserModule,

@@ -11,23 +11,7 @@
 
 <!--La fiche de renseignements a été trouvée-->
 <span *ngIf="rechercheSucces" class="body">
-  <span *ngIf=" fiche?.etablissement?.numeroSiret == 0 ||
-                fiche?.serviceGestion?.mail == null ||
-                fiche?.tuteur?.mail == null ||
-                fiche?.infosStage?.titre == null">
-    <h1 mat-dialog-title>Visualisation de la fiche de renseignements</h1>
-    <mat-dialog-content>
-      <div class="messageEchec">La fiche de renseignements n'est pas complète. Veuillez terminer de remplir tous les champs avant de l'imprimer.</div>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <button mat-button (click)="fermerDialogue()">Fermer</button>
-    </mat-dialog-actions>
-  </span>
 
-  <span *ngIf=" fiche?.etablissement?.numeroSiret != 0 &&
-                fiche?.serviceGestion?.mail != null &&
-                fiche?.tuteur?.mail != null &&
-                fiche?.infosStage?.titre != null">
   <!--***************************************************************************************************************************************************
   *************************************************    ENTETE   *****************************************************************************************
   *******************************************************************************************************************************************************
@@ -218,5 +202,5 @@
     <button mat-button (click)="extractionPdf()">Extraire en PDF</button>
     <button mat-button (click)="fermerDialogue()">Fermer</button>
   </mat-dialog-actions>
- </span>
+
 </span>

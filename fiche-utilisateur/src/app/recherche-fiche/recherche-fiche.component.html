@@ -111,69 +111,69 @@
 <span *ngIf="entreprise?.raisonSociale != null">
   <div classe="entreprise">
     <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
-        <div class="fields">
-          <mat-form-field>
-            <mat-label>Raison sociale : </mat-label>
-            <input matInput [value]="entreprise?.raisonSociale" readonly>
-          </mat-form-field>
+      <div class="fields">
+        <mat-form-field>
+          <mat-label>Raison sociale : </mat-label>
+          <input matInput [value]="entreprise?.raisonSociale" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Représentant légal : </mat-label>
-            <input matInput [value]="entreprise?.representantLegal" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Représentant légal : </mat-label>
+          <input matInput [value]="entreprise?.representantLegal" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Fonction : </mat-label>
-            <input matInput [value]="entreprise?.fonction" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Fonction : </mat-label>
+          <input matInput [value]="entreprise?.fonction" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>N° de SIRET : </mat-label>
-            <input matInput [value]="entreprise?.numeroSiret" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>N° de SIRET : </mat-label>
+          <input matInput [value]="entreprise?.numeroSiret" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Code APE : </mat-label>
-            <input matInput [value]="entreprise?.codeApe" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Code APE : </mat-label>
+          <input matInput [value]="entreprise?.codeApe" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Domaine d'activité : </mat-label>
-            <input matInput [value]="entreprise?.domaineActivite" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Domaine d'activité : </mat-label>
+          <input matInput [value]="entreprise?.domaineActivite" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Effectif : </mat-label>
-            <input matInput [value]="entreprise?.effectif" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Effectif : </mat-label>
+          <input matInput [value]="entreprise?.effectif" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Adresse : </mat-label>
-            <input matInput [value]="entreprise?.adresse?.adresse" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Adresse : </mat-label>
+          <input matInput [value]="entreprise?.adresse?.adresse" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Code postal : </mat-label>
-            <input matInput [value]="entreprise?.adresse?.codePostal" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Code postal : </mat-label>
+          <input matInput [value]="entreprise?.adresse?.codePostal" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Ville : </mat-label>
-            <input matInput [value]="entreprise?.adresse?.ville" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Ville : </mat-label>
+          <input matInput [value]="entreprise?.adresse?.ville" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Pays : </mat-label>
-            <input matInput [value]="entreprise?.adresse?.pays" readonly>
-          </mat-form-field>
+        <mat-form-field>
+          <mat-label>Pays : </mat-label>
+          <input matInput [value]="entreprise?.adresse?.pays" readonly>
+        </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
-            <input matInput [value]="entreprise?.serviceAccueil" readonly>
-          </mat-form-field>
-        </div>
+        <mat-form-field>
+          <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
+          <input matInput [value]="entreprise?.serviceAccueil" readonly>
+        </mat-form-field>
       </div>
-
+    </div>
+</span>
 
     <!--***************************************************************************************************************************************************
     *************************************************    SERVICE DE GESTION   *****************************************************************************
@@ -182,38 +182,38 @@
 
     <!-- SERVICE DE GESTION DEJA REMPLI ***********************************************************************************************************************
     **************************************************************************************************************************************************-->
-    <span *ngIf="serviceGestion?.nom != null">
-      <div class="serviceGestion">
-        <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
-         <div class="fields">
-          <mat-form-field>
-            <mat-label>NOM : </mat-label>
-            <input matInput [value]="serviceGestion?.nom" readonly>
-          </mat-form-field>
+<span *ngIf="serviceGestion?.nom != null">
+  <div class="serviceGestion">
+    <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+    <div class="fields">
+      <mat-form-field>
+        <mat-label>NOM : </mat-label>
+        <input matInput [value]="serviceGestion?.nom" readonly>
+      </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Prénom : </mat-label>
-            <input matInput [value]="serviceGestion?.prenom" readonly>
-          </mat-form-field>
+      <mat-form-field>
+        <mat-label>Prénom : </mat-label>
+        <input matInput [value]="serviceGestion?.prenom" readonly>
+      </mat-form-field>
 
-           <mat-form-field>
-            <mat-label>Tél : </mat-label>
-            <input matInput [value]="serviceGestion?.numeroTel" readonly>
-          </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tél : </mat-label>
+        <input matInput [value]="serviceGestion?.numeroTel" readonly>
+      </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Mail : </mat-label>
-            <input matInput [value]="serviceGestion?.mail" readonly>
-          </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mail : </mat-label>
+        <input matInput [value]="serviceGestion?.mail" readonly>
+      </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Adresse : </mat-label>
-            <input matInput [value]="serviceGestion?.adresse" readonly>
-          </mat-form-field>
-         </div>
-        </div>
-      </span>
+      <mat-form-field>
+        <mat-label>Adresse : </mat-label>
+        <input matInput [value]="serviceGestion?.adresse" readonly>
+      </mat-form-field>
+    </div>
+  </div>
 </span>
+
 
 <!-- ETABLISSEMENT PAS ENCORE REMPLIE ***************************************************************************************************************
 **************************************************************************************************************************************************-->
@@ -308,7 +308,8 @@
         </div>
       </div>
     </form>
-
+  </div>
+</span>
     <!--***************************************************************************************************************************************************
     *************************************************    SERVICE DE GESTION   *****************************************************************************
     *******************************************************************************************************************************************************
@@ -316,53 +317,53 @@
 
     <!-- SERVICE DE GESTION PAS ENCORE REMPLI *************************************************************************************************************
       **************************************************************************************************************************************************-->
-    <div class="serviceGestion">
-      <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
-      <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-      <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-      <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
-        <div formGroupName="serviceGestion">
-          <div class="fields">
-            <mat-form-field>
-              <mat-label>NOM : </mat-label>
-              <input formControlName="nomService" matInput>
-              <mat-error>Le est requis.</mat-error>
-            </mat-form-field>
+<span *ngIf="serviceGestion?.nom == null">
+  <div class="serviceGestion">
+    <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
+    <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
+      <div formGroupName="serviceGestion">
+        <div class="fields">
+          <mat-form-field>
+            <mat-label>NOM : </mat-label>
+            <input formControlName="nomService" matInput>
+            <mat-error>Le est requis.</mat-error>
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Prénom : </mat-label>
-              <input formControlName="prenomService" matInput>
-              <mat-error>Le prénom est requis.</mat-error>
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Prénom : </mat-label>
+            <input formControlName="prenomService" matInput>
+            <mat-error>Le prénom est requis.</mat-error>
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Tél : </mat-label>
-              <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
-              <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
-              <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Tél : </mat-label>
+            <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
+            <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
+            <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Mail : </mat-label>
-              <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
-              <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
-              <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Mail : </mat-label>
+            <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
+            <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
+            <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
+          </mat-form-field>
 
-            <mat-form-field>
-              <mat-label>Adresse : </mat-label>
-              <textarea matInput formControlName="adresseService"></textarea>
-              <mat-error>L'adresse est requise.</mat-error>
-            </mat-form-field>
+          <mat-form-field>
+            <mat-label>Adresse : </mat-label>
+            <textarea matInput formControlName="adresseService"></textarea>
+            <mat-error>L'adresse est requise.</mat-error>
+          </mat-form-field>
 
-            <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-            <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
-            <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
-            <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
-          </div>
+          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
+          <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
+          <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
+          <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   </div>
 </span>
 
