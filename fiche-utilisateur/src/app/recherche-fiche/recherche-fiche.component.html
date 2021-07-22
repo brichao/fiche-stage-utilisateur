@@ -1,792 +1,828 @@
 <span *ngIf="!rechercheSucces" class="messageEchecRecup">{{messageError}}</span>
 <span *ngIf="rechercheSucces">
-<!--***************************************************************************************************************************************************
-*************************************************    ENTETE   *****************************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-<!--Entete de la fiche de renseignements (Logo IM2AG + Texte)-->
-<div class="entete">
-  <table>
-    <tr>
-      <td>
-        <div class="logo">
-          <img src="../../assets/logo-imag.jpg" alt="Logo uga" class="logo-uga">
-        </div>
-      </td>
-      <td>
-        <div class="texte">
-          <h3>UFR IM²AG  -  Relations Entreprises et Stages 60 rue de la Chimie – UGA – CS 40700 – 38058 Grenoble cedex 9<br>
-          Tel . 04 7663 57-25</h3>
 
+  <mat-stepper labelPosition="bottom">
+    <mat-step>
+      <ng-template matStepLabel>Étudiant</ng-template>
+      <!--***************************************************************************************************************************************************
+      *************************************************    ETUDIANT   ***************************************************************************************
+      *******************************************************************************************************************************************************
+      ****************************************************************************************************************************************************-->
+      <!--Formulaire déjà rempli de l'étudiant-->
+      <div classe="etudiant">
+        <h2 class="titre">COORDONNEES DE L’ETUDIANT (Tous les champs sont obligatoires)</h2>
+        <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+        <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
 
-          <h1>FICHE DE RENSEIGNEMENTS DE STAGE-2021/2022</h1>
-
-          <p><i><b>ATTENTION!</b></i><br>
-          <i>Cette fiche de renseignements <strong>ne tient pas lieu de convention</strong></i></p>
-
-          <div><mat-icon>arrow_forward</mat-icon><b>Ces informations sont nécessaires pour l’établissement et la gestion de votre convention de stage.<br>
-          Cette fiche doit être <span class="texte-rouge">envoyée par mail à Laurence.Pierre@univ-grenoble-alpes.fr<br></span>
-          pour validation <span class="texte-rouge">avant saisie de la convention</span> dans Pstage</b></div>
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<br>
-
-<!--***************************************************************************************************************************************************
-*************************************************    ETUDIANT   ***************************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-<!--Formulaire déjà rempli de l'étudiant-->
-<div classe="etudiant">
-  <h2 class="titre">COORDONNEES DE L’ETUDIANT (Tous les champs sont obligatoires)</h2>
-  <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-  <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-
-      <div class="fields">
-        <mat-form-field>
-          <mat-label>NOM : </mat-label>
-          <input matInput [value]="etudiant?.nom" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Prénom : </mat-label>
-          <input  matInput [value]="etudiant?.prenom" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>N° étudiant : </mat-label>
-          <input matInput [value]="etudiant?.numEtudiant" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>N° de portable : </mat-label>
-          <input matInput [value]="etudiant?.numPortable" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Mail : </mat-label>
-          <input matInput [value]="etudiant?.mail" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Adresse : </mat-label>
-          <input matInput [value]="etudiant?.adresse" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
-          <input matInput [value]="etudiant?.typeAffiliation" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Caisse d’assurance maladie:</mat-label>
-          <input matInput [value]="etudiant?.caisseAssurance" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Inscrit en (préciser la filière d’études) :</mat-label>
-          <input matInput value="L3 MIAGE" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Enseignant référent pour l’encadrement du stage pour votre année d’étude (validera cette fiche):</mat-label>
-          <input matInput value="L.Pierre" readonly>
-        </mat-form-field>
-      </div>
-    </div>
-
-
-<br>
-
-<!--***************************************************************************************************************************************************
-*************************************************    ETABLISSEMENT   **********************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-
-<!-- ETABLISSEMENT DEJA REMPLI ***********************************************************************************************************************
-**************************************************************************************************************************************************-->
-<span *ngIf="entreprise?.raisonSociale != null">
-  <div classe="entreprise">
-    <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
-      <div class="fields">
-        <mat-form-field>
-          <mat-label>Raison sociale : </mat-label>
-          <input matInput [value]="entreprise?.raisonSociale" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Représentant légal : </mat-label>
-          <input matInput [value]="entreprise?.representantLegal" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Fonction : </mat-label>
-          <input matInput [value]="entreprise?.fonction" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>N° de SIRET : </mat-label>
-          <input matInput [value]="entreprise?.numeroSiret" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Code APE : </mat-label>
-          <input matInput [value]="entreprise?.codeApe" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Domaine d'activité : </mat-label>
-          <input matInput [value]="entreprise?.domaineActivite" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Effectif : </mat-label>
-          <input matInput [value]="entreprise?.effectif" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Adresse : </mat-label>
-          <input matInput [value]="entreprise?.adresse?.adresse" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Code postal : </mat-label>
-          <input matInput [value]="entreprise?.adresse?.codePostal" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Ville : </mat-label>
-          <input matInput [value]="entreprise?.adresse?.ville" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Pays : </mat-label>
-          <input matInput [value]="entreprise?.adresse?.pays" readonly>
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
-          <input matInput [value]="entreprise?.serviceAccueil" readonly>
-        </mat-form-field>
-      </div>
-    </div>
-</span>
-
-    <!--***************************************************************************************************************************************************
-    *************************************************    SERVICE DE GESTION   *****************************************************************************
-    *******************************************************************************************************************************************************
-    *******************************************************************************************************************************************************-->
-
-    <!-- SERVICE DE GESTION DEJA REMPLI ***********************************************************************************************************************
-    **************************************************************************************************************************************************-->
-<span *ngIf="serviceGestion?.nom != null">
-  <div class="serviceGestion">
-    <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
-    <div class="fields">
-      <mat-form-field>
-        <mat-label>NOM : </mat-label>
-        <input matInput [value]="serviceGestion?.nom" readonly>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Prénom : </mat-label>
-        <input matInput [value]="serviceGestion?.prenom" readonly>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Tél : </mat-label>
-        <input matInput [value]="serviceGestion?.numeroTel" readonly>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Mail : </mat-label>
-        <input matInput [value]="serviceGestion?.mail" readonly>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-label>Adresse : </mat-label>
-        <input matInput [value]="serviceGestion?.adresse" readonly>
-      </mat-form-field>
-    </div>
-  </div>
-</span>
-
-
-<!-- ETABLISSEMENT PAS ENCORE REMPLIE ***************************************************************************************************************
-**************************************************************************************************************************************************-->
-<!--Formulaire pour renseigner les informations de l'entreprise ainsi que le service de gestion | Angular material a été utilisé pour le style simple-->
-<span *ngIf="entreprise?.raisonSociale == null">
-  <div classe="entreprise">
-    <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
-    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-    <form [formGroup]="formEntreprise" (ngSubmit)="validerEntreprise()">
-      <div formGroupName="entreprise">
         <div class="fields">
           <mat-form-field>
-            <mat-label>Raison sociale : </mat-label>
-            <input formControlName="raisonSociale" matInput>
-            <mat-error>La raison sociale est requise.</mat-error>
+            <mat-label>NOM : </mat-label>
+            <input matInput [value]="etudiant?.nom" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Représentant légal : </mat-label>
-            <input formControlName="representantLegal" matInput>
-            <mat-error>Le représentant légal est requis.</mat-error>
+            <mat-label>Prénom : </mat-label>
+            <input  matInput [value]="etudiant?.prenom" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Fonction : </mat-label>
-            <input formControlName="fonction" matInput>
-            <mat-error>Le fonction est requise.</mat-error>
+            <mat-label>N° étudiant : </mat-label>
+            <input matInput [value]="etudiant?.numEtudiant" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>N° de SIRET : </mat-label>
-            <input formControlName="numSiret" matInput>
-            <mat-error *ngIf="numSiret?.errors?.required">Le numéro de SIRET est requis.</mat-error>
-            <mat-error *ngIf="numSiret?.errors?.pattern">Le numéro de SIRET est une suite de chiffres.</mat-error>
+            <mat-label>N° de portable : </mat-label>
+            <input matInput [value]="etudiant?.numPortable" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Code APE : </mat-label>
-            <input formControlName="codeApe" matInput>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Domaine d'activité : </mat-label>
-            <input matInput formControlName="domaineActivite">
-            <mat-error>Le domaine d'activité est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Effectif : </mat-label>
-            <input matInput formControlName="effectif">
-            <mat-error *ngIf="effectif?.errors?.required">L'effectif est requis.</mat-error>
-            <mat-error *ngIf="effectif?.errors?.pattern">L'effectif est un nombre.</mat-error>
+            <mat-label>Mail : </mat-label>
+            <input matInput [value]="etudiant?.mail" readonly>
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Adresse : </mat-label>
-            <textarea matInput formControlName="adresseEntreprise"></textarea>
-            <mat-error>L'adresse est requise.</mat-error>
+            <input matInput [value]="etudiant?.adresse" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Code postal : </mat-label>
-            <input matInput formControlName="codePostal">
-            <mat-error *ngIf="codePostal?.errors?.required">Le code postal est requis.</mat-error>
-            <mat-error *ngIf="codePostal?.errors?.pattern">Le code postal est composé de 5 chiffres.</mat-error>
+            <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
+            <input matInput [value]="etudiant?.typeAffiliation" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Ville : </mat-label>
-            <input matInput formControlName="ville">
-            <mat-error>La ville est requise.</mat-error>
+            <mat-label>Caisse d’assurance maladie:</mat-label>
+            <input matInput [value]="etudiant?.caisseAssurance" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Pays : </mat-label>
-            <input matInput formControlName="pays">
-            <mat-error>Le pays est requis.</mat-error>
+            <mat-label>Inscrit en (préciser la filière d’études) :</mat-label>
+            <input matInput value="L3 MIAGE" readonly>
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
-            <input matInput formControlName="serviceAccueil">
-            <mat-error>Le service d'accueil est requis.</mat-error>
+            <mat-label>Enseignant référent pour l’encadrement du stage pour votre année d’étude (validera cette fiche):</mat-label>
+            <input matInput value="L.Pierre" readonly>
           </mat-form-field>
+        </div>
 
-          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-          <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
-          <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-          <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
-          <span *ngIf="!entrepriseValide" class="messageEchec">{{errorMessageEntreprise}}</span>
+        <div class="avant-arriere">
+          <button mat-icon-button aria-label="avancer" matStepperNext>
+            <mat-icon>last_page</mat-icon>
+          </button>
         </div>
       </div>
-    </form>
-  </div>
-</span>
-    <!--***************************************************************************************************************************************************
-    *************************************************    SERVICE DE GESTION   *****************************************************************************
-    *******************************************************************************************************************************************************
-    *******************************************************************************************************************************************************-->
+    </mat-step>
 
-    <!-- SERVICE DE GESTION PAS ENCORE REMPLI *************************************************************************************************************
+    <mat-step>
+      <ng-template matStepLabel>Établissement</ng-template>
+      <!--***************************************************************************************************************************************************
+      *************************************************    ETABLISSEMENT   **********************************************************************************
+      *******************************************************************************************************************************************************
+      ****************************************************************************************************************************************************-->
+
+      <!-- ETABLISSEMENT DEJA REMPLI ***********************************************************************************************************************
       **************************************************************************************************************************************************-->
-<span *ngIf="serviceGestion?.nom == null">
-  <div class="serviceGestion">
-    <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
-    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-    <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
-      <div formGroupName="serviceGestion">
-        <div class="fields">
-          <mat-form-field>
-            <mat-label>NOM : </mat-label>
-            <input formControlName="nomService" matInput>
-            <mat-error>Le est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Prénom : </mat-label>
-            <input formControlName="prenomService" matInput>
-            <mat-error>Le prénom est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Tél : </mat-label>
-            <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
-            <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
-            <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Mail : </mat-label>
-            <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
-            <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
-            <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Adresse : </mat-label>
-            <textarea matInput formControlName="adresseService"></textarea>
-            <mat-error>L'adresse est requise.</mat-error>
-          </mat-form-field>
-
-          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-          <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
-          <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
-          <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
-        </div>
-      </div>
-    </form>
-  </div>
-</span>
-
-<br>
-
-<!--***************************************************************************************************************************************************
-*************************************************    TUTEUR   *****************************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-
-<!-- TUTEUR DEJA REMPLI ***********************************************************************************************************************
-**************************************************************************************************************************************************-->
-<span *ngIf="tuteur?.nom != null">
-  <div classe="tuteur">
-    <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
-      <div class="fields">
-        <mat-form-field>
-          <mat-label>NOM : </mat-label>
-          <input matInput [value]="tuteur?.nom">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Prénom : </mat-label>
-          <input matInput [value]="tuteur?.prenom">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Fonction : </mat-label>
-          <input matInput [value]="tuteur?.fonction">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Service : </mat-label>
-          <input matInput [value]="tuteur?.service">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Tél : </mat-label>
-          <input matInput [value]="tuteur?.numTelephone">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Mail : </mat-label>
-          <input matInput [value]="tuteur?.mail">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Adresse : </mat-label>
-          <input matInput [value]="tuteur?.adresse">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Disponibilité du tuteur professionnel de stage : </mat-label>
-          <input matInput [value]="tuteur?.disponibilite">
-        </mat-form-field>
-
-    </div>
-  </div>
-</span>
-
-<!-- TUTEUR PAS ENCORE REMPLI ***********************************************************************************************************************
-**************************************************************************************************************************************************-->
-<!--Formulaire pour renseigner les informations du tuteur | Angular material a été utilisé pour le style simple-->
-<span *ngIf="tuteur?.nom == null">
-  <div classe="tuteur">
-    <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
-    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-    <form [formGroup]="formTuteur" (ngSubmit)="validerTuteur()">
-      <div formGroupName="tuteur">
-        <div class="fields">
-          <mat-form-field>
-            <mat-label>NOM : </mat-label>
-            <input formControlName="nomTuteur" matInput>
-            <mat-error>Le nom est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Prénom : </mat-label>
-            <input formControlName="prenomTuteur" matInput>
-            <mat-error>Le prénom est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Fonction : </mat-label>
-            <input formControlName="fonctionTuteur" matInput>
-            <mat-error>La fonction est requise.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Service : </mat-label>
-            <input formControlName="serviceTuteur" matInput>
-            <mat-error>Le service est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Tél : </mat-label>
-            <input formControlName="numPortableTuteur" matInput placeholder="Exemple : 0476871857">
-            <mat-error *ngIf="numPortableTuteur?.errors?.required">Le n° de téléphone est requis.</mat-error>
-            <mat-error *ngIf="numPortableTuteur?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Mail : </mat-label>
-            <input formControlName="mailTuteur" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
-            <mat-error *ngIf="mailTuteur?.errors?.required">Le mail est requis.</mat-error>
-            <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Adresse : </mat-label>
-            <textarea formControlName="adresseTuteur" matInput></textarea>
-            <mat-error>L'adresse est requise.</mat-error>
-          </mat-form-field>
-
-          <div class="button-section">
-            <mat-label>Disponibilité du tuteur professionnel de stage :</mat-label>
-            <mat-radio-group formControlName="disponibiliteTuteur" [(ngModel)]="disponibiliteDefaut">
-              <mat-radio-button class="radioButton" value="importante">importante</mat-radio-button>
-              <mat-radio-button class="radioButton" value="partielle">partielle</mat-radio-button>
-              <mat-radio-button class="radioButton" value="inexistante">inexistante</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span *ngIf="disponibiliteTuteur?.errors?.required">La disponibilité est requise.</span>
-            </mat-error>
-          </div>
-
-          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-          <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
-          <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-          <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
-          <span *ngIf="!tuteurValide" class="messageEchec">{{errorMessageTuteur}}</span>
-        </div>
-      </div>
-    </form>
-  </div>
-</span>
-<br>
-
-<!--***************************************************************************************************************************************************
-*************************************************    INFORMATIONS DE STAGE   **************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-
-<!-- INFORMATIONS DE STAGE DEJA REMPLIES ***********************************************************************************************************
-**************************************************************************************************************************************************-->
-<span *ngIf="infoStage?.titre != null">
-  <div classe="infoStage">
-    <div class="fields">
-      <h2 class="titre">DATES DU STAGE:</h2>
-          <h4>Période temps partiel :</h4>
-            <mat-form-field>
-              <mat-label>Date de début : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutPartiel  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Date de fin : </mat-label>
-              <input matInput [value]="infoStage?.dateFinPartiel  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-            <h4>Période temps plein (35 h/semaine) :</h4>
-            <mat-form-field>
-              <mat-label>Date de début : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutPlein  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Date de fin : </mat-label>
-              <input matInput [value]="infoStage?.dateFinPlein  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-            <h4>En cas d’interruption, merci de préciser les dates : </h4>
-            <mat-form-field>
-              <mat-label>Du : </mat-label>
-              <input matInput [value]="infoStage?.dateDebutInterruption  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-            <mat-form-field>
-              <mat-label>Au : </mat-label>
-              <input matInput [value]="infoStage?.dateFinInterruption  | date:'dd/MM/yyyy'" readonly>
-            </mat-form-field>
-
-
-          <mat-form-field>
-            <mat-label>Nombre total d’heures du stage :</mat-label>
-            <input matInput [value]="infoStage?.nbHeures" readonly>
-          </mat-form-field>
-
-          <mat-form-field>
-            <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
-            <span *ngIf="infoStage?.gratification"> <input matInput value="Oui" readonly> </span>
-            <span *ngIf="!infoStage?.gratification"> <input matInput value="Non" readonly> </span>
-          </mat-form-field>
-
-            <div *ngIf="infoStage?.gratification" class="gratificationSuite">
+      <span *ngIf="entreprise?.raisonSociale != null">
+        <div classe="entreprise">
+          <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
+            <div class="fields">
               <mat-form-field>
-                <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
-                <input matInput [value]="infoStage?.montantGratification" readonly>
+                <mat-label>Raison sociale : </mat-label>
+                <input matInput [value]="entreprise?.raisonSociale" readonly>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Versement de la gratification:</mat-label>
-                <input matInput [value]="infoStage?.versementGratification" readonly>
+                <mat-label>Représentant légal : </mat-label>
+                <input matInput [value]="entreprise?.representantLegal" readonly>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge :</mat-label>
-                <input matInput [value]="infoStage?.laboratoireUGA" readonly>
+                <mat-label>Fonction : </mat-label>
+                <input matInput [value]="entreprise?.fonction" readonly>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Avantages en nature (restauration, hébergement, remboursement....):</mat-label>
-                <input matInput [value]="infoStage?.avantages" readonly>
+                <mat-label>N° de SIRET : </mat-label>
+                <input matInput [value]="entreprise?.numeroSiret" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Code APE : </mat-label>
+                <input matInput [value]="entreprise?.codeApe" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Domaine d'activité : </mat-label>
+                <input matInput [value]="entreprise?.domaineActivite" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Effectif : </mat-label>
+                <input matInput [value]="entreprise?.effectif" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Adresse : </mat-label>
+                <input matInput [value]="entreprise?.adresse?.adresse" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Code postal : </mat-label>
+                <input matInput [value]="entreprise?.adresse?.codePostal" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Ville : </mat-label>
+                <input matInput [value]="entreprise?.adresse?.ville" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Pays : </mat-label>
+                <input matInput [value]="entreprise?.adresse?.pays" readonly>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
+                <input matInput [value]="entreprise?.serviceAccueil" readonly>
               </mat-form-field>
             </div>
 
+            <div class="avant-arriere">
+              <button mat-icon-button aria-label="reculer" matStepperPrevious>
+                <mat-icon>first_page</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="avancer" matStepperNext>
+                <mat-icon>last_page</mat-icon>
+              </button>
+            </div>
 
-          <mat-form-field>
-            <h2>Confidentialité du stage :</h2>
-            <span *ngIf="infoStage?.confidentialite"> <input matInput value="Oui" readonly> </span>
-            <span *ngIf="!infoStage?.confidentialite"> <input matInput value="Non" readonly> </span>
-          </mat-form-field>
+          </div>
+      </span>
 
-          <h2 class="titre">TITRE DU STAGE :</h2>
-          <mat-form-field>
-            <input matInput [value]="infoStage?.titre" readonly>
-          </mat-form-field>
+      <!-- ETABLISSEMENT PAS ENCORE REMPLIE ***************************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <!--Formulaire pour renseigner les informations de l'entreprise ainsi que le service de gestion | Angular material a été utilisé pour le style simple-->
+      <span *ngIf="entreprise?.raisonSociale == null">
+        <div classe="entreprise">
+          <h2 class="titre">COORDONNEES ETABLISSEMENT D’ACCUEIL DU STAGIAIRE (Tous les champs sont obligatoires)</h2>
+          <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+          <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
+          <form [formGroup]="formEntreprise" (ngSubmit)="validerEntreprise()">
+            <div formGroupName="entreprise">
+              <div class="fields">
+                <mat-form-field>
+                  <mat-label>Raison sociale : </mat-label>
+                  <input formControlName="raisonSociale" matInput>
+                  <mat-error>La raison sociale est requise.</mat-error>
+                </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
-            <textarea [value]="infoStage?.description" matInput rows="5" readonly></textarea>
-          </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Représentant légal : </mat-label>
+                  <input formControlName="representantLegal" matInput>
+                  <mat-error>Le représentant légal est requis.</mat-error>
+                </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Objectifs du stage dans ce projet : </mat-label>
-            <textarea [value]="infoStage?.objectifs" matInput rows="5" readonly></textarea>
-          </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Fonction : </mat-label>
+                  <input formControlName="fonction" matInput>
+                  <mat-error>Le fonction est requise.</mat-error>
+                </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
-            <textarea [value]="infoStage?.taches" matInput rows="5" readonly></textarea>
-          </mat-form-field>
+                <mat-form-field>
+                  <mat-label>N° de SIRET : </mat-label>
+                  <input formControlName="numSiret" matInput>
+                  <mat-error *ngIf="numSiret?.errors?.required">Le numéro de SIRET est requis.</mat-error>
+                  <mat-error *ngIf="numSiret?.errors?.pattern">Le numéro de SIRET est une suite de chiffres.</mat-error>
+                </mat-form-field>
 
-          <mat-form-field>
-            <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
-            <textarea [value]="infoStage?.details" matInput rows="5" readonly></textarea>
-          </mat-form-field>
+                <mat-form-field>
+                  <mat-label>Code APE : </mat-label>
+                  <input formControlName="codeApe" matInput>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Domaine d'activité : </mat-label>
+                  <input matInput formControlName="domaineActivite">
+                  <mat-error>Le domaine d'activité est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Effectif : </mat-label>
+                  <input matInput formControlName="effectif">
+                  <mat-error *ngIf="effectif?.errors?.required">L'effectif est requis.</mat-error>
+                  <mat-error *ngIf="effectif?.errors?.pattern">L'effectif est un nombre.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Adresse : </mat-label>
+                  <textarea matInput formControlName="adresseEntreprise"></textarea>
+                  <mat-error>L'adresse est requise.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Code postal : </mat-label>
+                  <input matInput formControlName="codePostal">
+                  <mat-error *ngIf="codePostal?.errors?.required">Le code postal est requis.</mat-error>
+                  <mat-error *ngIf="codePostal?.errors?.pattern">Le code postal est composé de 5 chiffres.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Ville : </mat-label>
+                  <input matInput formControlName="ville">
+                  <mat-error>La ville est requise.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Pays : </mat-label>
+                  <input matInput formControlName="pays">
+                  <mat-error>Le pays est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
+                  <input matInput formControlName="serviceAccueil">
+                  <mat-error>Le service d'accueil est requis.</mat-error>
+                </mat-form-field>
+
+                <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
+                <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
+                <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
+                <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="!entrepriseValide" class="messageEchec">{{errorMessageEntreprise}}</span>
+              </div>
+            </div>
+          </form>
+
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="avancer" matStepperNext>
+              <mat-icon>last_page</mat-icon>
+            </button>
+          </div>
+
         </div>
-      </div>
-</span>
+      </span>
+    </mat-step>
 
-<!-- INFORMATIOS DE STAGE PAS ENCORE REMPLIES ***********************************************************************************************************
-**************************************************************************************************************************************************-->
-<span *ngIf="infoStage?.titre == null">
-  <!--Formulaire pour renseigner les informations du stage | Angular material a été utilisé pour le style simple-->
-  <div classe="infoStage">
-    <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
-    <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
-    <form [formGroup]="formInfosStage" (ngSubmit)="validerInfosStage()">
-      <div formGroupName="infoStage">
-        <div class="fields">
-          <h2 class="titre">DATES DU STAGE:</h2>
-          <div class="dates">
-          <h4>Période temps partiel :</h4>
+    <mat-step>
+      <ng-template matStepLabel>Service de gestion</ng-template>
+      <!--***************************************************************************************************************************************************
+      *************************************************    SERVICE DE GESTION   *****************************************************************************
+      *******************************************************************************************************************************************************
+      ****************************************************************************************************************************************************-->
+
+      <!-- SERVICE DE GESTION DEJA REMPLI *****************************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <span *ngIf="serviceGestion?.nom != null">
+        <div class="serviceGestion">
+          <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+          <div class="fields">
             <mat-form-field>
-              <mat-label>Date de début : </mat-label>
-              <input matInput [matDatepicker]="picker1" formControlName="dateDebutPartiel" placeholder="Date de debut partiel" [min]="minDate" [max]="maxDate">
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
+              <mat-label>NOM : </mat-label>
+              <input matInput [value]="serviceGestion?.nom" readonly>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Date de fin : </mat-label>
-              <input matInput [matDatepicker]="picker2" formControlName="dateFinPartiel" placeholder="Date de fin partiel" [min]="minDate" [max]="maxDate">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-            </mat-form-field>
-
-            <h4>Période temps plein (35 h/semaine) :</h4>
-            <mat-form-field>
-              <mat-label>Date de début : </mat-label>
-              <input matInput [matDatepicker]="picker3" formControlName="dateDebutPlein" [disabled]="true">
-              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-              <mat-datepicker #picker3></mat-datepicker>
+              <mat-label>Prénom : </mat-label>
+              <input matInput [value]="serviceGestion?.prenom" readonly>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Date de fin : </mat-label>
-              <input matInput [matDatepicker]="picker4" formControlName="dateFinPlein" placeholder="Date de fin" [min]="minDate" [max]="maxDate">
-              <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
-              <mat-datepicker #picker4></mat-datepicker>
-              <mat-error>La date de fin du stage est requise.</mat-error>
-            </mat-form-field>
-
-            <h4>En cas d’interruption, merci de préciser les dates : </h4>
-            <mat-form-field>
-              <mat-label>Du : </mat-label>
-              <input matInput [matDatepicker]="picker5" formControlName="dateDebutInterruption" placeholder="Date de debut d'interruption" [min]="minDate" [max]="maxDate">
-              <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
-              <mat-datepicker #picker5></mat-datepicker>
+              <mat-label>Tél : </mat-label>
+              <input matInput [value]="serviceGestion?.numeroTel" readonly>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Au : </mat-label>
-              <input matInput [matDatepicker]="picker6" formControlName="dateFinInterruption" placeholder="Date de fin d'interruption" [min]="minDate" [max]="maxDate">
-              <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
-              <mat-datepicker #picker6></mat-datepicker>
+              <mat-label>Mail : </mat-label>
+              <input matInput [value]="serviceGestion?.mail" readonly>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Adresse : </mat-label>
+              <input matInput [value]="serviceGestion?.adresse" readonly>
             </mat-form-field>
           </div>
 
-          <mat-form-field>
-            <mat-label>Nombre total d’heures du stage :</mat-label>
-            <input formControlName="nbHeures" matInput>
-            <mat-error *ngIf="nbHeures?.errors?.required">Le nombre total d'heures est requis.</mat-error>
-            <mat-error *ngIf="nbHeures?.errors?.pattern">Le nombre total d'heures est un nombre.</mat-error>
-          </mat-form-field>
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="avancer" matStepperNext>
+              <mat-icon>last_page</mat-icon>
+            </button>
+          </div>
 
-          <div class="gratification">
-            <div class="button-section">
-              <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
-              <mat-radio-group formControlName="gratification" [(ngModel)]="gratificationShow">
-                <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
-                <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
-              </mat-radio-group>
-              <mat-error>
-                <span *ngIf="gratification?.errors?.required">La gratification est requise.</span>
-              </mat-error>
+        </div>
+      </span>
+
+      <!-- SERVICE DE GESTION PAS ENCORE REMPLI *************************************************************************************************************
+      ****************************************************************************************************************************************************-->
+      <span *ngIf="serviceGestion?.nom == null">
+        <div class="serviceGestion">
+          <h4 class="titreServiceGestion"><i><b>Service assurant la gestion des stagiaires (RH)</b></i></h4>
+          <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+          <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
+          <form [formGroup]="formServiceGestion" (ngSubmit)="validerServiceGestion()">
+            <div formGroupName="serviceGestion">
+              <div class="fields">
+                <mat-form-field>
+                  <mat-label>NOM : </mat-label>
+                  <input formControlName="nomService" matInput>
+                  <mat-error>Le est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Prénom : </mat-label>
+                  <input formControlName="prenomService" matInput>
+                  <mat-error>Le prénom est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tél : </mat-label>
+                  <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
+                  <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
+                  <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Mail : </mat-label>
+                  <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
+                  <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
+                  <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Adresse : </mat-label>
+                  <textarea matInput formControlName="adresseService"></textarea>
+                  <mat-error>L'adresse est requise.</mat-error>
+                </mat-form-field>
+
+                <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
+                <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
+                <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
+              </div>
             </div>
+          </form>
 
-            <div *ngIf="gratificationShow" class="gratificationSuite">
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="avancer" matStepperNext>
+              <mat-icon>last_page</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </span>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Tuteur</ng-template>
+      <!--***************************************************************************************************************************************************
+      *************************************************    TUTEUR   *****************************************************************************************
+      *******************************************************************************************************************************************************
+      *******************************************************************************************************************************************************-->
+
+      <!-- TUTEUR DEJA REMPLI ***********************************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <span *ngIf="tuteur?.nom != null">
+        <div classe="tuteur">
+          <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
+            <div class="fields">
               <mat-form-field>
-                <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
-                <input formControlName="montantGratification" matInput>
-                <mat-error>Le montant de la gratification est un nombre.</mat-error>
+                <mat-label>NOM : </mat-label>
+                <input matInput [value]="tuteur?.nom">
               </mat-form-field>
 
-              <div class="button-section">
-                <mat-label>Versement de la gratification:</mat-label>
-                <mat-radio-group formControlName="versementGratification" [(ngModel)]="versementDefaut">
-                  <mat-radio-button class="radioButton" value="Chèque">Chèque</mat-radio-button>
-                  <mat-radio-button class="radioButton" value="Virement bancaire">Virement bancaire</mat-radio-button>
-                  <mat-radio-button class="radioButton" value="Espèces">Espèces</mat-radio-button>
-                </mat-radio-group>
+              <mat-form-field>
+                <mat-label>Prénom : </mat-label>
+                <input matInput [value]="tuteur?.prenom">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Fonction : </mat-label>
+                <input matInput [value]="tuteur?.fonction">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Service : </mat-label>
+                <input matInput [value]="tuteur?.service">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Tél : </mat-label>
+                <input matInput [value]="tuteur?.numTelephone">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Mail : </mat-label>
+                <input matInput [value]="tuteur?.mail">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Adresse : </mat-label>
+                <input matInput [value]="tuteur?.adresse">
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Disponibilité du tuteur professionnel de stage : </mat-label>
+                <input matInput [value]="tuteur?.disponibilite">
+              </mat-form-field>
+          </div>
+
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="avancer" matStepperNext>
+              <mat-icon>last_page</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </span>
+
+      <!-- TUTEUR PAS ENCORE REMPLI ***********************************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <!--Formulaire pour renseigner les informations du tuteur | Angular material a été utilisé pour le style simple-->
+      <span *ngIf="tuteur?.nom == null">
+        <div classe="tuteur">
+          <h2 class="titre">TUTEUR PROFESSIONNEL DU STAGIAIRE (à remplir par le responsable de l’encadrement du stagiaire)</h2>
+          <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+          <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
+          <form [formGroup]="formTuteur" (ngSubmit)="validerTuteur()">
+            <div formGroupName="tuteur">
+              <div class="fields">
+                <mat-form-field>
+                  <mat-label>NOM : </mat-label>
+                  <input formControlName="nomTuteur" matInput>
+                  <mat-error>Le nom est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Prénom : </mat-label>
+                  <input formControlName="prenomTuteur" matInput>
+                  <mat-error>Le prénom est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Fonction : </mat-label>
+                  <input formControlName="fonctionTuteur" matInput>
+                  <mat-error>La fonction est requise.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Service : </mat-label>
+                  <input formControlName="serviceTuteur" matInput>
+                  <mat-error>Le service est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tél : </mat-label>
+                  <input formControlName="numPortableTuteur" matInput placeholder="Exemple : 0476871857">
+                  <mat-error *ngIf="numPortableTuteur?.errors?.required">Le n° de téléphone est requis.</mat-error>
+                  <mat-error *ngIf="numPortableTuteur?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Mail : </mat-label>
+                  <input formControlName="mailTuteur" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
+                  <mat-error *ngIf="mailTuteur?.errors?.required">Le mail est requis.</mat-error>
+                  <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Adresse : </mat-label>
+                  <textarea formControlName="adresseTuteur" matInput></textarea>
+                  <mat-error>L'adresse est requise.</mat-error>
+                </mat-form-field>
+
+                <div class="button-section">
+                  <mat-label>Disponibilité du tuteur professionnel de stage :</mat-label>
+                  <mat-radio-group formControlName="disponibiliteTuteur" [(ngModel)]="disponibiliteDefaut">
+                    <mat-radio-button class="radioButton" value="importante">importante</mat-radio-button>
+                    <mat-radio-button class="radioButton" value="partielle">partielle</mat-radio-button>
+                    <mat-radio-button class="radioButton" value="inexistante">inexistante</mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error>
+                    <span *ngIf="disponibiliteTuteur?.errors?.required">La disponibilité est requise.</span>
+                  </mat-error>
+                </div>
+
+                <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
+                <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
+                <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
+                <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="!tuteurValide" class="messageEchec">{{errorMessageTuteur}}</span>
+              </div>
+            </div>
+          </form>
+
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="avancer" matStepperNext>
+              <mat-icon>last_page</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </span>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Informations du stage</ng-template>
+      <!--***************************************************************************************************************************************************
+      *************************************************    INFORMATIONS DE STAGE   **************************************************************************
+      *******************************************************************************************************************************************************
+      *******************************************************************************************************************************************************-->
+
+      <!-- INFORMATIONS DE STAGE DEJA REMPLIES ***********************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <span *ngIf="infoStage?.titre != null">
+        <div classe="infoStage">
+          <div class="fields">
+            <h2 class="titre">DATES DU STAGE:</h2>
+                <h4>Période temps partiel :</h4>
+                  <mat-form-field>
+                    <mat-label>Date de début : </mat-label>
+                    <input matInput [value]="infoStage?.dateDebutPartiel  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Date de fin : </mat-label>
+                    <input matInput [value]="infoStage?.dateFinPartiel  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+                  <h4>Période temps plein (35 h/semaine) :</h4>
+                  <mat-form-field>
+                    <mat-label>Date de début : </mat-label>
+                    <input matInput [value]="infoStage?.dateDebutPlein  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Date de fin : </mat-label>
+                    <input matInput [value]="infoStage?.dateFinPlein  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+                  <h4>En cas d’interruption, merci de préciser les dates : </h4>
+                  <mat-form-field>
+                    <mat-label>Du : </mat-label>
+                    <input matInput [value]="infoStage?.dateDebutInterruption  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Au : </mat-label>
+                    <input matInput [value]="infoStage?.dateFinInterruption  | date:'dd/MM/yyyy'" readonly>
+                  </mat-form-field>
+
+
+                <mat-form-field>
+                  <mat-label>Nombre total d’heures du stage :</mat-label>
+                  <input matInput [value]="infoStage?.nbHeures" readonly>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
+                  <span *ngIf="infoStage?.gratification"> <input matInput value="Oui" readonly> </span>
+                  <span *ngIf="!infoStage?.gratification"> <input matInput value="Non" readonly> </span>
+                </mat-form-field>
+
+                  <div *ngIf="infoStage?.gratification" class="gratificationSuite">
+                    <mat-form-field>
+                      <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
+                      <input matInput [value]="infoStage?.montantGratification" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>Versement de la gratification:</mat-label>
+                      <input matInput [value]="infoStage?.versementGratification" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge :</mat-label>
+                      <input matInput [value]="infoStage?.laboratoireUGA" readonly>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                      <mat-label>Avantages en nature (restauration, hébergement, remboursement....):</mat-label>
+                      <input matInput [value]="infoStage?.avantages" readonly>
+                    </mat-form-field>
+                  </div>
+
+
+                <mat-form-field>
+                  <h2>Confidentialité du stage :</h2>
+                  <span *ngIf="infoStage?.confidentialite"> <input matInput value="Oui" readonly> </span>
+                  <span *ngIf="!infoStage?.confidentialite"> <input matInput value="Non" readonly> </span>
+                </mat-form-field>
+
+                <h2 class="titre">TITRE DU STAGE :</h2>
+                <mat-form-field>
+                  <input matInput [value]="infoStage?.titre" readonly>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
+                  <textarea [value]="infoStage?.description" matInput rows="5" readonly></textarea>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Objectifs du stage dans ce projet : </mat-label>
+                  <textarea [value]="infoStage?.objectifs" matInput rows="5" readonly></textarea>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
+                  <textarea [value]="infoStage?.taches" matInput rows="5" readonly></textarea>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
+                  <textarea [value]="infoStage?.details" matInput rows="5" readonly></textarea>
+                </mat-form-field>
               </div>
 
-              <mat-form-field>
-                <mat-label>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge :</mat-label>
-                <input formControlName="laboratoireUGA" matInput>
-              </mat-form-field>
-              <br>
-              <mat-form-field>
-                <mat-label>Avantages en nature (restauration, hébergement, remboursement....):</mat-label>
-                <input formControlName="avantages" matInput>
-              </mat-form-field>
+              <div class="avant-arriere">
+                <button mat-icon-button aria-label="reculer" matStepperPrevious>
+                  <mat-icon>first_page</mat-icon>
+                </button>
+              </div>
+
             </div>
+      </span>
+
+      <!-- INFORMATIOS DE STAGE PAS ENCORE REMPLIES ***********************************************************************************************************
+      **************************************************************************************************************************************************-->
+      <span *ngIf="infoStage?.titre == null">
+        <!--Formulaire pour renseigner les informations du stage | Angular material a été utilisé pour le style simple-->
+        <div classe="infoStage">
+          <!--Formulaire lié au formulaire déclaré dans le fichier .ts avec un bouton de validation qui insère les données dans la BD-->
+          <!--mat-error pour les gestions d'erreurs de saisie, pour que les données soient intègres-->
+          <form [formGroup]="formInfosStage" (ngSubmit)="validerInfosStage()">
+            <div formGroupName="infoStage">
+              <div class="fields">
+                <h2 class="titre">DATES DU STAGE:</h2>
+                <div class="dates">
+                <h4>Période temps partiel :</h4>
+                  <mat-form-field>
+                    <mat-label>Date de début : </mat-label>
+                    <input matInput [matDatepicker]="picker1" formControlName="dateDebutPartiel" placeholder="Date de debut partiel" [min]="minDate" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                    <mat-datepicker #picker1></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Date de fin : </mat-label>
+                    <input matInput [matDatepicker]="picker2" formControlName="dateFinPartiel" placeholder="Date de fin partiel" [min]="minDate" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+
+                  <h4>Période temps plein (35 h/semaine) :</h4>
+                  <mat-form-field>
+                    <mat-label>Date de début : </mat-label>
+                    <input matInput [matDatepicker]="picker3" formControlName="dateDebutPlein" [disabled]="true">
+                    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                    <mat-datepicker #picker3></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Date de fin : </mat-label>
+                    <input matInput [matDatepicker]="picker4" formControlName="dateFinPlein" placeholder="Date de fin" [min]="minDate" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                    <mat-datepicker #picker4></mat-datepicker>
+                    <mat-error>La date de fin du stage est requise.</mat-error>
+                  </mat-form-field>
+
+                  <h4>En cas d’interruption, merci de préciser les dates : </h4>
+                  <mat-form-field>
+                    <mat-label>Du : </mat-label>
+                    <input matInput [matDatepicker]="picker5" formControlName="dateDebutInterruption" placeholder="Date de debut d'interruption" [min]="minDate" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                    <mat-datepicker #picker5></mat-datepicker>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Au : </mat-label>
+                    <input matInput [matDatepicker]="picker6" formControlName="dateFinInterruption" placeholder="Date de fin d'interruption" [min]="minDate" [max]="maxDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker6"></mat-datepicker-toggle>
+                    <mat-datepicker #picker6></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <mat-form-field>
+                  <mat-label>Nombre total d’heures du stage :</mat-label>
+                  <input formControlName="nbHeures" matInput>
+                  <mat-error *ngIf="nbHeures?.errors?.required">Le nombre total d'heures est requis.</mat-error>
+                  <mat-error *ngIf="nbHeures?.errors?.pattern">Le nombre total d'heures est un nombre.</mat-error>
+                </mat-form-field>
+
+                <div class="gratification">
+                  <div class="button-section">
+                    <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
+                    <mat-radio-group formControlName="gratification" [(ngModel)]="gratificationShow">
+                      <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
+                      <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error>
+                      <span *ngIf="gratification?.errors?.required">La gratification est requise.</span>
+                    </mat-error>
+                  </div>
+
+                  <div *ngIf="gratificationShow" class="gratificationSuite">
+                    <mat-form-field>
+                      <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
+                      <input formControlName="montantGratification" matInput>
+                      <mat-error>Le montant de la gratification est un nombre.</mat-error>
+                    </mat-form-field>
+
+                    <div class="button-section">
+                      <mat-label>Versement de la gratification:</mat-label>
+                      <mat-radio-group formControlName="versementGratification" [(ngModel)]="versementDefaut">
+                        <mat-radio-button class="radioButton" value="Chèque">Chèque</mat-radio-button>
+                        <mat-radio-button class="radioButton" value="Virement bancaire">Virement bancaire</mat-radio-button>
+                        <mat-radio-button class="radioButton" value="Espèces">Espèces</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+
+                    <mat-form-field>
+                      <mat-label>Pour les laboratoires de l’UGA, préciser l'organisme de prise en charge :</mat-label>
+                      <input formControlName="laboratoireUGA" matInput>
+                    </mat-form-field>
+                    <br>
+                    <mat-form-field>
+                      <mat-label>Avantages en nature (restauration, hébergement, remboursement....):</mat-label>
+                      <input formControlName="avantages" matInput>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="button-section">
+                  <h2>Confidentialité du stage :</h2>
+                  <mat-radio-group formControlName="confidentialite" [(ngModel)]="confidentialiteDefaut">
+                    <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
+                    <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error>
+                    <span *ngIf="confidentialite?.errors?.required">La confidentialite est requise.</span>
+                  </mat-error>
+                </div>
+
+                <h2 class="titre">TITRE DU STAGE :</h2>
+                <mat-form-field>
+                  <input formControlName="titre" matInput>
+                  <mat-error>Le titre du stage est requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
+                  <textarea formControlName="description" matInput rows="10"></textarea>
+                  <mat-error>La description est requise.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Objectifs du stage dans ce projet : </mat-label>
+                  <textarea formControlName="objectifs" matInput rows="10"></textarea>
+                  <mat-error>Les objectifs sont requis.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
+                  <textarea formControlName="taches" matInput rows="10"></textarea>
+                  <mat-error>Les tâches sont requises.</mat-error>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
+                  <textarea formControlName="details" matInput rows="10"></textarea>
+                  <mat-error>Les détails sont requis.</mat-error>
+                </mat-form-field>
+
+                <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
+                <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
+                <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
+                <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="!infoStageValide" class="messageEchec">{{errorMessageInfos}}</span>
+              </div>
+            </div>
+          </form>
+
+          <div class="avant-arriere">
+            <button mat-icon-button aria-label="reculer" matStepperPrevious>
+              <mat-icon>first_page</mat-icon>
+            </button>
           </div>
 
-          <div class="button-section">
-            <h2>Confidentialité du stage :</h2>
-            <mat-radio-group formControlName="confidentialite" [(ngModel)]="confidentialiteDefaut">
-              <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
-              <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
-            </mat-radio-group>
-            <mat-error>
-              <span *ngIf="confidentialite?.errors?.required">La confidentialite est requise.</span>
-            </mat-error>
-          </div>
-
-          <h2 class="titre">TITRE DU STAGE :</h2>
-          <mat-form-field>
-            <input formControlName="titre" matInput>
-            <mat-error>Le titre du stage est requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
-            <textarea formControlName="description" matInput rows="10"></textarea>
-            <mat-error>La description est requise.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Objectifs du stage dans ce projet : </mat-label>
-            <textarea formControlName="objectifs" matInput rows="10"></textarea>
-            <mat-error>Les objectifs sont requis.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
-            <textarea formControlName="taches" matInput rows="10"></textarea>
-            <mat-error>Les tâches sont requises.</mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
-            <textarea formControlName="details" matInput rows="10"></textarea>
-            <mat-error>Les détails sont requis.</mat-error>
-          </mat-form-field>
-
-          <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-          <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
-          <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-          <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
-          <span *ngIf="!infoStageValide" class="messageEchec">{{errorMessageInfos}}</span>
         </div>
-      </div>
-    </form>
-  </div>
-</span>
+      </span>
+    </mat-step>
 
-<!--***************************************************************************************************************************************************
-*************************************************    SIGNATURE   **************************************************************************************
-*******************************************************************************************************************************************************
-*******************************************************************************************************************************************************-->
-<!--Signature en bas de page (à remplir après l'impression)-->
-<mat-grid-list cols="2" rowHeight="30px" class="signature">
-  <mat-grid-tile>
-    <b>Signature de l’enseignant référent du stage : (L.Pierre)</b>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <b>Signature du tuteur professionnel :</b>
-  </mat-grid-tile>
-</mat-grid-list>
-
-
+  </mat-stepper>
 </span>

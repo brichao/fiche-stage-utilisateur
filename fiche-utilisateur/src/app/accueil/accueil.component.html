@@ -49,8 +49,8 @@
     <mat-grid-tile>
       <div class ="recherche-fiche">
         <h2>Pour imprimer la fiche de renseignements en PDF, veuillez renseigner le nom et prénom de l'étudiant.</h2>
-        <form [formGroup]="formPdf" (ngSubmit)="extrairePdf()">
-          <div formGroupName="pdf">
+        <form [formGroup]="formRecherche" (ngSubmit)="extrairePdf()">
+          <div formGroupName="recherche">
             <div class="pdfFields">
               <mat-form-field appearance="outline" class="recherche">
                 <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
@@ -64,7 +64,7 @@
                 <mat-error>Le prénom est requis</mat-error>
               </mat-form-field>
 
-              <button mat-icon-button [disabled]="formPdf?.invalid" type="submit">
+              <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
                 <mat-icon>search</mat-icon>
               </button>
             </div>

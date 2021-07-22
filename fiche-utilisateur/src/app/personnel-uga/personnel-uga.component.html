@@ -15,25 +15,30 @@
 <table style="width:100%">
   <!--Pour chaque fiche de la liste, on affiche le nom et prénom de l'étudiant, un bouton pour visualiser la fiche, et 2 boutons pour valider et refuser la fiche-->
   <tr *ngFor="let fiche of listeFiches">
-    <td class="nom" width="15%"><b>Nom : </b> {{fiche.etudiant.nom}}</td>
-    <td class="nom" width="15%"><b>Prenom : </b> {{fiche.etudiant.prenom }}</td>
+    <td class="nom" width="10%"><b>Date de création : </b> {{fiche.dateDeCreation | date: 'dd/MM/yyyy'}}</td>
+    <td class="nom" width="10%"><b>Nom : </b> {{fiche.etudiant.nom}}</td>
+    <td class="nom" width="10%"><b>Prenom : </b> {{fiche.etudiant.prenom }}</td>
     <td width="30%" class="visualiser">
       <button mat-mini-fab color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
         <mat-icon>remove_red_eye</mat-icon>
       </button>
     </td>
     <td width="10%">
-      <button mat-button class="button" (click)="validerFiche(fiche.etudiant.mail)">Valider</button>
+      <button mat-mini-fab color="primary" aria-label="valider-fiche" class="button" (click)="validerFiche(fiche.etudiant.mail)" [disabled]="boutonRefuse">
+        <mat-icon>task_alt</mat-icon>
+      </button>
       <span *ngIf="boutonValide" class="texteValide">Fiche de renseignements validée.</span>
     </td>
     <td width="20%">
       <mat-form-field class="input">
         <mat-label>Si refus, veuillez inscrire la raison du refus (Obligatoire).</mat-label>
-        <input matInput placeholder="Raison du refus" [(ngModel)]="motifRefus">
+        <input matInput #message placeholder="Raison du refus">
       </mat-form-field>
     </td>
     <td width="10%">
-      <button mat-button class="button" (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail)">Refuser</button>
+      <button mat-mini-fab color="primary" aria-label="refuser-fiche" class="button" (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail, message.value)" [disabled]="boutonValide">
+        <mat-icon>remove_circle_outline</mat-icon>
+      </button>
       <span *ngIf="boutonRefuse" class="texteValide">Fiche de renseignements refusée.</span>
     </td>
   </tr>

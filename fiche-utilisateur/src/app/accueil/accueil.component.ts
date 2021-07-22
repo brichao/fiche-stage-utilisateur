@@ -40,34 +40,12 @@ export class AccueilComponent{
     this.router.navigate(['recherche-fiche']);
   }
 
-
-  //Formulaire pour chercher une fiche de renseignement pour une impression PDF
-
-  formPdf= new FormGroup({
-    pdf: new FormGroup({
-      nom: new FormControl('', [
-        Validators.required
-      ]),
-      prenom: new FormControl('', [
-        Validators.required
-      ])
-    })
-  })
-
-  get nomEtudiant(){
-    return this.formPdf.get("pdf.nom");
-  }
-
-  get prenomEtudiant(){
-    return this.formPdf.get("pdf.prenom");
-  }
-
   extrairePdf(): void {
     let dialogRef = this.dialogue.open(ExtractionPdfComponent, {
       width: '2000px',
       data: {
-              nom: this?.nomEtudiant?.value,
-              prenom: this?.prenomEtudiant?.value
+              nom: this?.nom?.value,
+              prenom: this?.prenom?.value
       }
     });
   }

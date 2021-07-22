@@ -30,6 +30,7 @@ import { RechercheFicheComponent } from './recherche-fiche/recherche-fiche.compo
 import { ExtractionPdfComponent } from './extraction-pdf/extraction-pdf.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf.component';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf
     MatDatepickerModule,
     MatNativeDateModule,
     MomentDateModule,
-    MatDialogModule
+    MatDialogModule,
+    MatStepperModule
   ],
   providers: [
     EtudiantService,

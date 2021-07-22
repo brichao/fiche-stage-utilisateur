@@ -8,6 +8,7 @@ export interface Etudiants{
   adresse: string;
   typeAffiliation: string;
   caisseAssurance: string;
+  dateDeCreation: Date;
 }
 
 export interface Adresses{
@@ -83,6 +84,7 @@ export interface FicheRenseignement{
   serviceGestion: ServicesGestion;
   tuteur: Tuteurs;
   infosStage: infosStage;
+  dateDeCreation: Date;
 }
 
 export interface Utilisateur{

@@ -1,10 +1,10 @@
+import { Observable, of } from 'rxjs';
 import { VisualisationPdfComponent } from './../visualisation-pdf/visualisation-pdf.component';
 import { EnvoieMailService } from './../services/envoie-mail.service';
 import { FicheRenseignement, EmailData } from './../../classes';
 import { MatDialog } from '@angular/material/dialog';
 import { FicheRenseignementService } from './../services/fiche-renseignement.service';
 import { Component, OnInit } from '@angular/core';
-
 
 @Component({
   selector: 'app-personnel-uga',
@@ -14,7 +14,6 @@ import { Component, OnInit } from '@angular/core';
 export class PersonnelUgaComponent implements OnInit {
 
   listeFiches: FicheRenseignement[] = [];
-  motifRefus: string = "";
   mailInfos: EmailData | null = null;
   boutonValide: boolean = false;
   boutonRefuse: boolean = false;
@@ -37,11 +36,11 @@ export class PersonnelUgaComponent implements OnInit {
     });
   }
 
-  refuserFiche(mailEtudiant: string, mailTuteur: string){
+  refuserFiche(mailEtudiant: string, mailTuteur: string, messageRefus: string){
     this.mailInfos = {
       mailEtudiant: mailEtudiant,
       mailTuteur: mailTuteur,
-      messageRefus: this.motifRefus
+      messageRefus: messageRefus
     }
 
     console.log(this.mailInfos);

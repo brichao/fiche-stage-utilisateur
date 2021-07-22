@@ -45,6 +45,8 @@ export class FicheRenseignementComponent{
   gratificationShow: boolean = false;
   versementDefaut: string = 'Chèque';
 
+  dateCreation: Date = new Date();
+
   minDate = new Date(2021, 5, 25);
   maxDate = new Date(2024, 8, 1);
 
@@ -144,7 +146,8 @@ export class FicheRenseignementComponent{
       mail : this?.mail?.value,
       adresse : this?.adresse?.value,
       typeAffiliation : this?.affiliation?.value,
-      caisseAssurance : this?.caisseAssurance?.value
+      caisseAssurance : this?.caisseAssurance?.value,
+      dateDeCreation: new Date()
     }
     this.etudiantService.addEtudiant(this.etudiant).subscribe(
       etudiant =>{ console.log(etudiant),
