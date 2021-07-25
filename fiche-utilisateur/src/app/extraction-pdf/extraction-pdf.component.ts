@@ -1,8 +1,7 @@
 import { FicheRenseignementService } from './../services/fiche-renseignement.service';
 import { DialogData, FicheRenseignement } from './../../classes';
-import { DataService } from './../services/data.service';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import * as html2pdf from 'html2pdf.js';
 
 @Component({
@@ -16,7 +15,7 @@ export class ExtractionPdfComponent implements OnInit {
   messageErreur: string = "";
   rechercheSucces: boolean = false;
 
-  constructor(private dataService: DataService, private ficheService: FicheRenseignementService,
+  constructor(private ficheService: FicheRenseignementService,
     public dialogRef: MatDialogRef<ExtractionPdfComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit(): void {

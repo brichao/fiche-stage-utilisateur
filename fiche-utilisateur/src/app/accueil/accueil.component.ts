@@ -1,3 +1,5 @@
+import { SuppressionFicheComponent } from './../suppression-fiche/suppression-fiche.component';
+import { FicheRenseignementService } from './../services/fiche-renseignement.service';
 import { ExtractionPdfComponent } from './../extraction-pdf/extraction-pdf.component';
 import { DataService } from './../services/data.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,7 +14,8 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class AccueilComponent{
 
-  constructor(private router: Router, private dataService: DataService, private dialogue: MatDialog) { }
+
+  constructor(private router: Router, private dataService: DataService, private dialogue: MatDialog, private ficheService: FicheRenseignementService) { }
 
   //Formulaire pour chercher une fiche de renseignement
   formRecherche= new FormGroup({
@@ -46,6 +49,16 @@ export class AccueilComponent{
       data: {
               nom: this?.nom?.value,
               prenom: this?.prenom?.value
+      }
+    });
+  }
+
+  supprimerFiche(): void {
+    let dialogRefSuppression = this.dialogue.open(SuppressionFicheComponent, {
+      width : '2000px',
+      data: {
+        nom: this?.nom?.value,
+        prenom: this?.prenom?.value
       }
     });
   }

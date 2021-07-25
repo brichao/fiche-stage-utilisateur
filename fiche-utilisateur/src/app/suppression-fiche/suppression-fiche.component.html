@@ -1,0 +1,19 @@
+<span *ngIf="!rechercheSucces">
+  <h1 mat-dialog-title>Suppression de la fiche de renseignements</h1>
+  <mat-dialog-content>
+    <div class="messageEchec">{{messageErreur}}</div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="fermerDialogue()">Fermer</button>
+  </mat-dialog-actions>
+</span>
+
+<span *ngIf="rechercheSucces">
+  <h1 mat-dialog-title>Suppression de la fiche de renseignements</h1>
+  <mat-dialog-content>
+    <div class="messageSucces">La fiche de renseignements a été supprimée avec succès.</div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="fermerDialogue()">Fermer</button>
+  </mat-dialog-actions>
+</span>

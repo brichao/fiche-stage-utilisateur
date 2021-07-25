@@ -85,6 +85,8 @@ export interface FicheRenseignement{
   tuteur: Tuteurs;
   infosStage: infosStage;
   dateDeCreation: Date;
+  //ficheValidee == 1 => Fiche de renseignements validée, ficheValidee == 2 => Fiche de renseignements refusee
+  ficheValidee: number;
 }
 
 export interface Utilisateur{

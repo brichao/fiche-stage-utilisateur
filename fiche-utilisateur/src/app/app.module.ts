@@ -31,6 +31,7 @@ import { ExtractionPdfComponent } from './extraction-pdf/extraction-pdf.componen
 import { MatDialogModule } from '@angular/material/dialog';
 import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf.component';
 import { MatStepperModule } from '@angular/material/stepper';
+import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     HeaderComponent,
     RechercheFicheComponent,
     ExtractionPdfComponent,
-    VisualisationPdfComponent
+    VisualisationPdfComponent,
+    SuppressionFicheComponent
   ],
   imports: [
     BrowserModule,

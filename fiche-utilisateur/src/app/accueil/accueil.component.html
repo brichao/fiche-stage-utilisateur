@@ -18,6 +18,33 @@
 
     <mat-grid-tile>
       <div class ="recherche-fiche">
+        <h2>Pour supprimer la fiche de renseignements, veuillez renseigner le nom et prénom de l'étudiant.</h2>
+        <form [formGroup]="formRecherche" (ngSubmit)="supprimerFiche()">
+          <div formGroupName="recherche">
+            <div class="pdfFields">
+              <mat-form-field appearance="outline" class="recherche">
+                <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
+                <input matInput placeholder="Nom" formControlName="nom">
+                <mat-error>Le nom est requis.</mat-error>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="recherche">
+                <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
+                <input matInput placeholder="Prénom" formControlName="prenom">
+                <mat-error>Le prénom est requis</mat-error>
+              </mat-form-field>
+
+              <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+      <div class ="recherche-fiche">
         <h2>Entreprise : Pour chercher une fiche de renseignements déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</h2>
         <h2>Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc (Il n'est visible que si vous remplissiez tous les champs obligatoires).</h2>
         <h3>ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>

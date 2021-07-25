@@ -23,7 +23,7 @@ export class FicheRenseignementService {
 
   //On utilise la méthode GET de Http pour une recherche dans la BD, le paramètre est l'url du serveur (suffixé par /fiches/nom/prenom comme présent
   //dans la classe controller dans le backend). Ensuite on regarde si le serveur nous renvoie une erreur.
-  //Dans le cas où l'envoie n'a pas été effectuée, ensuite on récupère le message à afficher à l'utilisateur.
+  //Dans le cas où l'envoie n'a pas été effectuée, on récupère le message à afficher à l'utilisateur.
   getFiche(nom: string, prenom: string): Observable<FicheRenseignement> {
     return this.http.get<FicheRenseignement>(`${this.apiServerUrl}/fiches/${nom}/${prenom}`).pipe(
       catchError(error => {
@@ -38,6 +38,33 @@ export class FicheRenseignementService {
     );
   }
 
+  updateFiche(fiche: FicheRenseignement): Observable<FicheRenseignement>{
+    return this.http.put<FicheRenseignement>(`${this.apiServerUrl}/fiches/${fiche.etudiant.nom}/${fiche.etudiant.prenom}`, fiche).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
+  }
+
+  deleteFiche(nom: string, prenom: string): Observable<void>{
+    return this.http.delete<void>(`${this.apiServerUrl}/fiches/${nom}/${prenom}`).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+          } else {
+            errorMsg = this.getServerError(error);
+          }
+          return throwError(errorMsg);
+      })
+    )
+  }
   //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
   getServerError(error: HttpErrorResponse): string {
     switch (error.status){

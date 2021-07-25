@@ -1,4 +1,3 @@
-import { Observable, of } from 'rxjs';
 import { VisualisationPdfComponent } from './../visualisation-pdf/visualisation-pdf.component';
 import { EnvoieMailService } from './../services/envoie-mail.service';
 import { FicheRenseignement, EmailData } from './../../classes';
@@ -15,10 +14,8 @@ export class PersonnelUgaComponent implements OnInit {
 
   listeFiches: FicheRenseignement[] = [];
   mailInfos: EmailData | null = null;
-  boutonValide: boolean = false;
-  boutonRefuse: boolean = false;
 
-  constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService) { }
+  constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService) {}
 
   ngOnInit(): void {
     this.ficheService.getFicheAll().subscribe(
@@ -36,23 +33,31 @@ export class PersonnelUgaComponent implements OnInit {
     });
   }
 
-  refuserFiche(mailEtudiant: string, mailTuteur: string, messageRefus: string){
-    this.mailInfos = {
-      mailEtudiant: mailEtudiant,
-      mailTuteur: mailTuteur,
-      messageRefus: messageRefus
-    }
+  refuserFiche(mailEtudiant: string, mailTuteur: string, messageRefus: string, indice: number){
+    if(messageRefus !== ''){
+      this.mailInfos = {
+        mailEtudiant: mailEtudiant,
+        mailTuteur: mailTuteur,
+        messageRefus: messageRefus
+      }
 
-    console.log(this.mailInfos);
-    this.mailService.envoieMail(this.mailInfos).subscribe(
-      data => { console.log(data),
-                this.boutonRefuse= true},
-      error => { console.log(error),
-                 this.boutonRefuse = false}
-    );
+      console.log(this.mailInfos);
+      this.mailService.envoieMail(this.mailInfos).subscribe(
+        data => { console.log(data),
+                  this.listeFiches[indice].ficheValidee = 2,
+                  this.ficheService.updateFiche(this.listeFiches[indice]).subscribe(
+                    data =>  console.log(data),
+                    error => console.log(error)
+                  )},
+        error => { console.log(error),
+                  this.listeFiches[indice].ficheValidee = 0}
+      );
+    } else {
+      console.log("Impossible de refuser, pas de motif !");
+    }
   }
 
-  validerFiche(mailEtudiant: string){
+  validerFiche(mailEtudiant: string, indice: number){
     this.mailInfos = {
       mailEtudiant: mailEtudiant,
       mailTuteur: '',
@@ -61,10 +66,16 @@ export class PersonnelUgaComponent implements OnInit {
 
     this.mailService.envoieMailValidation(this.mailInfos).subscribe(
       data => {console.log(data),
-              this.boutonValide = true},
+              this.listeFiches[indice].ficheValidee = 1,
+              console.log("Fiche de renseignements validation : " + this.listeFiches[indice].ficheValidee),
+              this.ficheService.updateFiche(this.listeFiches[indice]).subscribe(
+                data =>  console.log(data),
+                error => console.log(error)
+              )},
       error => {console.log(error),
-              this.boutonValide = false}
-    )
+              this.listeFiches[indice].ficheValidee = 0}
+    );
+
   }
 
 }
