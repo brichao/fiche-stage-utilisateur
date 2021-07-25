@@ -4,6 +4,8 @@
 
 .bouton-ajout{
   margin-top: 10px;
+  text-align: center;
+  margin-left: 500px;
 }
 
 .recherche{
@@ -26,11 +28,12 @@
 }
 
 .carousel-item {
-  height: 65vh;
+  height: 100vh;
   min-height: 350px;
   background: no-repeat center center scroll;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: grey;
 }
