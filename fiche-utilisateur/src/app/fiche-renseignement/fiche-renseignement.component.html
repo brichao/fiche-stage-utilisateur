@@ -14,46 +14,46 @@
         <div formGroupName="etudiant">
           <div class="fields">
             <mat-form-field>
-              <mat-label>NOM : </mat-label>
+              <mat-label>NOM* : </mat-label>
               <input formControlName="nom" matInput>
               <mat-error>Le nom est requis.</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Prénom : </mat-label>
+              <mat-label>Prénom* : </mat-label>
               <input formControlName="prenom" matInput>
               <mat-error>Le prénom est requis.</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>N° étudiant : </mat-label>
+              <mat-label>N° étudiant* : </mat-label>
               <input formControlName="numEtudiant" matInput placeholder="Exemple : 20202782">
               <mat-error *ngIf="numEtudiant?.errors?.required">Le n° étudiant est requis.</mat-error>
               <mat-error *ngIf="numEtudiant?.errors?.pattern">Le n° étudiant est composé de 8 chiffres.</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>N° de portable : </mat-label>
+              <mat-label>N° de portable* : </mat-label>
               <input formControlName="numPortable" matInput placeholder="Exemple : 0660871857">
               <mat-error *ngIf="numPortable?.errors?.required">Le n° de portable est requis.</mat-error>
               <mat-error *ngIf="numPortable?.errors?.pattern">Le n° de portable est composé de 10 chiffres.</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Mail : </mat-label>
+              <mat-label>Mail* : </mat-label>
               <input formControlName="mail" matInput placeholder="prenom.nom@etu.univ-grenoble-alpes.fr">
               <mat-error *ngIf="mail?.errors?.required">Le mail est requis.</mat-error>
               <mat-error *ngIf="mail?.errors?.pattern">Le mail devrait être de la forme: prenom.nom@etu.univ-grenoble-alpes.fr</mat-error>
             </mat-form-field>
 
             <mat-form-field>
-              <mat-label>Adresse : </mat-label>
+              <mat-label>Adresse* : </mat-label>
               <textarea formControlName="adresse" matInput></textarea>
               <mat-error>L'adresse est requise.</mat-error>
             </mat-form-field>
 
             <div class="button-section">
-              <mat-label>Type d’affiliation à la sécurité sociale:</mat-label>
+              <mat-label>Type d’affiliation à la sécurité sociale* : </mat-label>
               <mat-radio-group formControlName="affiliation" [(ngModel)]="affiliationDefaut">
                 <mat-radio-button class="radioButton" value="ayant droit">ayant droit</mat-radio-button>
                 <mat-radio-button class="radioButton" value="étudiant">étudiant</mat-radio-button>
@@ -66,7 +66,7 @@
             </div>
 
             <div class="button-section">
-              <mat-label>Caisse d’assurance maladie:</mat-label>
+              <mat-label>Caisse d’assurance maladie* : </mat-label>
               <mat-radio-group formControlName="caisseAssurance" [(ngModel)]="caisseAssuranceDefaut">
                 <mat-radio-button class="radioButton" value="CPAM">CPAM</mat-radio-button>
                 <mat-radio-button class="radioButton" value="MSA">MSA</mat-radio-button>
@@ -121,25 +121,25 @@
           <div formGroupName="entreprise">
             <div class="fields">
               <mat-form-field>
-                <mat-label>Raison sociale : </mat-label>
+                <mat-label>Raison sociale* : </mat-label>
                 <input formControlName="raisonSociale" matInput>
                 <mat-error>La raison sociale est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Représentant légal : </mat-label>
+                <mat-label>Représentant légal* : </mat-label>
                 <input formControlName="representantLegal" matInput>
                 <mat-error>Le représentant légal est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Fonction : </mat-label>
+                <mat-label>Fonction* : </mat-label>
                 <input formControlName="fonction" matInput>
                 <mat-error>Le fonction est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>N° de SIRET : </mat-label>
+                <mat-label>N° de SIRET* : </mat-label>
                 <input formControlName="numSiret" matInput>
                 <mat-error *ngIf="numSiret?.errors?.required">Le numéro de SIRET est requis.</mat-error>
                 <mat-error *ngIf="numSiret?.errors?.pattern">Le numéro de SIRET est une suite de chiffres.</mat-error>
@@ -151,45 +151,45 @@
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Domaine d'activité : </mat-label>
+                <mat-label>Domaine d'activité* : </mat-label>
                 <input matInput formControlName="domaineActivite">
                 <mat-error>Le domaine d'activité est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Effectif : </mat-label>
+                <mat-label>Effectif* : </mat-label>
                 <input matInput formControlName="effectif">
                 <mat-error *ngIf="effectif?.errors?.required">L'effectif est requis.</mat-error>
                 <mat-error *ngIf="effectif?.errors?.pattern">L'effectif est un nombre.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Adresse : </mat-label>
+                <mat-label>Adresse* : </mat-label>
                 <textarea matInput formControlName="adresseEntreprise"></textarea>
                 <mat-error>L'adresse est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Code postal : </mat-label>
+                <mat-label>Code postal* : </mat-label>
                 <input matInput formControlName="codePostal">
                 <mat-error *ngIf="codePostal?.errors?.required">Le code postal est requis.</mat-error>
                 <mat-error *ngIf="codePostal?.errors?.pattern">Le code postal est composé de 5 chiffres.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Ville : </mat-label>
+                <mat-label>Ville* : </mat-label>
                 <input matInput formControlName="ville">
                 <mat-error>La ville est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Pays : </mat-label>
+                <mat-label>Pays* : </mat-label>
                 <input matInput formControlName="pays">
                 <mat-error>Le pays est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme): </mat-label>
+                <mat-label>Service d’accueil du stagiaire (préciser l’adresse si différente de l’organisme)* : </mat-label>
                 <input matInput formControlName="serviceAccueil">
                 <mat-error>Le service d'accueil est requis.</mat-error>
               </mat-form-field>
@@ -228,33 +228,33 @@
           <div formGroupName="serviceGestion">
             <div class="fields">
               <mat-form-field>
-                <mat-label>NOM : </mat-label>
+                <mat-label>NOM* : </mat-label>
                 <input formControlName="nomService" matInput>
                 <mat-error>Le est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Prénom : </mat-label>
+                <mat-label>Prénom* : </mat-label>
                 <input formControlName="prenomService" matInput>
                 <mat-error>Le prénom est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Tél : </mat-label>
+                <mat-label>Tél* : </mat-label>
                 <input formControlName="numPortableService" matInput placeholder="Exemple : 0476871857">
                 <mat-error *ngIf="numPortableService?.errors?.required">Le n° de téléphone est requis.</mat-error>
                 <mat-error *ngIf="numPortableService?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Mail : </mat-label>
+                <mat-label>Mail* : </mat-label>
                 <input formControlName="mailService" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
                 <mat-error *ngIf="mailService?.errors?.required">Le mail est requis.</mat-error>
                 <mat-error *ngIf="mailService?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Adresse : </mat-label>
+                <mat-label>Adresse* : </mat-label>
                 <textarea matInput formControlName="adresseService"></textarea>
                 <mat-error>L'adresse est requise.</mat-error>
               </mat-form-field>
@@ -293,45 +293,45 @@
           <div formGroupName="tuteur">
             <div class="fields">
               <mat-form-field>
-                <mat-label>NOM : </mat-label>
+                <mat-label>NOM* : </mat-label>
                 <input formControlName="nomTuteur" matInput>
                 <mat-error>Le nom est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Prénom : </mat-label>
+                <mat-label>Prénom* : </mat-label>
                 <input formControlName="prenomTuteur" matInput>
                 <mat-error>Le prénom est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Fonction : </mat-label>
+                <mat-label>Fonction* : </mat-label>
                 <input formControlName="fonctionTuteur" matInput>
                 <mat-error>La fonction est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Service : </mat-label>
+                <mat-label>Service* : </mat-label>
                 <input formControlName="serviceTuteur" matInput>
                 <mat-error>Le service est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Tél : </mat-label>
+                <mat-label>Tél* : </mat-label>
                 <input formControlName="numPortableTuteur" matInput placeholder="Exemple : 0476871857">
                 <mat-error *ngIf="numPortableTuteur?.errors?.required">Le n° de téléphone est requis.</mat-error>
                 <mat-error *ngIf="numPortableTuteur?.errors?.pattern">Le n° de téléphone est composé de 10 chiffres.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Mail : </mat-label>
+                <mat-label>Mail* : </mat-label>
                 <input formControlName="mailTuteur" matInput placeholder="Exemple : identifiant@nom_domaine.com (ou .fr)">
                 <mat-error *ngIf="mailTuteur?.errors?.required">Le mail est requis.</mat-error>
                 <mat-error *ngIf="mailTuteur?.errors?.pattern">Le mail devrait être dans la forme : identifiant@nom_domaine.com (ou .fr)</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Adresse : </mat-label>
+                <mat-label>Adresse* : </mat-label>
                 <textarea formControlName="adresseTuteur" matInput></textarea>
                 <mat-error>L'adresse est requise.</mat-error>
               </mat-form-field>
@@ -400,14 +400,14 @@
 
                 <h4>Période temps plein (35 h/semaine) :</h4>
                 <mat-form-field>
-                  <mat-label>Date de début : </mat-label>
+                  <mat-label>Date de début* : </mat-label>
                   <input matInput [matDatepicker]="picker3" formControlName="dateDebutPlein" [disabled]="true">
                   <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
                   <mat-datepicker #picker3></mat-datepicker>
                 </mat-form-field>
 
                 <mat-form-field>
-                  <mat-label>Date de fin : </mat-label>
+                  <mat-label>Date de fin* : </mat-label>
                   <input matInput [matDatepicker]="picker4" formControlName="dateFinPlein" placeholder="Date de fin" [min]="minDate" [max]="maxDate">
                   <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
                   <mat-datepicker #picker4></mat-datepicker>
@@ -431,7 +431,7 @@
               </div>
 
               <mat-form-field>
-                <mat-label>Nombre total d’heures du stage :</mat-label>
+                <mat-label>Nombre total d’heures du stage* :</mat-label>
                 <input formControlName="nbHeures" matInput>
                 <mat-error *ngIf="nbHeures?.errors?.required">Le nombre total d'heures est requis.</mat-error>
                 <mat-error *ngIf="nbHeures?.errors?.pattern">Le nombre total d'heures est un nombre.</mat-error>
@@ -439,7 +439,7 @@
 
               <div class="gratification">
                 <div class="button-section">
-                  <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence) :</h2>
+                  <h2>GRATIFICATIONS (obligatoires pour tout stage, même fractionné, à partir du 45ème jour de présence)* :</h2>
                   <mat-radio-group formControlName="gratification" [(ngModel)]="gratificationShow">
                     <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
                     <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
@@ -451,13 +451,13 @@
 
                 <div *ngIf="gratificationShow" class="gratificationSuite">
                   <mat-form-field>
-                    <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154) :</mat-label>
+                    <mat-label>Montant gratification horaire(si montant mensuel, le diviser par 154)* :</mat-label>
                     <input formControlName="montantGratification" matInput>
                     <mat-error>Le montant de la gratification est un nombre.</mat-error>
                   </mat-form-field>
 
                   <div class="button-section">
-                    <mat-label>Versement de la gratification:</mat-label>
+                    <mat-label>Versement de la gratification* : </mat-label>
                     <mat-radio-group formControlName="versementGratification" [(ngModel)]="versementDefaut">
                       <mat-radio-button class="radioButton" value="Chèque">Chèque</mat-radio-button>
                       <mat-radio-button class="radioButton" value="Virement bancaire">Virement bancaire</mat-radio-button>
@@ -478,7 +478,7 @@
               </div>
 
               <div class="button-section">
-                <h2>Confidentialité du stage :</h2>
+                <h2>Confidentialité du stage* :</h2>
                 <mat-radio-group formControlName="confidentialite" [(ngModel)]="confidentialiteDefaut">
                   <mat-radio-button class="radioButton" [value]="true">oui</mat-radio-button>
                   <mat-radio-button class="radioButton" [value]="false">non</mat-radio-button>
@@ -488,32 +488,32 @@
                 </mat-error>
               </div>
 
-              <h2 class="titre">TITRE DU STAGE :</h2>
+              <h2 class="titre">TITRE DU STAGE* :</h2>
               <mat-form-field>
                 <input formControlName="titre" matInput>
                 <mat-error>Le titre du stage est requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera : </mat-label>
+                <mat-label>Description du projet de l'entreprise dans lequel le stagiaire sera intégré/ du produit sur lequel il travaillera* : </mat-label>
                 <textarea formControlName="description" matInput rows="5"></textarea>
                 <mat-error>La description est requise.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Objectifs du stage dans ce projet : </mat-label>
+                <mat-label>Objectifs du stage dans ce projet* : </mat-label>
                 <textarea formControlName="objectifs" matInput rows="5"></textarea>
                 <mat-error>Les objectifs sont requis.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Tâches qui seront confiées au stagiaire pour cette mission : </mat-label>
+                <mat-label>Tâches qui seront confiées au stagiaire pour cette mission* : </mat-label>
                 <textarea formControlName="taches" matInput rows="5"></textarea>
                 <mat-error>Les tâches sont requises.</mat-error>
               </mat-form-field>
 
               <mat-form-field>
-                <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés : </mat-label>
+                <mat-label>Détail des travaux à réaliser, avec langages et technos qui seront utilisés* : </mat-label>
                 <textarea formControlName="details" matInput rows="5"></textarea>
                 <mat-error>Les détails sont requis.</mat-error>
               </mat-form-field>

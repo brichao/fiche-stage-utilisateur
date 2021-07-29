@@ -1,148 +1,152 @@
-<div class="accueil">
-  <!--Ajout du logo IM2AG-->
-  <img src="../../assets/logo-imag.jpg" alt="Logo UGA" class="logo-uga">
-  <!--Définition d'une grille composé d'une colonne et 2 lignes, pour séparer la création et la recherche de fiche-->
-  <mat-grid-list cols="1" rowHeight="300px">
-    <mat-grid-tile>
-      <div class ="creation-fiche">
-        <h2>Etudiant : Veuillez créer une nouvelle fiche de renseignements en appuyant sur le bouton en dessous.</h2>
-        <h2>Ne remplissez que la partie qui vous concerne.</h2>
-        <h2>Veuillez valider ensuite avec le bouton de validation en dessous de votre partie (Il n'est visible que si vous remplissiez tous les champs obligatoires).</h2>
-        <h3>ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-        <!--Bouton de création d'une fiche de renseignements qui nous amène dans la page demandée-->
-        <button mat-fab color ="primary" aria-label="creer-fiche" class="bouton-ajout" [routerLink]="'fiche-renseignement'">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <div class ="recherche-fiche">
-        <h2>Pour supprimer la fiche de renseignements, veuillez renseigner le nom et prénom de l'étudiant.</h2>
-        <form [formGroup]="formRecherche" (ngSubmit)="supprimerFiche()">
-          <div formGroupName="recherche">
-            <div class="pdfFields">
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
-                <input matInput placeholder="Nom" formControlName="nom">
-                <mat-error>Le nom est requis.</mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
-                <input matInput placeholder="Prénom" formControlName="prenom">
-                <mat-error>Le prénom est requis</mat-error>
-              </mat-form-field>
-
-              <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
-                <mat-icon>search</mat-icon>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <div class ="recherche-fiche">
-        <h2>Entreprise : Pour chercher une fiche de renseignements déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</h2>
-        <h2>Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc (Il n'est visible que si vous remplissiez tous les champs obligatoires).</h2>
-        <h3>ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
-        <form [formGroup]="formRecherche" (ngSubmit)="validerRecherche()">
-          <div formGroupName="recherche">
-            <div class="fields">
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
-                <input matInput placeholder="Nom" formControlName="nom">
-                <mat-error>Le nom est requis.</mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
-                <input matInput placeholder="Prénom" formControlName="prenom">
-                <mat-error>Le prénom est requis</mat-error>
-              </mat-form-field>
-
-              <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
-                <mat-icon>search</mat-icon>
-              </button>
-            </div>
-          </div>
-        </form>
-
-      </div>
-    </mat-grid-tile>
-
-    <mat-grid-tile>
-      <div class ="recherche-fiche">
-        <h2>Pour imprimer la fiche de renseignements en PDF, veuillez renseigner le nom et prénom de l'étudiant.</h2>
-        <form [formGroup]="formRecherche" (ngSubmit)="extrairePdf()">
-          <div formGroupName="recherche">
-            <div class="pdfFields">
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
-                <input matInput placeholder="Nom" formControlName="nom">
-                <mat-error>Le nom est requis.</mat-error>
-              </mat-form-field>
-
-              <mat-form-field appearance="outline" class="recherche">
-                <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
-                <input matInput placeholder="Prénom" formControlName="prenom">
-                <mat-error>Le prénom est requis</mat-error>
-              </mat-form-field>
-
-              <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit">
-                <mat-icon>search</mat-icon>
-              </button>
-            </div>
-          </div>
-        </form>
-
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-</div>
-
-
 <div id="carouselAccueil" class="carousel slide carousel-fade" data-bs-ride="carousel">
   <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Etudiant"></button>
+    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="1" aria-label="Entreprise"></button>
+    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="2" aria-label="PDF"></button>
+    <button type="button" data-bs-target="#carouselAccueil" data-bs-slide-to="3" aria-label="Personnels UGA"></button>
   </div>
   <div class="carousel-inner">
-    <!--First slide-->
+    <!--Slide : Etudiant-->
     <div class="carousel-item active">
 
-      <div class="slider-item js-fullheight" style="background-image:url(../../assets/slider-1.jpg);">
-      	<div class="overlay"></div>
-        <div class="container">
-          <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-	          <div class="col-md-12 ftco-animate">
-	          	<div class="text w-100 text-center">
-	          		<h2>Best Place to Travel</h2>
-		            <h1 class="mb-3">Norway</h1>
-	            </div>
-	          </div>
-	        </div>
-        </div>
-      </div>
+      <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;">
+        <div class="container-fluid">
+           <div class="row justify-content-center align-items-center d-flex text-center h-100">
+
+            <h1 class="display-2 text-light mb-5 mt-5"><strong>ÉTUDIANT</strong></h1>
+
+             <div class="col-6 col-md-4 h-50 mt-2">
+                 <p class="lead text-light mb-4">Veuillez créer une nouvelle fiche de renseignements en appuyant sur le bouton ci-dessous.</p>
+                 <p class="lead text-light mb-4">Veuillez valider ensuite avec le bouton de validation en bas de page.</p>
+                 <!--Bouton de création d'une fiche de renseignements qui nous amène dans la page requise-->
+                <button mat-fab color = "primary" aria-label="creer-fiche" class="bouton-ajout" [routerLink]="'fiche-renseignement'">
+                  <mat-icon>add</mat-icon>
+                </button>
+             </div>
+
+             <div class="col-6 col-md-4 h-50">
+              <p class="lead text-light mb-4">Pour supprimer une fiche de renseignements, veuillez renseigner le nom et prénom de l'étudiant.</p>
+              <form [formGroup]="formRecherche" (ngSubmit)="supprimerFiche()">
+                <div formGroupName="recherche">
+                  <div class="d-flex justify-content-center">
+                    <mat-form-field appearance="outline" class="recherche">
+                      <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
+                      <input matInput placeholder="Nom" formControlName="nom">
+                      <mat-error>Le nom est requis.</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="recherche">
+                      <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
+                      <input matInput placeholder="Prénom" formControlName="prenom">
+                      <mat-error>Le prénom est requis</mat-error>
+                    </mat-form-field>
+
+                    <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3">
+                      <mat-icon>search</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+           </div>
+         </div>
+      </section>
 
     </div>
 
-    <!--Second slide-->
+    <!--Slide: Entreprise-->
     <div class="carousel-item">
-      <img src="../../assets/slider-2.jpg" class="d-block w-100" alt="slider2">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
+
+      <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;">
+        <div class="container-fluid">
+           <div class="row justify-content-center align-items-center d-flex text-center h-100">
+             <div class="col-12 col-md-8 h-50 ">
+                 <h1 class="display-2 text-light mb-5 mt-5"><strong>ENTREPRISE</strong></h1>
+                 <p class="lead text-light mb-4">Pour chercher une fiche de renseignements déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</p>
+                 <p class="lead text-light mb-4">Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc.</p>
+                 <form [formGroup]="formRecherche" (ngSubmit)="validerRecherche()">
+                  <div formGroupName="recherche">
+                    <div class="d-flex justify-content-center">
+                      <mat-form-field appearance="outline" class="recherche">
+                        <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
+                        <input matInput placeholder="Nom" formControlName="nom">
+                        <mat-error>Le nom est requis.</mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="recherche">
+                        <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
+                        <input matInput placeholder="Prénom" formControlName="prenom">
+                        <mat-error>Le prénom est requis</mat-error>
+                      </mat-form-field>
+
+                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3">
+                        <mat-icon>search</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+             </div>
+           </div>
+         </div>
+      </section>
+
     </div>
 
-    <!--Third slide-->
+    <!--Slide: PDF-->
     <div class="carousel-item">
-      <img src="../../assets/slider-3.jpg" class="d-block w-100" alt="slider3">
+
+      <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;">
+        <div class="container-fluid">
+           <div class="row justify-content-center align-items-center d-flex text-center h-100">
+             <div class="col-12 col-md-8 h-50 ">
+                 <h1 class="display-2 text-light mb-5 mt-5"><strong>EXTRACTION PDF</strong></h1>
+                 <p class="lead text-light mb-4">Pour imprimer la fiche de renseignements en PDF, veuillez renseigner le nom et prénom de l'étudiant.</p>
+                 <form [formGroup]="formRecherche" (ngSubmit)="extrairePdf()">
+                  <div formGroupName="recherche">
+                    <div class="d-flex justify-content-center">
+                      <mat-form-field appearance="outline" class="recherche">
+                        <mat-label>Veuillez taper le nom de l'étudiant</mat-label>
+                        <input matInput placeholder="Nom" formControlName="nom">
+                        <mat-error>Le nom est requis.</mat-error>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="recherche">
+                        <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
+                        <input matInput placeholder="Prénom" formControlName="prenom">
+                        <mat-error>Le prénom est requis</mat-error>
+                      </mat-form-field>
+
+                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="search-button" class="pt-3">
+                        <mat-icon>search</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+             </div>
+           </div>
+         </div>
+      </section>
+
+
     </div>
+
+    <!--Slide: Personnels UGA-->
+    <div class="carousel-item">
+
+      <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;">
+        <div class="container-fluid">
+           <div class="row justify-content-center align-items-center d-flex text-center h-100">
+             <div class="col-12 col-md-8 h-50 ">
+                 <h1 class="display-2 text-light mb-5 mt-5"><strong>PERSONNELS UGA</strong></h1>
+                <p><a routerLink="personnels" class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Afficher la liste des fiches de renseignements</a></p>
+             </div>
+           </div>
+         </div>
+      </section>
+
+    </div>
+
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselAccueil" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
