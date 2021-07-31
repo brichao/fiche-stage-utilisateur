@@ -1,7 +1,7 @@
-<span *ngIf="!rechercheSucces" class="messageEchecRecup">{{messageError}}</span>
+<span *ngIf="!rechercheSucces" class="justify-content-center align-items-center d-flex text-center h-100 messageEchecRecup">{{messageError}}</span>
 <span *ngIf="rechercheSucces">
 
-  <mat-stepper labelPosition="bottom">
+  <mat-stepper labelPosition="bottom" class="stepper">
     <mat-step>
       <ng-template matStepLabel>Étudiant</ng-template>
       <!--***************************************************************************************************************************************************
@@ -190,7 +190,7 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                  <mat-label>N° de SIRET : </mat-label>
+                  <mat-label>N° de SIRET* : </mat-label>
                   <input formControlName="numSiret" matInput>
                   <mat-error *ngIf="numSiret?.errors?.required">Le numéro de SIRET est requis.</mat-error>
                   <mat-error *ngIf="numSiret?.errors?.pattern">Le numéro de SIRET est une suite de chiffres.</mat-error>

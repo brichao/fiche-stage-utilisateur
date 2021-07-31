@@ -1,8 +1,10 @@
 .messageEchecRecup{
-  text-align: center;
   font-size: xx-large;
   color: red;
-  padding: 25px;
+}
+
+.stepper{
+  padding-top: 80px;
 }
 
 .avant-arriere{
@@ -27,15 +29,6 @@
 .titre, .titreServiceGestion {
   padding: 0 2rem 0 2rem;
   margin-top: 10px;
-}
-
-.signature {
-  padding-bottom: 50px;
-}
-
-.logo-uga{
-  width: 70%;
-  padding-left: 15px;
 }
 
 .button-section {

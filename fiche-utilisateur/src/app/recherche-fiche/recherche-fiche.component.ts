@@ -41,6 +41,7 @@ export class RechercheFicheComponent implements OnInit {
   nom: string = '';
   prenom: string = '';
   fiche: FicheRenseignement | null = null;
+  nbHeuresCalculees: number = 0;
 
   etudiant: Etudiants | null = null;
   entreprise : Entreprises | null = null;
