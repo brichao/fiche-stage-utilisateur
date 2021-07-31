@@ -248,7 +248,7 @@
                 <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
                 <button mat-button color="primary" type="submit" [disabled]="formEntreprise?.invalid" class="validation">Valider</button>
                 <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-                <span *ngIf="entrepriseValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="entrepriseValide" class="messageSucces">Enregistré, vous pouvez quitter la page.</span>
                 <span *ngIf="!entrepriseValide" class="messageEchec">{{errorMessageEntreprise}}</span>
               </div>
             </div>
@@ -362,7 +362,7 @@
 
                 <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
                 <button mat-button color="primary" type="submit" [disabled]="formServiceGestion?.invalid" class="validation">Valider</button>
-                <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="serviceGestionValide" class="messageSucces">Enregistré, vous pouvez quitter la page.</span>
                 <span *ngIf="!serviceGestionValide" class="messageEchec">{{errorMessageService}}</span>
               </div>
             </div>
@@ -517,7 +517,7 @@
                 <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
                 <button mat-button color="primary" type="submit" [disabled]="formTuteur?.invalid" class="validation">Valider</button>
                 <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-                <span *ngIf="tuteurValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="tuteurValide" class="messageSucces">Enregistré, vous pouvez quitter la page.</span>
                 <span *ngIf="!tuteurValide" class="messageEchec">{{errorMessageTuteur}}</span>
               </div>
             </div>
@@ -808,7 +808,7 @@
                 <h3 class="texte-rouge">ATTENTION ! Avant de valider, veuillez vous assurer que tous les champs sont correctes, pas de modification après.</h3>
                 <button mat-button color="primary" type="submit" [disabled]="formInfosStage?.invalid" class="validation">Valider</button>
                 <!--Si l'envoie à la BD est un succés, affiche le message enregistré, sinon on affiche le message d'erreur-->
-                <span *ngIf="infoStageValide" class="messageSucces">Enregistré</span>
+                <span *ngIf="infoStageValide" class="messageSucces">Enregistré, vous pouvez quitter la page.</span>
                 <span *ngIf="!infoStageValide" class="messageEchec">{{errorMessageInfos}}</span>
               </div>
             </div>
