@@ -10,15 +10,15 @@
     <div class="carousel-item active">
 
       <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;
-                    background-image: url(../../assets/slider-1.jpg);">
+                    background-image: url(../../assets/image-1.jpg);">
         <div class="container-fluid">
            <div class="row justify-content-center align-items-center d-flex text-center h-100">
 
-            <h1 class="display-2 text-light mb-5 mt-5"><strong>ÉTUDIANT</strong></h1>
+            <h1 class="display-1 text-light mb-5 mt-5"><strong>ÉTUDIANT</strong></h1>
 
-             <div class="col-6 col-md-4 h-50 mt-2">
-                 <p class="lead text-light mb-4">Veuillez créer une nouvelle fiche de renseignements en appuyant sur le bouton ci-dessous.</p>
-                 <p class="lead text-light mb-4">Veuillez valider ensuite avec le bouton de validation en bas de page.</p>
+             <div class="col-6 col-md-4 h-50">
+                 <p class="lead text-light mb-4"><b>Veuillez créer une nouvelle fiche de renseignements en appuyant sur le bouton ci-dessous.</b></p>
+                 <p class="lead text-light mb-4"><b>Veuillez valider ensuite avec le bouton de validation en bas de page.</b></p>
                  <!--Bouton de création d'une fiche de renseignements qui nous amène dans la page requise-->
                 <button mat-fab color = "primary" aria-label="creer-fiche" class="bouton-ajout" [routerLink]="'fiche-renseignement'">
                   <mat-icon>add</mat-icon>
@@ -26,7 +26,7 @@
              </div>
 
              <div class="col-6 col-md-4 h-50">
-              <p class="lead text-light mb-4">Pour supprimer une fiche de renseignements, veuillez renseigner le nom et prénom de l'étudiant.</p>
+              <p class="lead text-light mb-4"><b>Pour supprimer une fiche de renseignements, veuillez renseigner le nom et prénom de l'étudiant.</b></p>
               <form [formGroup]="formRecherche" (ngSubmit)="supprimerFiche()">
                 <div formGroupName="recherche">
                   <div class="d-flex justify-content-center">
@@ -36,13 +36,13 @@
                       <mat-error>Le nom est requis.</mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="recherche">
+                    <mat-form-field appearance="outline" class="recherche text-light">
                       <mat-label>Veuillez taper le prénom de l'étudiant</mat-label>
                       <input matInput placeholder="Prénom" formControlName="prenom">
                       <mat-error>Le prénom est requis</mat-error>
                     </mat-form-field>
 
-                    <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3">
+                    <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3" color="light">
                       <mat-icon>search</mat-icon>
                     </button>
                   </div>
@@ -60,13 +60,13 @@
     <div class="carousel-item">
 
       <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;
-                      background-image: url(../../assets/slider-2.jpg);">
+                      background-image: url(../../assets/image-3.jpg);">
         <div class="container-fluid">
            <div class="row justify-content-center align-items-center d-flex text-center h-100">
              <div class="col-12 col-md-8 h-50 ">
-                 <h1 class="display-2 text-light mb-5 mt-5"><strong>ENTREPRISE</strong></h1>
-                 <p class="lead text-light mb-4">Pour chercher une fiche de renseignements déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</p>
-                 <p class="lead text-light mb-4">Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc.</p>
+                 <h1 class="display-1 text-light mb-5 mt-5"><strong>ENTREPRISE</strong></h1>
+                 <p class="lead text-light mb-4"><b>Pour chercher une fiche de renseignements déjà créée par l'étudiant, veuillez taper le nom et prénom de l'étudiant.</b></p>
+                 <p class="lead text-light mb-4"><b>Chaque partie étant indépendante, vous devez appuyer sur le bouton de validation en dessous de chaque bloc.</b></p>
                  <form [formGroup]="formRecherche" (ngSubmit)="validerRecherche()">
                   <div formGroupName="recherche">
                     <div class="d-flex justify-content-center">
@@ -82,7 +82,7 @@
                         <mat-error>Le prénom est requis</mat-error>
                       </mat-form-field>
 
-                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3">
+                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="pt-3" color="light">
                         <mat-icon>search</mat-icon>
                       </button>
                     </div>
@@ -99,12 +99,12 @@
     <div class="carousel-item">
 
       <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;
-                      background-image: url(../../assets/slider-3.jpg);">
+                      background-image: url(../../assets/image-4.jpg);">
         <div class="container-fluid">
            <div class="row justify-content-center align-items-center d-flex text-center h-100">
              <div class="col-12 col-md-8 h-50 ">
-                 <h1 class="display-2 text-light mb-5 mt-5"><strong>EXTRACTION PDF</strong></h1>
-                 <p class="lead text-light mb-4">Pour imprimer la fiche de renseignements en PDF, veuillez renseigner le nom et prénom de l'étudiant.</p>
+                 <h1 class="display-1 text-light mb-5 mt-5"><strong>EXTRACTION PDF</strong></h1>
+                 <p class="lead text-light mb-4"><b>Pour imprimer la fiche de renseignements en PDF, veuillez renseigner le nom et prénom de l'étudiant.</b></p>
                  <form [formGroup]="formRecherche" (ngSubmit)="extrairePdf()">
                   <div formGroupName="recherche">
                     <div class="d-flex justify-content-center">
@@ -120,7 +120,7 @@
                         <mat-error>Le prénom est requis</mat-error>
                       </mat-form-field>
 
-                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="search-button" class="pt-3">
+                      <button mat-icon-button [disabled]="formRecherche?.invalid" type="submit" class="search-button" class="pt-3" color="light">
                         <mat-icon>search</mat-icon>
                       </button>
                     </div>
@@ -138,11 +138,11 @@
     <div class="carousel-item">
 
       <section class="pt-5 pb-5 mt-0 align-items-center d-flex bg-dark" style="height:100vh; background-size: cover;
-                      background-image: url(../../assets/slider-2.jpg);">
+                      background-image: url(../../assets/image-2.jpg);">
         <div class="container-fluid">
            <div class="row justify-content-center align-items-center d-flex text-center h-100">
              <div class="col-12 col-md-8 h-50 ">
-                 <h1 class="display-2 text-light mb-5 mt-5"><strong>PERSONNELS UGA</strong></h1>
+                 <h1 class="display-1 text-light mb-5 mt-5"><strong>PERSONNELS UGA</strong></h1>
                 <p><a routerLink="personnels" class="btn bg-danger shadow-lg btn-round text-light btn-lg btn-rised">Afficher la liste des fiches de renseignements</a></p>
              </div>
            </div>
