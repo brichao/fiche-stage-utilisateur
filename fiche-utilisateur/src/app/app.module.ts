@@ -32,6 +32,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche.component';
+import { SortingPipe } from './pipes/sorting.pipe';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche
     RechercheFicheComponent,
     ExtractionPdfComponent,
     VisualisationPdfComponent,
-    SuppressionFicheComponent
+    SuppressionFicheComponent,
+    SortingPipe
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche
     MatNativeDateModule,
     MomentDateModule,
     MatDialogModule,
-    MatStepperModule
+    MatStepperModule,
+    MatTableModule
   ],
   providers: [
     EtudiantService,

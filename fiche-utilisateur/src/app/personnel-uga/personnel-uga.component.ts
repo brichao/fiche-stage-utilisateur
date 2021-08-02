@@ -3,7 +3,8 @@ import { EnvoieMailService } from './../services/envoie-mail.service';
 import { FicheRenseignement, EmailData } from './../../classes';
 import { MatDialog } from '@angular/material/dialog';
 import { FicheRenseignementService } from './../services/fiche-renseignement.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-personnel-uga',
@@ -14,6 +15,9 @@ export class PersonnelUgaComponent implements OnInit {
 
   listeFiches: FicheRenseignement[] = [];
   mailInfos: EmailData | null = null;
+  colonnesTableau: string[] = ['Date de création', 'Nom', 'Prénom', 'Visualisation', 'Valider', 'Refuser', 'Status'];
+
+
 
   constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService) {}
 
@@ -21,6 +25,7 @@ export class PersonnelUgaComponent implements OnInit {
     this.ficheService.getFicheAll().subscribe(
       listeFiches => this.listeFiches = listeFiches
     );
+
   }
 
   visualiserFiche(nomEtudiant: string, prenomEtudiant: string): void{
@@ -34,27 +39,23 @@ export class PersonnelUgaComponent implements OnInit {
   }
 
   refuserFiche(mailEtudiant: string, mailTuteur: string, messageRefus: string, indice: number){
-    if(messageRefus !== ''){
-      this.mailInfos = {
-        mailEtudiant: mailEtudiant,
-        mailTuteur: mailTuteur,
-        messageRefus: messageRefus
-      }
-
-      console.log(this.mailInfos);
-      this.mailService.envoieMail(this.mailInfos).subscribe(
-        data => { console.log(data),
-                  this.listeFiches[indice].ficheValidee = 2,
-                  this.ficheService.updateFiche(this.listeFiches[indice]).subscribe(
-                    data =>  console.log(data),
-                    error => console.log(error)
-                  )},
-        error => { console.log(error),
-                  this.listeFiches[indice].ficheValidee = 0}
-      );
-    } else {
-      console.log("Impossible de refuser, pas de motif !");
+    this.mailInfos = {
+      mailEtudiant: mailEtudiant,
+      mailTuteur: mailTuteur,
+      messageRefus: messageRefus
     }
+
+    console.log(this.mailInfos);
+    this.mailService.envoieMail(this.mailInfos).subscribe(
+      data => { console.log(data),
+                this.listeFiches[indice].ficheValidee = 2,
+                this.ficheService.updateFiche(this.listeFiches[indice]).subscribe(
+                  data =>  console.log(data),
+                  error => console.log(error)
+                )},
+      error => { console.log(error),
+                 this.listeFiches[indice].ficheValidee = 0}
+    );
   }
 
   validerFiche(mailEtudiant: string, indice: number){
@@ -75,7 +76,6 @@ export class PersonnelUgaComponent implements OnInit {
       error => {console.log(error),
               this.listeFiches[indice].ficheValidee = 0}
     );
-
   }
 
 }

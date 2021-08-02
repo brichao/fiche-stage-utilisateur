@@ -1,50 +1,42 @@
-h1 {
-  font-size: xx-large;
-}
-
-.entete{
-  padding-top: 90px;
-}
-
-.nom{
-  font-size: 20px;
-}
-
-.visualiser{
-  padding-left: 10px;
+.input{
+  width: 250px;
 }
 
 table{
-  padding-left: 10px;
-}
-
-.input{
-  width: 350px;
-  float: right;
+  text-align: center;
+  width: 1000px;
 }
 
 .messageEchec{
-  text-align: center;
   font-size: xx-large;
   color: red;
-  padding: 10px;
 }
 
-.texteValide{
-  color: green;
+.parent{
+  background-image: url(../../assets/image-6.jpg);
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  margin: 0 auto;
+  resize: both;
+}
+
+.child{
+  height: 60vh;
+  width: 1000px;
+  position: absolute;
+  top: 18%;
+  left: 22%;
+}
+
+.mat-header-cell{
   text-align: center;
-  font-size: medium;
-  padding: 5px;
 }
 
-.tableauStyleDefaut{
-  background-color: white;
+.hide{
+  display: none;
 }
 
-.tableauStyleValide{
-  background-color: green;
-}
-
-.tableauStyleRefus{
-  background-color: red;
+.mat-footer-row .mat-footer-cell{
+  font-style: italic;
 }

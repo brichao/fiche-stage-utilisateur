@@ -1,45 +1,143 @@
-<div class="entete">
-  <h1>Affichage de la liste des fiches de renseignements : </h1>
-  <h2>
-    Pour visualiser une fiche, veuillez appuyer sur le bouton en forme d'oeil à côté du nom/prénomde l'étudiant (Vous pouvez extraire la fiche en PDF pendant la visualisation avec le bouton en
-    bas de la fiche - Extraire PDF)
-  </h2>
-  <h2>Vous avez à disposition 2 boutons à droite de chaque fiche pour valider et refuser.</h2>
-  <h2>Dans le cas où vous voulez refuser une fiche, veuillez renseigner la raison du refus dans le champ crée, et ensuite appuyer sur le bouton refuser.</h2>
-</div>
-
 <span *ngIf="listeFiches.length == 0">
-  <h1 class="messageEchec">Aucune fiche de renseignements n'a été remplie pour l'instant.</h1>
+  <div class="container-fluid">
+    <div class="row justify-content-center align-items-center d-flex text-center h-100">
+      <div class="col-12 col-md-8 h-50 ">
+          <h1 class="display-1 text-dark mb-5 mt-5 messageEchec"><strong>Aucune fiche de renseignements n'a été remplie pour l'instant.</strong></h1>
+      </div>
+    </div>
+  </div>
 </span>
+<span *ngIf="listeFiches.length != 0">
+  <div class="parent">
+    <div class="child">
 
-<table style="width:100%">
-  <!--Pour chaque fiche de la liste, on affiche le nom et prénom de l'étudiant, un bouton pour visualiser la fiche, et 2 boutons pour valider et refuser la fiche-->
-  <tr *ngFor="let fiche of listeFiches, let i = index">
-    <td class="nom" width="10%"><b>Date de création : </b> {{fiche.dateDeCreation | date: 'dd/MM/yyyy'}}</td>
-    <td class="nom" width="10%"><b>Nom : </b> {{fiche.etudiant.nom}}</td>
-    <td class="nom" width="10%"><b>Prenom : </b> {{fiche.etudiant.prenom }}</td>
-    <td width="30%" class="visualiser">
-      <button mat-mini-fab color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
-        <mat-icon>remove_red_eye</mat-icon>
-      </button>
-    </td>
-    <td width="10%" [ngClass]="fiche.ficheValidee == 1 ? 'tableauStyleValide' : 'tableauStyleDefaut'">
-      <button mat-icon-button color="primary" aria-label="valider-fiche" class="button" (click)="validerFiche(fiche.etudiant.mail, i)"
-             [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
-        <mat-icon>task_alt</mat-icon>
-      </button>
-    </td>
-    <td width="20%">
-      <mat-form-field class="input">
-        <mat-label>Si refus, veuillez inscrire la raison du refus (Obligatoire).</mat-label>
-        <input matInput #message placeholder="Raison du refus">
-      </mat-form-field>
-    </td>
-    <td width="10%" [ngClass]="fiche.ficheValidee == 2 ? 'tableauStyleRefus' : 'tableauStyleDefaut'">
-      <button mat-icon-button color="primary" aria-label="refuser-fiche" class="button"
-             (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail, message.value, i)" [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
-        <mat-icon>remove_circle_outline</mat-icon>
-      </button>
-    </td>
-  </tr>
-</table>
+      <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="listeFiches">
+
+          <ng-container matColumnDef="Date de création">
+            <th mat-header-cell *matHeaderCellDef>Date de création</th>
+            <td mat-cell *matCellDef="let fiche">{{fiche.dateDeCreation | date: 'dd/MM/yyyy'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Nom">
+            <th mat-header-cell *matHeaderCellDef>Nom</th>
+            <td mat-cell *matCellDef="let fiche">{{fiche.etudiant.nom}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Prénom">
+            <th mat-header-cell *matHeaderCellDef>Prénom</th>
+            <td mat-cell *matCellDef="let fiche">{{fiche.etudiant.prenom}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Visualisation">
+            <th mat-header-cell *matHeaderCellDef>Visualisation</th>
+            <td mat-cell *matCellDef="let fiche">
+              <button mat-icon-button color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Valider">
+            <th mat-header-cell *matHeaderCellDef>Valider</th>
+            <td mat-cell *matCellDef="let fiche, let i = index">
+              <button mat-icon-button color="primary" aria-label="valider-fiche" class="button" (click)="validerFiche(fiche.etudiant.mail, i)"
+                        [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
+                    <mat-icon>task_alt</mat-icon>
+                  </button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Refuser">
+            <th mat-header-cell *matHeaderCellDef>Refuser</th>
+            <td mat-cell *matCellDef="let fiche, let i = index">
+              <mat-form-field class="input">
+                <mat-label>Veuillez inscrire la raison du refus* :</mat-label>
+                <input matInput #message placeholder="Raison du refus">
+              </mat-form-field>
+
+              <button mat-icon-button color="primary" aria-label="refuser-fiche" class="button"
+                        (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail, message.value, i)"
+                        [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2 || message.value == ''">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+          </ng-container>
+
+          <ng-container matColumnDef="Status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let fiche">
+              <span *ngIf="fiche.ficheValidee==1"> Fiche validée </span>
+              <span *ngIf="fiche.ficheValidee==2"> Fiche refusée </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="chargement">
+            <td mat-footer-cell *matFooterCellDef colspan="6">
+              Chargement des données...
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colonnesTableau"></tr>
+          <tr mat-row *matRowDef="let row; columns: colonnesTableau;"></tr>
+          <tr mat-footer-row *matFooterRowDef="['chargement']" [ngClass]="{'hide' : listeFiches != null}"></tr>
+        </table>
+
+
+      </div>
+
+      <!--
+      <div class="table-responsive">
+        <table class="table">
+          <thead class="bg-dark">
+            <tr class="text-light">
+              <th (click)="trier('dateCreation')">Date de création&nbsp; <i class="fa fa-sort"></i></th>
+              <th (click)="trier('nom')">Nom <i class="fa fa-sort"></i></th>
+              <th (click)="trier('prenom')">Prenom <i class="fa fa-sort"></i></th>
+              <th>Visualisation</th>
+              <th>Valider</th>
+              <th>Motif du refus</th>
+              <th>Refuser</th>
+              <th (click)="trier('status')">Status <i class="fa fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fiche of (listeFiches | sorting: cle : sensContraire), let i = index">
+              <td class="nom">{{fiche.dateDeCreation | date: 'dd/MM/yyyy'}}</td>
+              <td class="nom">{{fiche.etudiant.nom}}</td>
+              <td class="nom">{{fiche.etudiant.prenom }}</td>
+              <td class="visualiser">
+                <button mat-icon-button color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
+                  <mat-icon>remove_red_eye</mat-icon>
+                </button>
+              </td>
+              <td>
+                <button mat-icon-button color="primary" aria-label="valider-fiche" class="button" (click)="validerFiche(fiche.etudiant.mail, i)"
+                      [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
+                  <mat-icon>task_alt</mat-icon>
+                </button>
+              </td>
+              <td>
+                <mat-form-field class="input">
+                  <mat-label>Veuillez inscrire la raison du refus* :</mat-label>
+                  <input matInput #message placeholder="Raison du refus">
+                </mat-form-field>
+              </td>
+              <td>
+                <button mat-icon-button color="primary" aria-label="refuser-fiche" class="button"
+                      (click)="refuserFiche(fiche.etudiant.mail, fiche.tuteur.mail, message.value, i)" [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
+                  <mat-icon>remove_circle_outline</mat-icon>
+                </button>
+              </td>
+              <td>
+                <span *ngIf="fiche.ficheValidee==1"> Fiche validée </span>
+                <span *ngIf="fiche.ficheValidee==2"> Fiche refusée </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+-->
+
+    </div>
+  </div>
+</span>
