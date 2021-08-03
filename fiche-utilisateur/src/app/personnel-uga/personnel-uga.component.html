@@ -12,6 +12,11 @@
   <div class="parent">
     <div class="child">
 
+      <mat-form-field class="inputFiltre">
+        <mat-label>Taper le nom de l'étudiant pour chercher une fiche</mat-label>
+        <input matInput (keyup)="filtrer($event)" placeholder = "Example : Dupont" #input>
+      </mat-form-field>
+
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>
 
@@ -78,9 +83,20 @@
             </td>
           </ng-container>
 
+          <ng-container matColumnDef="nbTotal">
+            <td mat-footer-cell *matFooterCellDef colspan="6">
+              <strong>Nombre total des fiches de renseignements :</strong> {{dataSource.data.length}}
+            </td>
+          </ng-container>
+
           <tr mat-header-row *matHeaderRowDef="colonnesTableau"></tr>
           <tr mat-row *matRowDef="let row; columns: colonnesTableau;"></tr>
           <tr mat-footer-row *matFooterRowDef="['chargement']" [ngClass]="{'hide' : listeFiches != null}"></tr>
+          <tr mat-footer-row *matFooterRowDef="['nbTotal']"></tr>
+
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">Aucune correspondance avec le mot clé "<strong>{{input.value}}</strong>"</td>
+          </tr>
         </table>
 
         <mat-paginator [pageSizeOptions]="[5,10]"

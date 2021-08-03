@@ -39,7 +39,13 @@ export class PersonnelUgaComponent implements OnInit {
                           default: return item[property];
                         }
                       }
-                      this.dataSource.sort = this.sort}
+                      this.dataSource.sort = this.sort,
+                      this.dataSource.filterPredicate =
+                        (data: FicheRenseignement, filter: string) => {
+                          const colonneNom = data.etudiant.nom;
+                          const customFilter = colonneNom.toLowerCase().includes(filter);
+                          return customFilter;
+                        }}
     );
 
   }
@@ -94,4 +100,8 @@ export class PersonnelUgaComponent implements OnInit {
     );
   }
 
+  filtrer(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
