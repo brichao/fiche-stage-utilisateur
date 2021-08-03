@@ -1,10 +1,12 @@
+import { MatPaginator } from '@angular/material/paginator';
 import { VisualisationPdfComponent } from './../visualisation-pdf/visualisation-pdf.component';
 import { EnvoieMailService } from './../services/envoie-mail.service';
 import { FicheRenseignement, EmailData } from './../../classes';
 import { MatDialog } from '@angular/material/dialog';
 import { FicheRenseignementService } from './../services/fiche-renseignement.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-personnel-uga',
@@ -15,15 +17,29 @@ export class PersonnelUgaComponent implements OnInit {
 
   listeFiches: FicheRenseignement[] = [];
   mailInfos: EmailData | null = null;
-  colonnesTableau: string[] = ['Date de création', 'Nom', 'Prénom', 'Visualisation', 'Valider', 'Refuser', 'Status'];
+  colonnesTableau: string[] = ['dateDeCreation', 'etudiant.nom', 'etudiant.prenom', 'Visualisation', 'Valider', 'Refuser', 'ficheValidee'];
+  dataSource!: MatTableDataSource<FicheRenseignement>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
+  @ViewChild(MatSort) sort: MatSort | null = null;
 
-
-  constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService) {}
+  constructor(private ficheService: FicheRenseignementService, private dialogue: MatDialog, private mailService: EnvoieMailService,
+              private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.ficheService.getFicheAll().subscribe(
-      listeFiches => this.listeFiches = listeFiches
+      listeFiches => {this.listeFiches = listeFiches,
+                      this.dataSource = new MatTableDataSource<FicheRenseignement>(this.listeFiches),
+                      this.cdr.detectChanges(),
+                      this.dataSource.paginator = this.paginator,
+                      this.dataSource.sortingDataAccessor = (item, property) => {
+                        switch(property) {
+                          case 'etudiant.nom': return item.etudiant.nom;
+                          case 'etudiant.prenom': return item.etudiant.prenom;
+                          default: return item[property];
+                        }
+                      }
+                      this.dataSource.sort = this.sort}
     );
 
   }

@@ -7,31 +7,32 @@
     </div>
   </div>
 </span>
+
 <span *ngIf="listeFiches.length != 0">
   <div class="parent">
     <div class="child">
 
       <div class="mat-elevation-z8">
-        <table mat-table [dataSource]="listeFiches">
+        <table mat-table [dataSource]="dataSource" matSort>
 
-          <ng-container matColumnDef="Date de création">
-            <th mat-header-cell *matHeaderCellDef>Date de création</th>
+          <ng-container matColumnDef="dateDeCreation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Date de création</th>
             <td mat-cell *matCellDef="let fiche">{{fiche.dateDeCreation | date: 'dd/MM/yyyy'}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="Nom">
-            <th mat-header-cell *matHeaderCellDef>Nom</th>
+          <ng-container matColumnDef="etudiant.nom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
             <td mat-cell *matCellDef="let fiche">{{fiche.etudiant.nom}}</td>
           </ng-container>
 
-          <ng-container matColumnDef="Prénom">
-            <th mat-header-cell *matHeaderCellDef>Prénom</th>
+          <ng-container matColumnDef="etudiant.prenom">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Prénom</th>
             <td mat-cell *matCellDef="let fiche">{{fiche.etudiant.prenom}}</td>
           </ng-container>
 
           <ng-container matColumnDef="Visualisation">
             <th mat-header-cell *matHeaderCellDef>Visualisation</th>
-            <td mat-cell *matCellDef="let fiche">
+            <td mat-cell *matCellDef="let fiche" class="centerCell">
               <button mat-icon-button color="primary" aria-label="visualiser-fiche" (click)="visualiserFiche(fiche.etudiant.nom, fiche.etudiant.prenom)">
                 <mat-icon>remove_red_eye</mat-icon>
               </button>
@@ -40,7 +41,7 @@
 
           <ng-container matColumnDef="Valider">
             <th mat-header-cell *matHeaderCellDef>Valider</th>
-            <td mat-cell *matCellDef="let fiche, let i = index">
+            <td mat-cell *matCellDef="let fiche, let i = index" class="centerCell">
               <button mat-icon-button color="primary" aria-label="valider-fiche" class="button" (click)="validerFiche(fiche.etudiant.mail, i)"
                         [disabled]="fiche.ficheValidee == 1 || fiche.ficheValidee == 2">
                     <mat-icon>task_alt</mat-icon>
@@ -50,7 +51,7 @@
 
           <ng-container matColumnDef="Refuser">
             <th mat-header-cell *matHeaderCellDef>Refuser</th>
-            <td mat-cell *matCellDef="let fiche, let i = index">
+            <td mat-cell *matCellDef="let fiche, let i = index" class="centerCell">
               <mat-form-field class="input">
                 <mat-label>Veuillez inscrire la raison du refus* :</mat-label>
                 <input matInput #message placeholder="Raison du refus">
@@ -63,8 +64,8 @@
               </button>
           </ng-container>
 
-          <ng-container matColumnDef="Status">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
+          <ng-container matColumnDef="ficheValidee">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let fiche">
               <span *ngIf="fiche.ficheValidee==1"> Fiche validée </span>
               <span *ngIf="fiche.ficheValidee==2"> Fiche refusée </span>
@@ -82,6 +83,11 @@
           <tr mat-footer-row *matFooterRowDef="['chargement']" [ngClass]="{'hide' : listeFiches != null}"></tr>
         </table>
 
+        <mat-paginator [pageSizeOptions]="[5,10]"
+                       [pageSize]="5"
+                       showFirstLastButtons
+                       aria-label="select page">
+        </mat-paginator>
 
       </div>
 

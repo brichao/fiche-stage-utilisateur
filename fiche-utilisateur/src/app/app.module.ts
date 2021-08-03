@@ -34,6 +34,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche.component';
 import { SortingPipe } from './pipes/sorting.pipe';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { MatTableModule } from '@angular/material/table';
     MomentDateModule,
     MatDialogModule,
     MatStepperModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   providers: [
     EtudiantService,

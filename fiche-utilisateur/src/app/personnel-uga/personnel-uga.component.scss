@@ -3,8 +3,11 @@
 }
 
 table{
-  text-align: center;
   width: 1000px;
+}
+
+.centerCell, .mat-header-cell{
+  text-align: center;
 }
 
 .messageEchec{
@@ -27,10 +30,6 @@ table{
   position: absolute;
   top: 18%;
   left: 22%;
-}
-
-.mat-header-cell{
-  text-align: center;
 }
 
 .hide{
