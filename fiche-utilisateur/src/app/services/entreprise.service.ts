@@ -34,6 +34,20 @@ export class EntrepriseService {
     );
   }
 
+  updateEntreprise(entreprise: Entreprises): Observable<Entreprises> {
+    return this.http.put<Entreprises>(`${this.apiServerUrl}/etablissements/${entreprise.numeroSiret}`, entreprise).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
+  }
+
   //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
   getServerError(error: HttpErrorResponse): string {
     switch (error.status){

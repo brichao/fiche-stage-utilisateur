@@ -104,7 +104,7 @@ export class RechercheFicheComponent implements OnInit {
   //Formulaire entreprise avec les validateurs
   formEntreprise = new FormGroup({
     entreprise : new FormGroup({
-      raisonSociale : new FormControl('',[
+      raisonSociale : new FormControl({value: this.entreprise?.raisonSociale, disabled: false},[
         Validators.required
       ]),
       representantLegal : new FormControl('',[
@@ -538,4 +538,107 @@ export class RechercheFicheComponent implements OnInit {
     );
   }
 
+  /************************************************* UPDATE***************************************************************************************
+   * *********************************************************************************************************************************************
+   * *********************************************************************************************************************************************
+   */
+
+   modifierEntreprise(): void{
+    this.adresseObject = {
+      adresse : this?.adresseEntreprise?.value,
+      codePostal : this?.codePostal?.value,
+      ville : this?.ville?.value,
+      pays : this?.pays?.value
+    }
+    this.entreprise = {
+      raisonSociale : this?.raisonSociale?.value,
+      representantLegal : this?.representantLegal?.value,
+      fonction : this?.fonction?.value,
+      numeroSiret : this?.numSiret?.value,
+      codeApe : this?.codeApe?.value,
+      domaineActivite : this?.domaineActivite?.value,
+      effectif : this?.effectif?.value,
+      serviceAccueil : this?.serviceAccueil?.value,
+      adresse : this.adresseObject,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
+    }
+    this.entrepriseService.updateEntreprise(this.entreprise).subscribe(
+      entreprise => { console.log(entreprise),
+        this.entrepriseValide=true},
+      error => { this.errorMessageEntreprise = error,
+        this.entrepriseValide=false}
+    );
+  }
+
+   modifierServiceGestion(): void{
+    this.serviceGestion = {
+      nom : this?.nomService?.value,
+      prenom : this?.prenomService?.value,
+      numeroTel : this?.numPortableService?.value,
+      mail : this?.mailService?.value,
+      adresse : this?.adresseService?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
+    }
+    this.gestionService.updateServiceGestion(this.serviceGestion).subscribe(
+      servicegestion => { console.log(servicegestion),
+        this.serviceGestionValide = true},
+      error => { this.errorMessageService = error,
+        this.serviceGestionValide = false}
+    );
+  }
+
+   modifierTuteur(): void{
+    this.tuteur = {
+      nom : this?.nomTuteur?.value,
+      prenom : this?.prenomTuteur?.value,
+      fonction : this?.fonctionTuteur?.value,
+      service : this?.serviceTuteur?.value,
+      numTelephone : this?.numPortableTuteur?.value,
+      mail : this?.mailTuteur?.value,
+      adresse : this?.adresseTuteur?.value,
+      disponibilite : this?.disponibiliteTuteur?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
+    }
+    this.tuteurService.updateTuteur(this.tuteur).subscribe(
+      tuteur => { console.log(tuteur),
+        this.tuteurValide = true},
+      error => { this.errorMessageTuteur = error,
+        this.tuteurValide = false}
+    );
+  }
+
+   modifierInfosStage(): void{
+    this.infoStage = {
+      dateDebutPartiel : this?.dateDebutPartiel?.value,
+      dateFinPartiel : this?.dateFinPartiel?.value,
+      dateDebutPlein : this?.dateDebutPlein?.value,
+      dateFinPlein : this?.dateFinPlein?.value,
+      dateDebutInterruption : this?.dateDebutInterruption?.value,
+      dateFinInterruption : this?.dateFinInterruption?.value,
+      nbHeures : this?.nbHeures?.value,
+      gratification : this?.gratification?.value,
+      montantGratification : this?.montantGratification?.value,
+      versementGratification : this?.versementGratification?.value,
+      laboratoireUGA : this?.laboratoireUGA?.value,
+      avantages : this?.avantages?.value,
+      confidentialite : this?.confidentialite?.value,
+      titre : this?.titre?.value,
+      description : this?.description?.value,
+      objectifs : this?.objectifs?.value,
+      taches : this?.taches?.value,
+      details : this?.details?.value,
+      nomEtudiant : this.etudiant?.nom!,
+      prenomEtudiant : this.etudiant?.prenom!
+    }
+
+    this.infosStageService.updateInfosStage(this.infoStage).subscribe(
+      infoStage => { console.log(infoStage),
+        this.infoStageValide = true},
+      error => { this.errorMessageInfos = error,
+        this.infoStageValide = false}
+    );
+  }
 }

@@ -34,6 +34,20 @@ export class ServiceGestionService {
     );
   }
 
+  updateServiceGestion(serviceGestion: ServicesGestion): Observable<ServicesGestion> {
+    return this.http.put<ServicesGestion>(`${this.apiServerUrl}/services/${serviceGestion.mail}`, serviceGestion).pipe(
+      catchError(error => {
+        let errorMsg: string;
+        if(error.error instanceof ErrorEvent){
+          errorMsg = `Error : ${error.error.message}`;
+        } else {
+          errorMsg = this.getServerError(error);
+        }
+        return throwError(errorMsg);
+      })
+    );
+  }
+
   //Cette méthode récupère le status code (en erreur) comme prédéfini dans le serveur, et on affiche un message clair suivant l'erreur reçue.
   getServerError(error: HttpErrorResponse): string {
     switch (error.status){
