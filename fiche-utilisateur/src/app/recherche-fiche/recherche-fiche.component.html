@@ -719,7 +719,7 @@
 
                 <mat-form-field>
                   <mat-label>Nombre total d’heures du stage* :</mat-label>
-                  <input formControlName="nbHeures" matInput [value]="2">
+                  <input formControlName="nbHeures" matInput>
                   <mat-error *ngIf="nbHeures?.errors?.required">Le nombre total d'heures est requis.</mat-error>
                   <mat-error *ngIf="nbHeures?.errors?.pattern">Le nombre total d'heures est un nombre.</mat-error>
                 </mat-form-field>

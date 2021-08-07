@@ -104,7 +104,7 @@ export class RechercheFicheComponent implements OnInit {
   //Formulaire entreprise avec les validateurs
   formEntreprise = new FormGroup({
     entreprise : new FormGroup({
-      raisonSociale : new FormControl({value: this.entreprise?.raisonSociale, disabled: false},[
+      raisonSociale : new FormControl('',[
         Validators.required
       ]),
       representantLegal : new FormControl('',[
