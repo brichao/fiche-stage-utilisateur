@@ -32,7 +32,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { VisualisationPdfComponent } from './visualisation-pdf/visualisation-pdf.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SuppressionFicheComponent } from './suppression-fiche/suppression-fiche.component';
-import { SortingPipe } from './pipes/sorting.pipe';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -47,8 +46,7 @@ import { MatSortModule } from '@angular/material/sort';
     RechercheFicheComponent,
     ExtractionPdfComponent,
     VisualisationPdfComponent,
-    SuppressionFicheComponent,
-    SortingPipe
+    SuppressionFicheComponent
   ],
   imports: [
     BrowserModule,

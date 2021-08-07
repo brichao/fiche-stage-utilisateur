@@ -10,6 +10,11 @@ table{
   width: 1000px;
 }
 
+.maxHeightTable{
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
 .centerCell, .mat-header-cell{
   text-align: center;
 }
@@ -19,10 +24,13 @@ table{
   color: red;
 }
 
-.parent{
+.body{
   background-image: url(../../assets/image-6.jpg);
   background-size: cover;
   height: 100vh;
+}
+.parent{
+
   position: relative;
   margin: 0 auto;
   resize: both;
@@ -30,7 +38,6 @@ table{
 
 .child{
   height: 60vh;
-  width: 1000px;
   position: absolute;
   top: 18%;
   left: 22%;

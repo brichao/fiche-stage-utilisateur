@@ -3,19 +3,19 @@
   padding: 5px;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline{
   color: white;
 }
 
-::ng-deep input.mat-input-element{
+:host ::ng-deep input.mat-input-element{
   color: white;
 }
 
-::ng-deep .mat-form-field-label{
+:host ::ng-deep .mat-form-field-label{
   color: white;
 }
 
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+:host ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
   color: white;
 }
 

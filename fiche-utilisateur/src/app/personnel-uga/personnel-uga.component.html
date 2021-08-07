@@ -1,15 +1,11 @@
-<span *ngIf="listeFiches.length == 0">
-  <div class="container-fluid">
-    <div class="row justify-content-center align-items-center d-flex text-center h-100">
-      <div class="col-12 col-md-8 h-50 ">
-          <h1 class="display-1 text-dark mb-5 mt-5 messageEchec"><strong>Aucune fiche de renseignements n'a été remplie pour l'instant.</strong></h1>
-      </div>
-    </div>
-  </div>
+
+
+<span *ngIf="listeFiches.length == 0" class="justify-content-center align-items-center d-flex text-center h-100 body">
+  <h1 class="display-1 messageEchec">Aucune fiche de renseignements n'a été remplie pour l'instant.</h1>
 </span>
 
 <span *ngIf="listeFiches.length != 0">
-  <div class="parent">
+  <div class="parent body">
     <div class="child">
 
       <mat-form-field class="inputFiltre">
@@ -17,7 +13,7 @@
         <input matInput (keyup)="filtrer($event)" placeholder = "Example : Dupont" #input>
       </mat-form-field>
 
-      <div class="mat-elevation-z8">
+      <div class="mat-elevation-z8 maxHeightTable">
         <table mat-table [dataSource]="dataSource" matSort>
 
           <ng-container matColumnDef="dateDeCreation">
@@ -89,7 +85,7 @@
             </td>
           </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="colonnesTableau"></tr>
+          <tr mat-header-row *matHeaderRowDef="colonnesTableau; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: colonnesTableau;"></tr>
           <tr mat-footer-row *matFooterRowDef="['chargement']" [ngClass]="{'hide' : listeFiches != null}"></tr>
           <tr mat-footer-row *matFooterRowDef="['nbTotal']"></tr>
